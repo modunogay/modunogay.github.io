@@ -19,7 +19,7 @@ function createURL() {
 				}
 				str = encode(str).split("+");
 				str = str.join("_")
-				var url = "http://" + location.host + "/ACNH_Test/DIY/index.html?" + str;
+				var url = "http://" + location.host + "/DIY/index.html?" + str;
 				$("#URL-Input").val(url);
 			});
 		})
