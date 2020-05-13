@@ -1,0 +1,13 @@
+#completeRikai{
+    border: 2px solid #000;
+	width: 50vw;
+    height: 50vh;
+}
+
+#completeWakaru{
+    margin: 0;
+    background: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

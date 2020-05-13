@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8" name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
+	<title>DIYレシピチェッカー</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="./css/Check.css">
+	<link rel="stylesheet" type="text/css" href="./css/BottomNavigation.css">
+	<script type="text/javascript" src="./js/Check.js"></script>
+	<script type="text/javascript" src="./js/CheckBox.js"></script>
+	<script type="text/javascript" src="./js/CheckVersion.js"></script>
+	<script type="text/javascript" src="./js/createURL.js"></script>
+	<script type="text/javascript" src="./js/CheckuserAgent.js"></script>
+	<script type="text/javascript" src="./js/lz-string.js"></script>
+</head>
+<!--
+	Q.これラベル テキストにすれば良かったのでは？
+	背景色指定するだけでいけませんか？
+	無駄な処理していませんか？
+
+	A.それな
+	実装してから気づいたわ
+	疲れたので後で実装するぜ！（）
+
+	もし不具合がありましたら@modunogayまでお願いします。
+-->
+
+<body>
+
+	<p id="title_char">DIYレシピチェッカー</p>
+
+	<input type="checkbox" id="sort-column" onclick="sortfunction()" value="2">
+	<label for="sort-column" id="cb-sort">
+		<image id="cb-sort-image" src="./image/asc_green.png"></image>
+	</label>
+	<input type="image" id="sharebtn" src="./image/share.png" alt="シェア">
+
+	<!--ダイアログの内容-->
+	<div id="mydialog" title="URLを発行">
+		URLを発行しました！<br>
+		<input type="text" id="URL-Input" placeholder="URL発行中・・・" value="blue" readonly="readonly">
+		<br><br>
+		<input type="button" id="URLcopy" value="リンクをコピー"></button>
+		<br><br>
+		<input type="image" src="./image/Twitter_Social_Icon.png" alt="ツイート" onclick="tweetPopup();">
+		<br>
+		↑ツイート↑
+	</div>
+	<br>
+	<br>
+	<table id="fav-table" align="center">
+		<thead>
+			<!--タイトル部-->
+		</thead>
+		<tbody class="list">
+			<!--   データ部   -->
+		</tbody>
+	</table>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div id="contents">
+
+		<button onclick="window.location.reload(true)">強制更新</button>
+		<button onclick="jsclear()">初期化</button>
+		<button onclick="sessionTolocal()">相手のデータを自分のデータにする</button>
+		<hr>
+		©2020 Nintendo<br>
+		このサイトのコンテンツ情報の著作権、その他の知的財産権は、提供元に帰属します。<br>
+		サイトを通して生じた損害等の一切の責任を負いかねます。<br>
+		また、RMTなどのご使用はお控えください。<br>
+		不具合、ご連絡がありましたらTwitter「@modunogay」までお願いします。
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!--画面下部のフィルター-->
+	<div class="FilterBar">
+
+	</div>
+
+	<script>
+
+		var USER_JSON = getlocalstorage("All");
+		if (USER_JSON == null) {
+			USER_JSON = [{ "name": "Name", "data": "value" }];
+			localStorage.setItem("DIY", JSON.stringify(USER_JSON));
+		}
+
+		var OTHER_JSON = [{ "name": "Name", "data": "value" }];
+		sessionStorage.setItem("DIY", JSON.stringify(USER_JSON));
+
+		var param = location.search.substring(1);
+		if (param == "") {
+			param = false;
+		} else {
+			param = true;
+		}
+
+
+
+
+		//androidかiPhoneか判断，bodyのフォントサイズを変更
+		checkuserAgent();
+		//フィルターを動的に追加
+		filterBar();
+		//theadを動的に追加
+		theadAppend();
+		//jsonファイルを取得し要素を追加
+		getJsonFile();
+
+
+
+		function tweetPopup() {
+			var text = encodeURI($("#URL-Input").val());
+			var url = `https://twitter.com/share?url=${text}&text=DIYレシピを更新しました！&hashtags=DIYレシピチェッカー,あつ森,DIYレシピ交換`;
+			window.open(url, "tweet", "width=500,height=300");
+		};
+
+
+
+		function sortfunction() {
+			var val = parseInt($("#sort-column").val());
+			if (val == 4) {
+				$("#sort-column").val(1);
+			} else {
+				$("#sort-column").val(val + 1);
+			}
+
+			if (!param) {
+				switch (val) {
+					case 1: $("#cb-sort-image").attr('src', './image/asc_green.png');
+						$("#fav-table").trigger("sorton", [[[4, 0]]]);
+						break;
+					case 2: $("#cb-sort-image").attr('src', './image/desc_green.png');
+						$("#fav-table").trigger("sorton", [[[4, 1]]]);
+						break;
+					case 3: $("#cb-sort-image").attr('src', './image/asc_blue.png');
+						$("#fav-table").trigger("sorton", [[[5, 0]]]);
+						break
+					case 4: $("#cb-sort-image").attr('src', './image/desc_blue.png');
+						$("#fav-table").trigger("sorton", [[[5, 1]]]);
+						break;
+				};
+			} else if (labellength = 3) {
+				switch (val) {
+					case 1: $("#cb-sort-image").attr('src', './image/asc_green.png');
+						$("#fav-table").trigger("sorton", [[[6, 0]]]);
+						break;
+					case 2: $("#cb-sort-image").attr('src', './image/desc_green.png');
+						$("#fav-table").trigger("sorton", [[[6, 1]]]);
+						break;
+					case 3: $("#cb-sort-image").attr('src', './image/asc_blue.png');
+						$("#fav-table").trigger("sorton", [[[7, 0]]]);
+						break
+					case 4: $("#cb-sort-image").attr('src', './image/desc_blue.png');
+						$("#fav-table").trigger("sorton", [[[7, 1]]]);
+						break;
+				};
+			}
+		};
+
+		$(function () {
+			// ダイアログの初期設定
+			$("#mydialog").dialog({
+				autoOpen: false,
+				width: "80%",
+				modal: true,
+				buttons: [
+					{
+						text: '閉じる',
+						click: function () {
+							$(this).dialog("close");
+						}
+					}
+				]
+			});
+			$("#sharebtn").click(function () {
+				//URLを作成
+				createURL();
+				// ダイアログの呼び出し
+				$("#mydialog").dialog("open");
+			});
+
+			$("#URLcopy").click(function () {
+				var copytext = document.getElementById('URL-Input');
+				if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+					// iphone用
+					try {
+						copytext.readOnly = false;
+						var range = document.createRange();
+						range.selectNode(copytext);
+						window.getSelection().addRange(range);
+						document.execCommand("copy");
+						copytext.readOnly = true;
+						alert("URLをコピーしました!YATTA-!");
+					} catch (e) {
+						copytext.readOnly = true;
+						alert("このブラウザでは対応していません……申し訳ない……");
+					}
+				} else {
+					// iphone以外のコピー設定
+					try {
+						copytext.select();
+						document.execCommand('copy');
+						alert("URLをコピーしました!YATTA-!");
+					} catch (e) {
+						alert("このブラウザでは対応していません……申し訳ない……");
+					}
+				}
+
+			})
+		})
+
+
+		$(document).ready(function () {
+			$("#NameSearch").on("keyup", function () {
+				var value = CharReplace($(this).val());
+				var HTGvalue = CharReplace($("#HTGSearch").val());
+				if (HTGvalue == "") {
+					$(".Name").filter(function () {
+						if (CharReplace($(this).text()).indexOf(value) > -1) {
+							$(this).parent().removeClass("search-none");
+						} else {
+							$(this).parent().addClass("search-none");
+						}
+					});
+				} else {
+					$(".Name").filter(function () {
+						if (CharReplace($(this).text()).indexOf(value) > -1 && CharReplace($(this).next().text()).indexOf(HTGvalue) > -1) {
+							$(this).parent().removeClass("search-none");
+						} else {
+							$(this).parent().addClass("search-none");
+						}
+					});
+				}
+			});
+			$("#HTGSearch").on("keyup", function () {
+				var Namevalue = CharReplace($("#NameSearch").val());
+				var value = CharReplace($(this).val());
+				if (Namevalue == "") {
+					$(".HTG").filter(function () {
+						if (CharReplace($(this).text()).indexOf(value) > -1) {
+							$(this).parent().removeClass("search-none");
+						} else {
+							$(this).parent().addClass("search-none");
+						}
+					});
+				} else {
+					$(".HTG").filter(function () {
+						if (CharReplace($(this).text()).indexOf(value) > -1 && CharReplace($(this).prev().text()).indexOf(Namevalue) > -1) {
+							$(this).parent().addClass("search-none");
+						} else {
+							$(this).parent().removeClass("search-none");
+						}
+					});
+				}
+			});
+
+		});
+
+		$(function () {
+			if (!param) {
+				$(".FilterBar label").css("width", "45%");
+			}
+			height = $(".FilterBar label").height() * 2 + $("#div-serch-area").height() + 20;
+			$("#cb-sort-image").css({ "bottom": `${height}px` });
+			$("#sharebtn").css({ "bottom": `${height}px` });
+
+		});
+
+
+		function jsclear() {
+			if (window.confirm('初期化をします！\nよろしいですか？(3)')) {
+				if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
+					if (window.confirm('本当によろしいですか？(1)')) {
+						localStorage.clear("DIY");
+						window.location.reload(true);
+					}
+				}
+			}
+		}
+
+		function sessionTolocal() {
+			if (window.confirm('データを移行します。\nよろしいですか？(3)')) {
+				if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
+					if (window.confirm('本当によろしいですか？(1)')) {
+						localStorage.setItem("DIY", sessionStorage.getItem("DIY"))
+						window.location.reload(true);
+					}
+				}
+			}
+		}
+
+	</script>
+
+</body>
