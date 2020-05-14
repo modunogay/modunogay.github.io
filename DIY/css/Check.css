@@ -125,7 +125,9 @@ input[type=image] {
 	font-weight: bold;
 }
 #contents{
-	font-size: 16px;
+	font-size: 1.2em;
 }
 
-
+a:link, a:visited, a:hover, a:active {
+	color: #172c66;
+  }

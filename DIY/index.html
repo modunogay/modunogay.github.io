@@ -54,10 +54,24 @@
 	もし不具合がありましたら@modunogayまでお願いします。
 -->
 
+<script>
+	window.onunload = function () { };
+	window.onpageshow = function (event) {
+		if (event.persisted) {
+			window.location.reload();
+		}
+	};
+</script>
+
 
 <body>
-
 	<p id="title_char">DIYレシピチェッカー</p>
+
+	<div id="contents">
+		データを共有する場合、右下の共有ボタン<br><span style="font-weight: bold; color:#2cb67d">（緑色のボタン）</span>を押してください！<br>
+		「自分」だけのページに戻る場合は<a href="./index.html">こちら！</a>
+		<hr>
+	</div>
 
 	<input type="checkbox" id="sort-column" onclick="sortfunction()" value="2">
 	<label for="sort-column" id="cb-sort">
