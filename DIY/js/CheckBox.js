@@ -1,6 +1,6 @@
 function CheckBoxChenge(e) {
 	var num = checkBoxCount(e);
-	setlocalstorage(num[0], num[1]);
+	setlocalstorage(num[0], num[1],"DIY");
 }
 
 /*
