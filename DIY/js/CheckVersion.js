@@ -39,7 +39,7 @@ function getJsonFile() {
 				$.getJSON(`./json/${ver}.json`, function (list) {
 					for (i = 0; i < list.length; i++) {
 						if (param_data[2][i] != 0) {
-							setsessionstorage(list[i].Name, param_data[2][i]);
+							setsessionstorage(list[i].Name, param_data[2][i],"DIY");
 						}
 					}
 					$("#cb-3-column").prop("checked", true);
@@ -58,7 +58,7 @@ function getJsonFile() {
 				for (i = 0; i < list.length; i++) {
 					//ローカルストレージ 自分
 
-					var num = getlocalstorage(list[i].Name);
+					var num = getlocalstorage(list[i].Name,"");
 					switch (num) {
 						case "":
 							Get_Checked = ["", "未取得"];
@@ -86,7 +86,7 @@ function getJsonFile() {
 					};
 					if (param) {
 						//セッションストレージ 相手
-						var peernum = getsessionstorage(list[i].Name);
+						var peernum = getsessionstorage(list[i].Name,"DIY");
 						switch (peernum) {
 							case "":
 								Get_Checked = ["", "未取得"];

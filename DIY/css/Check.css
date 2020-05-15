@@ -116,18 +116,26 @@ input[type=image] {
 	height: 50px;
 }
 
-#title_char,#contents{
+#title_char, #contents {
 	text-align: center;
 	color: #172c66;
 }
-#title_char{
+
+#title_char {
 	font-size: 20px;
 	font-weight: bold;
 }
-#contents{
+
+#contents {
 	font-size: 1.2em;
 }
 
 a:link, a:visited, a:hover, a:active {
 	color: #172c66;
-  }
+}
+
+
+input:checked+#Titter-tag-1-label,input:checked+#Titter-tag-2-label,input:checked+#Titter-tag-3-label,
+input:checked+#Titter-tag-4-label,input:checked+#Titter-tag-5-label,input:checked+#Titter-tag-6-label{
+	background-color: #8bd3dd
+}
