@@ -359,7 +359,8 @@
 
 			$("#URLcopy").click(function () {
 				var copytext = document.getElementById('URL-Input');
-				if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+				var agent = window.navigator.userAgent.toLowerCase();
+				if (agent.indexOf('safari') != -1 && typeof document.ontouchstart != 'undefined') {
 					// iphone用
 					try {
 						copytext.readOnly = false;
