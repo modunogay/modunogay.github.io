@@ -139,3 +139,12 @@ input:checked+#Titter-tag-1-label,input:checked+#Titter-tag-2-label,input:checke
 input:checked+#Titter-tag-4-label,input:checked+#Titter-tag-5-label,input:checked+#Titter-tag-6-label{
 	background-color: #8bd3dd
 }
+
+
+.defaultChar{
+	text-align: left;
+	margin: auto;
+	border: solid 2px #172c66;
+	padding: 1%;
+	max-width: 1000px;
+}
