@@ -81,7 +81,8 @@
 		<a href="https://twitter.com/modunogay/status/1261005296224178176">使い方はこちら！！！</a> <br>
 		データを共有する場合、右下の共有ボタン<br><span style="font-weight: bold; color:#2cb67d">（緑色のボタン）</span>を押してください<br>
 		<a href="./index.html">「自分」だけのページに戻る</a>
-		<br><br>2020/05/17 2:05更新<br>
+		<br><br>2020/05/17 17:06更新<br>
+		「配布可」を全て「不可」にするボタンを追加しました。<br><br>
 		Google Analyticsを導入しました。<br>ページ一番下を一読して頂くようお願いします。
 		<hr>
 	</div>
@@ -159,8 +160,9 @@
 	<div id="contents">
 
 		<button onclick="window.location.reload(true)">強制更新</button>
-		<button onclick="jsclear()">初期化</button>
 		<button onclick="sessionTolocal()">相手のデータを自分のデータにする</button>
+		<button onclick="jsGiveClear()">「配布可」を全て「不可」に</button><br><br><br>
+		<button onclick="jsclear()">初期化</button><br>
 		<hr>
 		©2020 Nintendo<br>
 		このサイトのコンテンツ情報の著作権、その他の知的財産権は、提供元に帰属します。<br>
@@ -484,6 +486,21 @@
 			}
 		}
 
+		function jsGiveClear() {
+			if (window.confirm('「配付可」を全て「不可」にします\nよろしいですか？(3)')) {
+				if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
+					if (window.confirm('本当によろしいですか？(1)')) {
+						for (i = 0; i < USER_JSON.length; i++) {
+							if (USER_JSON[i].data == 2) {
+								USER_JSON[i].data = 1;
+								localStorage.setItem("DIY", JSON.stringify(USER_JSON));
+							}
+						}
+						window.location.reload(true);
+					}
+				}
+			}
+		}
 	</script>
 
 </body>
