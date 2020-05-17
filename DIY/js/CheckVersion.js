@@ -57,7 +57,6 @@ function getJsonFile() {
 
 				for (i = 0; i < list.length; i++) {
 					//ローカルストレージ 自分
-
 					var num = getlocalstorage(list[i].Name,"");
 					switch (num) {
 						case "":
@@ -142,7 +141,9 @@ function getJsonFile() {
 						<td class="NameID">${list[i].NameID}</td>
 						</tr>`;
 				}
-				$("tbody").append(add);
+				//$("tbody").append(add);
+				document.getElementById('Main_tbody').innerHTML = add;
+
 				$(document).ready(function () {
 					$('#fav-table').tablesorter({
 						headers: {
