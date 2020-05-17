@@ -378,7 +378,7 @@
 			$("#URLcopy").click(function () {
 				var copytext = document.getElementById('URL-Input');
 				var agent = window.navigator.userAgent.toLowerCase();
-				if (agent.indexOf('safari') != -1 && typeof document.ontouchstart != 'undefined') {
+				if ((agent.indexOf('safari') != -1 && typeof document.ontouchstart != 'undefined') || /iP(hone|(o|a)d)/.test(navigator.userAgent)) {
 					// iphone用
 					try {
 						copytext.readOnly = false;
@@ -387,7 +387,7 @@
 						window.getSelection().addRange(range);
 						document.execCommand("copy");
 						copytext.readOnly = true;
-						alert("URLをコピーしました!YATTA-!");
+						alert("URLをコピーしました!YATTA-!(iOS)");
 					} catch (e) {
 						copytext.readOnly = true;
 						alert("このブラウザでは対応していません……申し訳ない……");
