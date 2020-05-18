@@ -78,11 +78,12 @@
 	<p id="title_char">DIYレシピチェッカー</p>
 
 	<div id="contents">
-		<span style="font-size: 2em;background-color: #f582ae;"><a href="https://twitter.com/modunogay/status/1261005296224178176">使い方はこちら！！！</a></span> <br>
+		<span style="font-size: 2em;background-color: #f582ae;"><a
+				href="https://twitter.com/modunogay/status/1261005296224178176">使い方はこちら！！！</a></span> <br>
 		データを共有する場合、右下の共有ボタン<br><span style="font-weight: bold; color:#2cb67d">（緑色のボタン）</span>を押してください<br>
 		<a href="./index.html">「自分」だけのページに戻る</a>
-		<br><br>2020/05/17 17:06更新<br>
-		「配布可」を全て「不可」にするボタンを追加しました。<br><br>
+		<br><br>2020/05/18 23:49更新<br>
+		URLのコピーを修正しました(多分)<br><br>
 		Google Analyticsを導入しました。<br>ページ一番下を一読して頂くようお願いします。
 		<hr>
 	</div>
@@ -381,13 +382,11 @@
 				if ((agent.indexOf('safari') != -1 && typeof document.ontouchstart != 'undefined') || /iP(hone|(o|a)d)/.test(navigator.userAgent)) {
 					// iphone用
 					try {
-						copytext.readOnly = false;
 						var range = document.createRange();
 						range.selectNode(copytext);
 						window.getSelection().addRange(range);
-						document.execCommand("copy");
-						copytext.readOnly = true;
-						alert("URLをコピーしました!YATTA-!(iOS)");
+						document.execCommand('copy');
+						alert("URLをコピーしました!YATTA-!");
 					} catch (e) {
 						copytext.readOnly = true;
 						alert("このブラウザでは対応していません……申し訳ない……");
