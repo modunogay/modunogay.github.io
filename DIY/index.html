@@ -82,8 +82,8 @@
 				href="https://twitter.com/modunogay/status/1261005296224178176">使い方はこちら！！！</a></span> <br>
 		データを共有する場合、右下の共有ボタン<br><span style="font-weight: bold; color:#2cb67d">（緑色のボタン）</span>を押してください<br>
 		<a href="./index.html">「自分」だけのページに戻る</a>
-		<br><br>2020/05/18 23:49更新<br>
-		URLのコピーを修正しました(多分)<br><br>
+		<br><br>2020/05/19 1:35更新<br>
+		URLのコピーを修正しました(2回目)<br><br>
 		Google Analyticsを導入しました。<br>ページ一番下を一読して頂くようお願いします。
 		<hr>
 	</div>
@@ -379,8 +379,7 @@
 			$("#URLcopy").click(function () {
 				var copytext = document.getElementById('URL-Input');
 				var agent = window.navigator.userAgent.toLowerCase();
-				if ((agent.indexOf('safari') != -1 && typeof document.ontouchstart != 'undefined') || /iP(hone|(o|a)d)/.test(navigator.userAgent)) {
-					// iphone用
+				if ((agent.indexOf('safari') != -1 && typeof document.ontouchstart != 'undefined' && agent.indexOf('macintosh') !=-1 ) || /iP(hone|(o|a)d)/.test(navigator.userAgent)) {
 					try {
 						var range = document.createRange();
 						range.selectNode(copytext);
