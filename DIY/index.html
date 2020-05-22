@@ -30,6 +30,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="./js/jquery.ui.touch-punch.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/Check.css">
 	<link rel="stylesheet" type="text/css" href="./css/BottomNavigation.css">
 	<script type="text/javascript" src="./js/Check.js"></script>
@@ -83,9 +84,14 @@
 				href="https://twitter.com/modunogay/status/1261005296224178176">使い方はこちら！！！</a></span> <br>
 		データを共有する場合、右下の共有ボタン<br><span style="font-weight: bold; color:#2cb67d">（緑色のボタン）</span>を押してください<br>
 		<span style="font-size: 1.3em;background-color: #8bd3dd;"><a
-			href="https://twitter.com/modunogay/status/1263768581436661760">データが反映されていない？<br>「相手」が表示されない？<br>(こちらをクリック)</a></span> <br><br>
-			<a href="./index.html">「自分」だけのページに戻る</a>
+				href="https://twitter.com/modunogay/status/1263768581436661760">データが反映されていない？<br>「相手」が表示されない？<br>(こちらをクリック)</a></span>
+		<br><br>
+		<a href="./index.html">「自分」だけのページに戻る</a>
 		<br>
+		<br>
+		2020/05/23 1:58更新<br>
+		ページ一番下に「文字サイズを変更」する機能を追加<br>
+		※高頻度で表示がバグります ご注意を
 	</div>
 	<hr>
 
@@ -100,7 +106,8 @@
 		URLを発行しました！<br>
 		<input type="text" id="URL-Input" placeholder="URL発行中・・・" value="URL発行中・・・" readonly="readonly">
 		<br><br>
-		<input type="button" id="URLcopy" data-clipboard-target="#URL-Input" value="リンクをコピー" onclick="copyAlert()"></button>
+		<input type="button" id="URLcopy" data-clipboard-target="#URL-Input" value="リンクをコピー"
+			onclick="copyAlert()"></button>
 		<br><br>
 		<input type="image" src="./image/Twitter_Social_Icon.png" alt="ツイート" onclick="tweetPopup();">
 		<br>
@@ -165,6 +172,14 @@
 		<button onclick="sessionTolocal()">相手のデータを自分のデータにする</button>
 		<button onclick="jsGiveClear()">「配布可」を全て「不可」に</button><br><br><br>
 		<button onclick="jsclear()">初期化</button><br>
+		<br><br>
+		フォントサイズ変更(仮)
+		<!--フォントサイズの表示-->
+		<span id="num" style="font-size: 20px;"></span>
+		<!--1スライダーを表示する領域-->
+		<div id="slider" style="width:80%; max-width: 500px; margin: auto;"></div><br>
+		※表示がバグる可能性大（デフォルトは100%）<br>
+		(iPhone safariのおススメは115%？？)
 		<hr>
 		©2020 Nintendo<br>
 		このサイトのコンテンツ情報の著作権、その他の知的財産権は、提供元に帰属します。<br>
@@ -213,6 +228,7 @@
 
 	</div>
 
+
 </body>
 
 
@@ -247,6 +263,8 @@
 		}
 		//console.log("ページロード時のハッシュタグ(状態):"+getHashTag())
 	}
+
+
 
 
 	function getHashTag() {
@@ -314,7 +332,7 @@
 
 	//clipboradJSを割り当て
 	new ClipboardJS('#URLcopy');
-	function copyAlert(){
+	function copyAlert() {
 		alert("URLをコピーしました！")
 	}
 
@@ -384,36 +402,6 @@
 			// ダイアログの呼び出し
 			$("#mydialog").dialog("open");
 		});
-
-		/*
-		$("#URLcopy").click(function () {
-
-			
-			var copytext = document.getElementById('URL-Input');
-			var agent = window.navigator.userAgent.toLowerCase();
-			if ((agent.indexOf('safari') != -1 && typeof document.ontouchstart != 'undefined' && agent.indexOf('macintosh') != -1) || /iP(hone|(o|a)d)/.test(navigator.userAgent)) {
-				try {
-					var range = document.createRange();
-					range.selectNode(copytext);
-					window.getSelection().addRange(range);
-					document.execCommand('copy');
-					alert("URLをコピーしました!YATTA-!");
-				} catch (e) {
-					copytext.readOnly = true;
-					alert("このブラウザでは対応していません……申し訳ない……");
-				}
-			} else {
-				// iphone以外のコピー設定
-				try {
-					copytext.select();
-					document.execCommand('copy');
-					alert("URLをコピーしました!YATTA-!");
-				} catch (e) {
-					alert("このブラウザでは対応していません……申し訳ない……");
-				}
-			}
-		})
-		*/
 	})
 
 	$(document).ready(function () {
@@ -510,6 +498,37 @@
 			}
 		}
 	}
+
+
+	//テーブルのフォントサイズを変更
+	var fontsize = localStorage.getItem("Table-Font-Size");
+	if (fontsize == null) {
+		fontsize = 100;
+	}else{
+		$('#fav-table').css("fontSize",`${fontsize}%`);
+	}
+
+	$(function () {
+		// 2スライダーを適用
+		$('#slider').slider({
+			value: fontsize,
+			min: 65,
+			max: 135,
+			step: 1,
+
+			change: function (e, ui) {
+				$('#num').text(`${ui.value}%`);
+				$('#fav-table').css("fontSize", `${ui.value}%`)
+				localStorage.setItem("Table-Font-Size", ui.value);
+			},
+			// 4スライダーの初期化時に、その値をテキストボックスにも反映
+			create: function (e, ui) {
+				$('#num').text(`${$(this).slider('option', 'value')}%`);
+			}
+		});
+
+		$("#slider").draggable();
+	});
 </script>
 
 </html>

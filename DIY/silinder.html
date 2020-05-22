@@ -1,0 +1,44 @@
+<meta charset="UTF-8" />
+<title>Accordionウィジェット</title>
+<link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+	var fontsize = 100;
+
+	$(function () {
+		// 2スライダーを適用
+		$('#slider').slider({
+			value: fontsize,
+			min: 65,
+			max: 135,
+			step: 1,
+
+			change: function (e, ui) {
+				$('#num').text(`${ui.value}%`);
+				$('body').css("fontSize", `${ui.value}%`)
+			},
+			// 4スライダーの初期化時に、その値をテキストボックスにも反映
+			create: function (e, ui) {
+				$('#num').text(`${$(this).slider('option', 'value')}%`);
+			}
+		});
+	});
+
+</script>
+</head>
+
+<body>
+
+
+	<!--フォントサイズの表示-->
+	<span id="num" style="font-size: 20px;"></span>
+
+	<!--1スライダーを表示する領域-->
+	<div id="slider" style="width:100%; max-width: 500px;"></div>
+
+	ああああああああ
+</body>
+
+</html>

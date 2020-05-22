@@ -122,11 +122,11 @@ function cssChenge() {
 
 		switch (len) {
 			case 2:
-				font2.css("fontSize", "1.3em");
+				font2.css("fontSize", "1.2em");
 				break;
 			case 3:
 				font1.css("fontSize", "1em");
-				font2.css("fontSize", "1em");
+				font2.css("fontSize", `1em`);
 				font4.css("fontSize", "1em");
 				break;
 			case 4:
