@@ -149,4 +149,5 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 #slider {
 	-ms-touch-action: none;
 	touch-action: none;
+	z-index: inherit;
 }
