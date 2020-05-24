@@ -13,15 +13,15 @@
 	</script>
 	<meta charset="UTF-8" name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
-	<title>家具チェッカー</title>
+	<title>壁掛け家具チェッカー</title>
 	<!--Twitter metaタグ-->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@modunogay" />
 	<meta property="og:url" content="https://modunogay.github.io/DIY/index.html" />
-	<meta property="og:title" content="家具チェッカー" />
-	<meta property="og:description" content="あつまれどうぶつの森の家具を管理、共有するサイト" />
-	<meta property="og:image" content="https://modunogay.github.io/FTR/image/CARD.png" />
-	<meta name="description" content="あつまれどうぶつの森の家具を管理、共有するサイト">
+	<meta property="og:title" content="小物チェッカー" />
+	<meta property="og:description" content="あつまれどうぶつの森の壁掛け家具を管理、共有するサイト" />
+	<meta property="og:image" content="https://modunogay.github.io/image/CARD.png" />
+	<meta name="description" content="あつまれどうぶつの森の壁掛け家具を管理、共有するサイト">
 	<!--Twitter metaタグ ここまで-->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript"
@@ -41,7 +41,6 @@
 	<script type="text/javascript" src="../DIY/js/lz-string.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/override.css">
 	<script type="text/javascript" src="../DIY/js/footer.js"></script>
-
 </head>
 
 <!--
@@ -90,7 +89,7 @@
 		footer();
 	</script>
 
-	<p id="title_char">家具チェッカー</p>
+	<p id="title_char">壁掛け家具チェッカー</p>
 
 	<div id="contents">
 		<a href="./index.html">「自分」だけのページに戻る</a>
@@ -116,10 +115,10 @@
 		↑ツイート↑<br><br>
 
 		↓付けるタグ↓<br>
-		<input type="checkbox" id="Twitter-tag-1" onclick="TwitterTagfunction(1)" value="家具チェッカー"
+		<input type="checkbox" id="Twitter-tag-1" onclick="TwitterTagfunction(1)" value="壁掛け家具チェッカー"
 			style="display: inline;">
 		<label for="Twitter-tag-1" id="Titter-tag-1-label">
-			#家具チェッカー
+			#壁掛け家具チェッカー
 		</label><br>
 		<input type="checkbox" id="Twitter-tag-2" onclick="TwitterTagfunction(2)" value="あつ森" style="display: inline;">
 		<label for="Twitter-tag-2" id="Titter-tag-2-label">
@@ -227,26 +226,26 @@
 <script>
 
 	//ユーザーのデータ
-	var USER_JSON = getlocalstorage("All", "FTR");
+	var USER_JSON = getlocalstorage("All", "FTR_WALL");
 	if (USER_JSON == null) {
 		USER_JSON = [{ "name": "Name", "data": "value" }];
-		localStorage.setItem("FTR", JSON.stringify(USER_JSON));
+		localStorage.setItem("FTR_WALL", JSON.stringify(USER_JSON));
 	}
 
 
 	//jqueryのダイアログを用いると、何故かclassが使えなくなるのでlength用に設置		
 	const Tiwtter_CB_LENGTH = 6;
-	//USER_JSON_FTR_TWITTERユーザーのハッシュタグ情報を管理
-	var USER_JSON_FTR_TWITTER = getlocalstorage("All", "FTR_TWITTER");
-	if (USER_JSON_FTR_TWITTER == null) {
-		USER_JSON_FTR_TWITTER = [{ "name": "Name", "data": "value" }];
-		localStorage.setItem("FTR_TWITTER", JSON.stringify(USER_JSON_FTR_TWITTER));
+	//USER_JSON_FTR_WALL_TWITTERユーザーのハッシュタグ情報を管理
+	var USER_JSON_FTR_WALL_TWITTER = getlocalstorage("All", "FTR_WALL_TWITTER");
+	if (USER_JSON_FTR_WALL_TWITTER == null) {
+		USER_JSON_FTR_WALL_TWITTER = [{ "name": "Name", "data": "value" }];
+		localStorage.setItem("FTR_WALL_TWITTER", JSON.stringify(USER_JSON_FTR_WALL_TWITTER));
 	} else {
-		//console.log(USER_JSON_FTR_TWITTER)
-		for (i = 1; i < USER_JSON_FTR_TWITTER.length; i++) {
-			if (USER_JSON_FTR_TWITTER[i].data == 1) {
+		//console.log(USER_JSON_FTR_WALL_TWITTER)
+		for (i = 1; i < USER_JSON_FTR_WALL_TWITTER.length; i++) {
+			if (USER_JSON_FTR_WALL_TWITTER[i].data == 1) {
 				for (j = 1; i <= Tiwtter_CB_LENGTH; j++) {
-					if ($(`#Twitter-tag-${j}`).val() == USER_JSON_FTR_TWITTER[i].name) {
+					if ($(`#Twitter-tag-${j}`).val() == USER_JSON_FTR_WALL_TWITTER[i].name) {
 						$(`#Twitter-tag-${j}`).prop('checked', true);
 						break;
 					}
@@ -261,9 +260,9 @@
 
 	function getHashTag() {
 		var HashTags = [];
-		for (i = 0; i < USER_JSON_FTR_TWITTER.length; i++) {
-			if (USER_JSON_FTR_TWITTER[i].data == 1) {
-				HashTags.push(USER_JSON_FTR_TWITTER[i].name)
+		for (i = 0; i < USER_JSON_FTR_WALL_TWITTER.length; i++) {
+			if (USER_JSON_FTR_WALL_TWITTER[i].data == 1) {
+				HashTags.push(USER_JSON_FTR_WALL_TWITTER[i].name)
 			}
 		}
 		return HashTags
@@ -271,10 +270,10 @@
 
 	function TwitterTagfunction(index) {
 		if ($(`#Twitter-tag-${index}`).prop('checked')) {
-			setlocalstorage($(`#Twitter-tag-${index}`).val(), 1, "FTR_TWITTER");
+			setlocalstorage($(`#Twitter-tag-${index}`).val(), 1, "FTR_WALL_TWITTER");
 			//(getHashTag());
 		} else {
-			setlocalstorage($(`#Twitter-tag-${index}`).val(), 0, "FTR_TWITTER");
+			setlocalstorage($(`#Twitter-tag-${index}`).val(), 0, "FTR_WALL_TWITTER");
 			//console.log(getHashTag());
 		}
 	}
@@ -293,7 +292,7 @@
 
 	//相手のデータ
 	var OTHER_JSON = [{ "name": "Name", "data": "value" }];
-	sessionStorage.setItem("FTR", JSON.stringify(OTHER_JSON));
+	sessionStorage.setItem("FTR_WALL", JSON.stringify(OTHER_JSON));
 
 	//パラメータの判定
 	var param = location.search.substring(1);
@@ -374,7 +373,7 @@
 		if (window.confirm('初期化をします！\nよろしいですか？(3)')) {
 			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
 				if (window.confirm('本当によろしいですか？(1)')) {
-					localStorage.clear("FTR");
+					localStorage.clear("FTR_WALL");
 					window.location.reload(true);
 				}
 			}
@@ -385,7 +384,7 @@
 		if (window.confirm('データを移行します。\nよろしいですか？(3)')) {
 			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
 				if (window.confirm('本当によろしいですか？(1)')) {
-					localStorage.setItem("FTR", sessionStorage.getItem("FTR"))
+					localStorage.setItem("FTR_WALL", sessionStorage.getItem("FTR_WALL"))
 					window.location.reload(true);
 				}
 			}
@@ -399,7 +398,7 @@
 					for (i = 0; i < USER_JSON.length; i++) {
 						if (USER_JSON[i].data == 2) {
 							USER_JSON[i].data = 1;
-							localStorage.setItem("FTR", JSON.stringify(USER_JSON));
+							localStorage.setItem("FTR_WALL", JSON.stringify(USER_JSON));
 						}
 					}
 					window.location.reload(true);

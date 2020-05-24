@@ -39,7 +39,7 @@ function getJsonFile() {
 				$.getJSON(`./json/${ver}.json`, function (list) {
 					for (i = 0; i < list.length; i++) {
 						if (param_data[2][i] != 0) {
-							setsessionstorage(list[i].Name, param_data[2][i],"DIY");
+							setsessionstorage(list[i].Name, param_data[2][i],"FTR_WALL");
 						}
 					}
 					$("#cb-3-column").prop("checked", true);
@@ -85,7 +85,7 @@ function getJsonFile() {
 					};
 					if (param) {
 						//セッションストレージ 相手
-						var peernum = getsessionstorage(list[i].Name,"DIY");
+						var peernum = getsessionstorage(list[i].Name,"FTR_WALL");
 						switch (peernum) {
 							case "":
 								Get_Checked = ["", "未取得"];
@@ -123,9 +123,9 @@ function getJsonFile() {
 						</td>
 						<td class="Name table-2-column" id="${i + 1}_Name">${list[i].Name}</td>`;
 					if (param) {
-						add += `<td class="HTG table-3-column table-column-none">${list[i].Category}</td>`;
+						add += `<td class="HTG table-3-column table-column-none">${list[i].Buy}</td>`;
 					} else {
-						add += `<td class="HTG table-3-column">${list[i].Category}</td>`;
+						add += `<td class="HTG table-3-column">${list[i].Buy}</td>`;
 					}
 					if (param) {
 						add += `<td class="table-4-column">
@@ -137,9 +137,6 @@ function getJsonFile() {
 							<label class="Get-Label" for="${i + 1}_Peer_Get" id="${i + 1}_Peer_Get_Label">${Peer_Get_Checked[1]}</label>
 							</td>`;
 					};
-					add += `<td class="DIYID">${list[i].DIYID}</td>
-						<td class="NameID">${list[i].NameID}</td>
-						</tr>`;
 				}
 				//$("tbody").append(add);
 				document.getElementById('Main_tbody').innerHTML = add;
@@ -205,7 +202,6 @@ function filterBar() {
 
 		add = `<div id="div-serch-area">
 				<input type="text" name="search" value="" id="NameSearch" placeholder="名前検索">
-				<input type="text" name="search" value="" id="HTGSearch" placeholder="入手方法検索">
 				</div>
 				<input type="checkbox" id="cb-1-column" onchange="ClassReplace('1')">
 				<label for="cb-1-column" id="cb-1-label">「自分」<br>を非表示</label>
@@ -218,11 +214,13 @@ function filterBar() {
 		add += ` <br> <input type="checkbox" id="cb-1-row" onchange="row_ClassReplace('1')" value="2">
 			<label for="cb-1-row" id="cb-1-row-label">全表示中</label>
 			<br> <input type="checkbox" id="cb-2-row" onchange="row_Other_ClassReplace('2')">
-			<label for="cb-2-row" id="cb-2-row-label">「その他」<br>を非表示</label>`;
+			<label for="cb-2-row" id="cb-2-row-label">「非売品」<br>を非表示</label>`;
 		if (param) {
 			add += `<br> <input type="checkbox" id="cb-4-row" onchange="row_ClassReplace('4')" value="2">
 				<label for="cb-4-row" id="cb-4-row-label">全表示中</label>`;
 		}
 		$(".FilterBar").append(add);
+
+
 	})
 }

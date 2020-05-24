@@ -151,3 +151,33 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	touch-action: none;
 	z-index: inherit;
 }
+
+#Footer {
+	background-color: #8bd3dd;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	align-items: center;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 2;
+}
+
+#Footer a:link, #Footer a:visited, #Footer a:hover, #Footer a:active {
+	border: solid 2px #fef6e4;
+	border-radius: 0px;
+	flex-grow: 1;
+	vertical-align: middle;
+	color: #172c66;
+	font-size: auto;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	align-self: stretch;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	z-index: inherit;
+	font-size: 1.5em;
+	text-align: center;
+}
