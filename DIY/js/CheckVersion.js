@@ -144,6 +144,7 @@ function getJsonFile() {
 				//$("tbody").append(add);
 				document.getElementById('Main_tbody').innerHTML = add;
 
+				/*
 				$(document).ready(function () {
 					$('#fav-table').tablesorter({
 						headers: {
@@ -159,6 +160,7 @@ function getJsonFile() {
 						}
 					});
 				});
+				*/
 			}
 		})
 	})

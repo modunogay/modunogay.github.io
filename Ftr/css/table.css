@@ -1,0 +1,19 @@
+html {
+	font-size: 65%;
+}
+
+/*中デバイス（タブレット, 768px 以上）*/
+
+@media (min-width: 768px) {
+	html {
+		font-size: 100%;
+	}
+}
+
+table {
+	table-layout: fixed;
+}
+
+td {
+	word-wrap: break-word;
+}

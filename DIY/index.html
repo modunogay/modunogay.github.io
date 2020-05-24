@@ -89,17 +89,21 @@
 		<a href="./index.html">「自分」だけのページに戻る</a>
 		<br>
 		<br>
-		2020/05/23 1:58更新<br>
-		ページ一番下に「文字サイズを変更」する機能を追加<br>
-		※高頻度で表示がバグります ご注意を
+		2020/05/24 21:30更新<br>
+		※一部スマートフォンで動作終了してしまう不具合を修正<br>
+		この修正によりソート（並び替え）の機能を一時停止しました
 	</div>
 	<hr>
 
+	<!-- ボタン拡張 -->
+	<!--
 	<input type="checkbox" id="sort-column" onclick="sortfunction()" value="2">
 	<label for="sort-column" id="cb-sort">
 		<image id="cb-sort-image" src="./image/asc_green.png"></image>
 	</label>
+	-->
 	<input type="image" id="sharebtn" src="./image/share.png" alt="シェア">
+	<!-- ボタン拡張ここまで -->
 
 	<!--ダイアログの内容-->
 	<div id="mydialog" title="URLを発行">
@@ -340,6 +344,7 @@
 
 
 
+	/*
 	function sortfunction() {
 		var val = parseInt($("#sort-column").val());
 		if (val == 4) {
@@ -380,7 +385,7 @@
 			};
 		}
 	};
-
+	*/
 	$(function () {
 		// ダイアログの初期設定
 		$("#mydialog").dialog({
