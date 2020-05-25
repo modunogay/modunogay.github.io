@@ -5,3 +5,9 @@ function footer(){
 	<a href="../FTR_WALL/index.html">壁掛け家具<br>チェッカー</a>`
 	$("#Footer").append(add);
 }
+
+function footerComment(){
+	add = `5/25 20:46更新<br>一部データに誤りがありました。<br>
+	修正に伴いデータのバージョンを1.2.0.aにしました`
+	$("#FooterComment").append(add);
+}
