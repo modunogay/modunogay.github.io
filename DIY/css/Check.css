@@ -152,7 +152,7 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	z-index: inherit;
 }
 
-#Footer {
+#Header {
 	background-color: #8bd3dd;
 	display: flex;
 	justify-content: space-around;
@@ -164,7 +164,7 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	z-index: 2;
 }
 
-#Footer a:link, #Footer a:visited, #Footer a:hover, #Footer a:active {
+#Header a:link, #Header a:visited, #Header a:hover, #Header a:active {
 	border: solid 2px #fef6e4;
 	border-radius: 0px;
 	flex-grow: 1;
@@ -180,4 +180,9 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	z-index: inherit;
 	font-size: 1.5em;
 	text-align: center;
+}
+
+.table-3-column img{
+	display: block;
+    margin: auto;
 }

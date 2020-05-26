@@ -10,6 +10,9 @@ function replaceVersion(str) {
 	要素を追加
 	localStrageから名前に対する状態を取得，checkboxを変更
 */
+
+var lazy;
+
 function getJsonFile() {
 	$(function () {
 		$.get("./version/now.txt", function (data) {
@@ -39,7 +42,7 @@ function getJsonFile() {
 				$.getJSON(`./json/${ver}.json`, function (list) {
 					for (i = 0; i < list.length; i++) {
 						if (param_data[2][i] != 0) {
-							setsessionstorage(list[i].Name, param_data[2][i],"FTR");
+							setsessionstorage(list[i].Name, param_data[2][i], "FTR");
 						}
 					}
 					$("#cb-3-column").prop("checked", true);
@@ -57,7 +60,7 @@ function getJsonFile() {
 
 				for (i = 0; i < list.length; i++) {
 					//ローカルストレージ 自分
-					var num = getlocalstorage(list[i].Name,"");
+					var num = getlocalstorage(list[i].Name, "");
 					switch (num) {
 						case "":
 							Get_Checked = ["", "未取得"];
@@ -85,7 +88,7 @@ function getJsonFile() {
 					};
 					if (param) {
 						//セッションストレージ 相手
-						var peernum = getsessionstorage(list[i].Name,"FTR");
+						var peernum = getsessionstorage(list[i].Name, "FTR");
 						switch (peernum) {
 							case "":
 								Get_Checked = ["", "未取得"];
@@ -123,9 +126,23 @@ function getJsonFile() {
 						</td>
 						<td class="Name table-2-column" id="${i + 1}_Name">${list[i].Name}</td>`;
 					if (param) {
-						add += `<td class="HTG table-3-column table-column-none">${list[i].Buy}</td>`;
+						if (list[i].Buy != "") {
+							add += `<td class="HTG table-3-column table-column-none">
+							<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
+							${list[i].Buy}</td>`;
+						} else {
+							add += `<td class="HTG table-3-column table-column-none">
+							<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" /></td>`;
+						}
 					} else {
-						add += `<td class="HTG table-3-column">${list[i].Buy}</td>`;
+						if (list[i].Buy != "") {
+							add += `<td class="HTG NFS table-3-column">
+							<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
+							${list[i].Buy}</td>`;
+						} else {
+							add += `<td class="HTG table-3-column">
+							<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" /></td>`;
+						}
 					}
 					if (param) {
 						add += `<td class="table-4-column">
@@ -140,6 +157,19 @@ function getJsonFile() {
 				}
 				//$("tbody").append(add);
 				document.getElementById('Main_tbody').innerHTML = add;
+
+				lazy();
+
+				/*
+				let images = document.querySelectorAll(".lazyload");
+				lazy = lazyload(images, {
+					rootMargin: "100px 0px",
+					threshold: 0
+				});
+				//lazy.destroy();
+				*/
+
+				
 
 				/*
 				$(document).ready(function () {

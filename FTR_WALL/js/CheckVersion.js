@@ -39,7 +39,7 @@ function getJsonFile() {
 				$.getJSON(`./json/${ver}.json`, function (list) {
 					for (i = 0; i < list.length; i++) {
 						if (param_data[2][i] != 0) {
-							setsessionstorage(list[i].Name, param_data[2][i],"FTR_WALL");
+							setsessionstorage(list[i].Name, param_data[2][i], "FTR_WALL");
 						}
 					}
 					$("#cb-3-column").prop("checked", true);
@@ -57,7 +57,7 @@ function getJsonFile() {
 
 				for (i = 0; i < list.length; i++) {
 					//ローカルストレージ 自分
-					var num = getlocalstorage(list[i].Name,"");
+					var num = getlocalstorage(list[i].Name, "");
 					switch (num) {
 						case "":
 							Get_Checked = ["", "未取得"];
@@ -85,7 +85,7 @@ function getJsonFile() {
 					};
 					if (param) {
 						//セッションストレージ 相手
-						var peernum = getsessionstorage(list[i].Name,"FTR_WALL");
+						var peernum = getsessionstorage(list[i].Name, "FTR_WALL");
 						switch (peernum) {
 							case "":
 								Get_Checked = ["", "未取得"];
@@ -123,9 +123,23 @@ function getJsonFile() {
 						</td>
 						<td class="Name table-2-column" id="${i + 1}_Name">${list[i].Name}</td>`;
 					if (param) {
-						add += `<td class="HTG table-3-column table-column-none">${list[i].Buy}</td>`;
+						if (list[i].Buy != "") {
+							add += `<td class="HTG table-3-column table-column-none">
+								<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
+								${list[i].Buy}</td>`;
+						} else {
+							add += `<td class="HTG table-3-column table-column-none">
+								<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" /></td>`;
+						}
 					} else {
-						add += `<td class="HTG table-3-column">${list[i].Buy}</td>`;
+						if (list[i].Buy != "") {
+							add += `<td class="HTG NFS table-3-column">
+								<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
+								${list[i].Buy}</td>`;
+						} else {
+							add += `<td class="HTG table-3-column">
+								<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" /></td>`;
+						}
 					}
 					if (param) {
 						add += `<td class="table-4-column">
@@ -141,6 +155,7 @@ function getJsonFile() {
 				//$("tbody").append(add);
 				document.getElementById('Main_tbody').innerHTML = add;
 
+				lazy();
 				/*
 				$(document).ready(function () {
 					$('#fav-table').tablesorter({

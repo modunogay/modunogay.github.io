@@ -1,0 +1,16 @@
+html{
+ color: #172c66;
+ background-color: #fef6e4;
+}
+
+h1, h2,h3,h4,h5{
+	margin: 0;
+}
+
+.defaultChar{
+	text-align: left;
+    margin: auto;
+    border: solid 2px #172c66;
+    padding: 1%;
+    max-width: 1000px;
+}

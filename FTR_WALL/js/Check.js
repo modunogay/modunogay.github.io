@@ -22,21 +22,19 @@ function ClassReplace(index) {
 
 function row_Other_ClassReplace(index) {
 	if ($(`#cb-${index}-row`).prop('checked')) {
-		$(".HTG").filter(function () {
-			if ($(this).text() == "非売品") {
-				$(this).parent().addClass("table-row-other-none");
-			}
+		$(".NFS").filter(function () {
+			$(this).parent().addClass("table-row-other-none");
 		})
 	} else {
-		$(".HTG").filter(function () {
-			if ($(this).text() == "非売品") {
-				$(this).parent().removeClass("table-row-other-none");
-			};
+		$(".NFS").filter(function () {
+			$(this).parent().removeClass("table-row-other-none");
 		});
 	};
 };
 
 function row_ClassReplace(index) {
+	$(".lazyload").css("display","none");
+
 	var val = parseInt($(`#cb-${index}-row`).val());
 	if (val == 4) {
 		$(`#cb-${index}-row`).val(1);
@@ -100,8 +98,7 @@ function row_ClassReplace(index) {
 			})
 			break;
 	}
-
-
+	$(".lazyload").css("display","");
 };
 
 function cssChenge() {
