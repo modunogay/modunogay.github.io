@@ -13,4 +13,5 @@ h1, h2,h3,h4,h5{
     border: solid 2px #172c66;
     padding: 1%;
     max-width: 1000px;
+    word-wrap: break-word;
 }
