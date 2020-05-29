@@ -36,7 +36,7 @@ function getJsonFile() {
 				$("#Peer_date").text(date[0] + "/" + date[1] + "/" + date[2] + " " + date[3] + ":" + ('00' + date[4]).slice(-2));
 
 				//バージョンが違うかもしれないためもう一度取得 sessionstorageに保存
-				$.getJSON(`./json/${ver}.json`,{_: new Date().getTime()}, function (list) {
+				$.getJSON(`./json/${ver}.json`, function (list) {
 					for (i = 0; i < list.length; i++) {
 						if (param_data[2][i] != 0) {
 							setsessionstorage(list[i].Name, param_data[2][i], "MISC");
