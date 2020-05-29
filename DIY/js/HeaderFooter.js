@@ -7,9 +7,9 @@ function header(){
 }
 
 function headerComment(){
-	add = `5/29 15:05更新<br>
-	※緊急のお知らせ<br>
-	画像取得に問題があったため一時的に機能を停止します<br><br>
+	add = `5/29 17:00更新<br>
+	緊急メンテナンス終了いたしました。<br>
+	大変申し訳ございませんでした。<br><br>
 	※現在不具合によりソート機能を停止しています。`
 	$("#HeaderComment").append(add);
 }

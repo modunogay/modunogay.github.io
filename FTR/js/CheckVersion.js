@@ -125,7 +125,11 @@ function getJsonFile() {
 						<label class="Give-Label" for="${i + 1}_Give" id="${i + 1}_Give_Label">${Give_Checked[1]}</label>
 						</td>
 						<td class="Name table-2-column" id="${i + 1}_Name">${list[i].Name}</td>`;
-					if (param) {
+
+					if (list[i].Filename == undefined) {
+						console.log("undefinedエラー！！！！！ダメ絶対！");
+						add += `<td class="HTG table-3-column table-column-none">エラー！！！！ダメ！！！</td>`
+					} else if (param) {
 						if (list[i].Buy != "") {
 							add += `<td class="HTG table-3-column table-column-none">
 							<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
@@ -169,7 +173,7 @@ function getJsonFile() {
 				//lazy.destroy();
 				*/
 
-				
+
 
 				/*
 				$(document).ready(function () {
