@@ -15,7 +15,7 @@ var lazy;
 
 function getJsonFile() {
 	$(function () {
-		$.get("./version/now.txt", function (data) {
+		$.get("./version/now.txt",{_: new Date().getTime()}, function (data) {
 			//現在のバージョンを表示
 			$("#version").text(replaceVersion(data));
 
@@ -24,7 +24,7 @@ function getJsonFile() {
 
 			if (param_str == "") {
 				//パラメータ無し
-				$.getJSON(`./json/${data}.json`, listappend);
+				$.getJSON(`./json/${data}.json`,{_: new Date().getTime()}, listappend);
 			} else {
 				//パラメータ有り
 				//パラメータのデコード
@@ -39,14 +39,14 @@ function getJsonFile() {
 				$("#Peer_date").text(date[0] + "/" + date[1] + "/" + date[2] + " " + date[3] + ":" + ('00' + date[4]).slice(-2));
 
 				//バージョンが違うかもしれないためもう一度取得 sessionstorageに保存
-				$.getJSON(`./json/${ver}.json`, function (list) {
+				$.getJSON(`./json/${ver}.json`,{_: new Date().getTime()}, function (list) {
 					for (i = 0; i < list.length; i++) {
 						if (param_data[2][i] != 0) {
 							setsessionstorage(list[i].Name, param_data[2][i], "FTR");
 						}
 					}
 					$("#cb-3-column").prop("checked", true);
-					$.getJSON(`./json/${data}.json`, listappend);
+					$.getJSON(`./json/${data}.json`,{_: new Date().getTime()}, listappend);
 				}
 				);
 			}
