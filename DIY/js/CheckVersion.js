@@ -112,7 +112,7 @@ function getJsonFile() {
 								break;
 						}
 					}
-					add += `<tr class="table-row" id="table-${i + 1}-row">
+					add += `<tr class="table-row" id="table-${i + 1}-row" data-DIYID="${list[i].DIYID}" data-NameID="${list[i].NameID}">
 						<td class="table-1-column">
 						<input type="checkbox" id="${i + 1}_Get" onclick=CheckBoxChenge("${i}_Get") ${Get_Checked[0]} >
 						<label class="Get-Label" for="${i + 1}_Get" id="${i + 1}_Get_Label">${Get_Checked[1]}</label>
@@ -137,30 +137,9 @@ function getJsonFile() {
 							<label class="Get-Label" for="${i + 1}_Peer_Get" id="${i + 1}_Peer_Get_Label">${Peer_Get_Checked[1]}</label>
 							</td>`;
 					};
-					add += `<td class="DIYID">${list[i].DIYID}</td>
-						<td class="NameID">${list[i].NameID}</td>
-						</tr>`;
+					add += `</tr>`;
 				}
-				//$("tbody").append(add);
 				document.getElementById('Main_tbody').innerHTML = add;
-
-				/*
-				$(document).ready(function () {
-					$('#fav-table').tablesorter({
-						headers: {
-							0: { sorter: false },
-							1: { sorter: false },
-							2: { sorter: false },
-							3: { sorter: false },
-							4: { sorter: false },
-							5: { sorter: false },
-							6: { sorter: false },
-							7: { sorter: false },
-							8: { sorter: false }
-						}
-					});
-				});
-				*/
 			}
 		})
 	})

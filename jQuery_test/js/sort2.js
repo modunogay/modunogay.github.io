@@ -1,17 +1,14 @@
 function sort() {
 	$(function () {
+		//console.log($('tbody > tr').text())
 		$('tbody').html(
-			$('tr').sort(function (a, b) {
-				//昇順
+			$('tbody tr').sort(function (a, b) {
 				if (parseInt($(a).find('td.NameID').text()) > parseInt($(b).find('td.NameID').text())) {
-					// 降順
-					console.log($(b).find('td.NameID').text())
-					// if ($(a).find('td').eq(0).text() < $(b).find('td').eq(0).text()) {
 					return 1;
 				} else {
 					return -1;
 				}
 			})
 		);
-	});
+	})
 }

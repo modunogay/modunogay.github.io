@@ -37,7 +37,7 @@
 	<script type="text/javascript" src="./js/createURL.js"></script>
 	<script type="text/javascript" src="./js/CheckuserAgent.js"></script>
 	<script type="text/javascript" src="./js/lz-string.js"></script>
-	<script type="text/javascript" src="./js/HeaderFooter.js?202005292225"></script>
+	<script type="text/javascript" src="./js/HeaderFooter.js?202005300450"></script>
 	<script type="text/javascript" src="./js/sort.js"></script>
 </head>
 
@@ -333,52 +333,6 @@
 	function copyAlert() {
 		alert("URLをコピーしました！")
 	}
-
-
-
-
-
-
-	function sortfunction() {
-		var val = parseInt($("#sort-column").val());
-		if (val == 4) {
-			$("#sort-column").val(1);
-		} else {
-			$("#sort-column").val(val + 1);
-		}
-
-		if (!param) {
-			switch (val) {
-				case 1: $("#cb-sort-image").attr('src', './image/asc_green.png');
-					sort();
-					break;
-				case 2: $("#cb-sort-image").attr('src', './image/desc_green.png');
-					sort();
-					break;
-				case 3: $("#cb-sort-image").attr('src', './image/asc_blue.png');
-					sort();
-					break
-				case 4: $("#cb-sort-image").attr('src', './image/desc_blue.png');
-					sort();
-					break;
-			};
-		} else if (labellength = 3) {
-			switch (val) {
-				case 1: $("#cb-sort-image").attr('src', './image/asc_green.png');
-					sort();
-					break;
-				case 2: $("#cb-sort-image").attr('src', './image/desc_green.png');
-					sort();
-					break;
-				case 3: $("#cb-sort-image").attr('src', './image/asc_blue.png');
-					sort();
-					break
-				case 4: $("#cb-sort-image").attr('src', './image/desc_blue.png');
-					sort();
-					break;
-			};
-		}
-	};
 
 	$(function () {
 		// ダイアログの初期設定
