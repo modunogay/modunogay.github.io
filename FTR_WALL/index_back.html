@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166859192-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-166859192-2');
+	</script>
+	<meta charset="UTF-8" name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
+	<title>壁掛け家具チェッカー</title>
+	<!--Twitter metaタグ-->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@modunogay" />
+	<meta property="og:url" content="https://modunogay.github.io/DIY/index.html" />
+	<meta property="og:title" content="壁掛け家具チェッカー" />
+	<meta property="og:description" content="あつまれどうぶつの森の壁掛け家具を管理、共有するサイト" />
+	<meta property="og:image" content="https://modunogay.github.io/FTR_WALL/image/CARD.png" />
+	<meta name="description" content="あつまれどうぶつの森の壁掛け家具を管理、共有するサイト">
+	<!--Twitter metaタグ ここまで-->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="../DIY/js/jquery.ui.touch-punch.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../DIY/css/Check.css">
+	<link rel="stylesheet" type="text/css" href="../DIY/css/BottomNavigation.css">
+	<script type="text/javascript" src="./js/Check.js"></script>
+	<script type="text/javascript" src="./js/CheckBox.js"></script>
+	<script type="text/javascript" src="./js/CheckVersion.js"></script>
+	<script type="text/javascript" src="./js/createURL.js"></script>
+	<script type="text/javascript" src="../DIY/js/CheckuserAgent.js"></script>
+	<script type="text/javascript" src="../DIY/js/lz-string.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/override.css">
+	<script type="text/javascript" src="../DIY/js/HeaderFooter.js?202005291509"></script>
+
+	<script type="text/javascript" src="../FTR/js/lazysizes.min.js"></script>
+	<script type="text/javascript" src="../FTR/js/lazy.js"></script>
+
+</head>
+
+<!--
+　　　　　　　　 ,-､　　　　　　　　　　　　  ,.-､
+　　　　　　　 /:::::＼　　　　　　　　　  ／:::::ヽ
+　　　　　　　/::::::::::::;ゝ--──-- ､._/::::::::|
+　　　　　　 /,.-‐''"´ 　　　　　　　　 ＼::::::::|
+　　　　　／　 　　　　　　　　　　　　　　ヽ､::::|
+　　　　/　　　　●　　　 　 　 　 　 　 　 　 ヽ|
+　　 　 l　　　, , ,　　 　 　 　 　 　 ●　　　 　 l
+　　　 |　　　 　　　　 (_人__丿　 　　　　､､､　　|
+　 　 　l　　　　　　　　　　　　　　　　　　　 　 l
+　　　　` ､　　　　　　　　 　 　 　 　 　 　 　 /
+　　　　　　`ｰ ､__　　　 　 　 　　　　　　　／
+　　　　　　　　　/`'''ｰ‐‐──‐‐‐┬'''""´
+
+	Q.これラベル テキストにすれば良かったのでは？
+	背景色指定するだけでいけませんか？
+	無駄な処理していませんか？
+
+	A.それな
+	実装してから気づいたわ
+	疲れたので後で実装するぜ！（）
+
+	もし不具合がありましたら@modunogayまでお願いします。
+-->
+
+<script>
+	window.onunload = function () { };
+	window.onpageshow = function (event) {
+		if (event.persisted) {
+			window.location.reload();
+		}
+	};
+</script>
+
+
+<body>
+
+	<!--ヘッダー-->
+	<div id="Header">
+
+	</div>
+	<script>
+		//フッダーを動的に追加
+		header();
+	</script>
+
+	<p id="title_char">壁掛け家具チェッカー</p>
+
+	<div id="contents">
+		<a href="./index.html">「自分」だけのページに戻る</a>
+		<br>
+		<br>
+		<!--フッダー コメント-->
+		<div id="HeaderComment">
+		</div>
+		<script>
+			//フッダーコメントを動的に追加
+			headerComment();
+		</script>
+	</div>
+	<hr>
+
+	<!-- ボタン拡張 -->
+	<input type="image" id="sharebtn" src="../DIY/image/share.png" alt="シェア">
+	<!-- ボタン拡張ここまで -->
+
+	<!--ダイアログの内容-->
+	<div id="mydialog" title="URLを発行">
+		URLを発行しました！<br>
+		<input type="text" id="URL-Input" placeholder="URL発行中・・・" value="URL発行中・・・" readonly="readonly">
+		<br><br>
+		<input type="button" id="URLcopy" data-clipboard-target="#URL-Input" value="リンクをコピー"
+			onclick="copyAlert()"></button>
+		<br><br>
+		<input type="image" src="../DIY/image/Twitter_Social_Icon.png" alt="ツイート" onclick="tweetPopup();">
+		<br>
+		↑ツイート↑<br><br>
+
+		↓付けるタグ↓<br>
+		<input type="checkbox" id="Twitter-tag-1" onclick="TwitterTagfunction(1)" value="壁掛け家具チェッカー"
+			style="display: inline;">
+		<label for="Twitter-tag-1" id="Titter-tag-1-label">
+			#壁掛け家具チェッカー
+		</label><br>
+		<input type="checkbox" id="Twitter-tag-2" onclick="TwitterTagfunction(2)" value="あつ森" style="display: inline;">
+		<label for="Twitter-tag-2" id="Titter-tag-2-label">
+			#あつ森
+		</label><br>
+		<input type="checkbox" id="Twitter-tag-3" onclick="TwitterTagfunction(3)" value="あつ森交換"
+			style="display: inline;">
+		<label for="Twitter-tag-3" id="Titter-tag-3-label">
+			#あつ森交換
+		</label><br>
+		<input type="checkbox" id="Twitter-tag-4" onclick="TwitterTagfunction(4)" value="家具交換" style="display: inline;">
+		<label for="Twitter-tag-4" id="Titter-tag-4-label">
+			#家具交換
+		</label><br>
+		<input type="checkbox" id="Twitter-tag-5" onclick="TwitterTagfunction(5)" value="家具おさわり"
+			style="display: inline;">
+		<label for="Twitter-tag-5" id="Titter-tag-5-label">
+			#家具おさわり
+		</label><br>
+		<input type="checkbox" id="Twitter-tag-6" onclick="TwitterTagfunction(6)" value="おさわり" style="display: inline;">
+		<label for="Twitter-tag-6" id="Titter-tag-6-label">
+			#おさわり
+		</label><br>
+
+		<br>(Twitterの仕様上 URLの後ろに付きます)
+	</div>
+	<!--ダイアログの内容 ここまで-->
+	<br>
+	<br>
+	<table id="fav-table" align="center">
+		<thead>
+			<!--タイトル部-->
+		</thead>
+		<tbody id="Main_tbody" class="list">
+			<!--   データ部   -->
+		</tbody>
+	</table>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div id="contents">
+
+		<button onclick="window.location.reload(true)">強制更新</button>
+		<button onclick="sessionTolocal()">相手のデータを自分のデータにする</button>
+		<button onclick="jsGiveClear()">「配布可」を全て「不可」に</button><br><br><br>
+		<button onclick="jsclear()">初期化</button><br>
+		<br><br>
+		フォントサイズ変更(仮)
+		<!--フォントサイズの表示-->
+		<span id="num" style="font-size: 20px;"></span>
+		<!--1スライダーを表示する領域-->
+		<div id="slider" style="width:80%; max-width: 500px; margin: auto;"></div><br>
+		※表示がバグる可能性大（デフォルトは100%）<br>
+		(iPhone safariのおススメは115%？？)
+		<hr>
+		©2020 Nintendo<br>
+		このサイトのコンテンツ情報の著作権、その他の知的財産権は、提供元に帰属します。<br>
+		サイトを通して生じた損害等の一切の責任を負いかねます。<br>
+		また、RMTなどのご使用はお控えください。<br>
+		不具合、ご連絡がありましたらTwitter「@modunogay」までお願いします。<br>
+		<br>
+		<br>
+		<a href="../DataSource.html">データ提供元・ライセンス<br>プライバシーポリシー・免責事項 </a>
+	</div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!--画面下部のフィルター-->
+	<div class="FilterBar">
+
+	</div>
+
+
+</body>
+
+
+<script>
+
+	//ユーザーのデータ
+	var USER_JSON = getlocalstorage("All", "FTR_WALL");
+	if (USER_JSON == null) {
+		USER_JSON = [{ "name": "Name", "data": "value" }];
+		localStorage.setItem("FTR_WALL", JSON.stringify(USER_JSON));
+	}
+
+
+	//jqueryのダイアログを用いると、何故かclassが使えなくなるのでlength用に設置		
+	const Tiwtter_CB_LENGTH = 6;
+	//USER_JSON_FTR_WALL_TWITTERユーザーのハッシュタグ情報を管理
+	var USER_JSON_FTR_WALL_TWITTER = getlocalstorage("All", "FTR_WALL_TWITTER");
+	if (USER_JSON_FTR_WALL_TWITTER == null) {
+		USER_JSON_FTR_WALL_TWITTER = [{ "name": "Name", "data": "value" }];
+		localStorage.setItem("FTR_WALL_TWITTER", JSON.stringify(USER_JSON_FTR_WALL_TWITTER));
+	} else {
+		//console.log(USER_JSON_FTR_WALL_TWITTER)
+		for (i = 1; i < USER_JSON_FTR_WALL_TWITTER.length; i++) {
+			if (USER_JSON_FTR_WALL_TWITTER[i].data == 1) {
+				for (j = 1; i <= Tiwtter_CB_LENGTH; j++) {
+					if ($(`#Twitter-tag-${j}`).val() == USER_JSON_FTR_WALL_TWITTER[i].name) {
+						$(`#Twitter-tag-${j}`).prop('checked', true);
+						break;
+					}
+				}
+			}
+		}
+		//console.log("ページロード時のハッシュタグ(状態):"+getHashTag())
+	}
+
+
+
+
+	function getHashTag() {
+		var HashTags = [];
+		for (i = 0; i < USER_JSON_FTR_WALL_TWITTER.length; i++) {
+			if (USER_JSON_FTR_WALL_TWITTER[i].data == 1) {
+				HashTags.push(USER_JSON_FTR_WALL_TWITTER[i].name)
+			}
+		}
+		return HashTags
+	}
+
+	function TwitterTagfunction(index) {
+		if ($(`#Twitter-tag-${index}`).prop('checked')) {
+			setlocalstorage($(`#Twitter-tag-${index}`).val(), 1, "FTR_WALL_TWITTER");
+			//(getHashTag());
+		} else {
+			setlocalstorage($(`#Twitter-tag-${index}`).val(), 0, "FTR_WALL_TWITTER");
+			//console.log(getHashTag());
+		}
+	}
+
+	function tweetPopup() {
+		var text = encodeURI($("#URL-Input").val());
+		var tags = "";
+		var hashtag = getHashTag();
+		if (hashtag.length != 0) {
+			tags = "&hashtags=" + hashtag.join(",")
+		}
+		var url = `https://twitter.com/share?url=${text}&text=壁掛け家具を更新しました！${tags}`;
+		//console.log(url)
+		window.open(url, "tweet", "width=500,height=300");
+	};
+
+	//相手のデータ
+	var OTHER_JSON = [{ "name": "Name", "data": "value" }];
+	sessionStorage.setItem("FTR_WALL", JSON.stringify(OTHER_JSON));
+
+	//パラメータの判定
+	var param = location.search.substring(1);
+	if (param == "") {
+		param = false;
+	} else {
+		param = true;
+	}
+
+
+
+
+	//androidかiPhoneか判断，bodyのフォントサイズを変更
+	checkuserAgent();
+	//フィルターを動的に追加
+	filterBar();
+	//theadを動的に追加
+	theadAppend();
+	//jsonファイルを取得し要素を追加
+	getJsonFile();
+
+
+	//clipboradJSを割り当て
+	new ClipboardJS('#URLcopy');
+	function copyAlert() {
+		alert("URLをコピーしました！")
+	}
+
+	$(function () {
+		// ダイアログの初期設定
+		$("#mydialog").dialog({
+			autoOpen: false,
+			width: "80%",
+			modal: true,
+			buttons: [
+				{
+					text: '閉じる',
+					click: function () {
+						$(this).dialog("close");
+					}
+				}
+			]
+		});
+		$("#sharebtn").click(function () {
+			//URLを作成
+			createURL();
+			// ダイアログの呼び出し
+			$("#mydialog").dialog("open");
+		});
+	})
+
+	$(document).ready(function () {
+		$("#NameSearch").on("keyup", function () {
+			var value = CharReplace($(this).val());
+			$(".Name").filter(function () {
+				if (CharReplace($(this).text()).indexOf(value) > -1) {
+					$(this).parent().removeClass("search-none");
+				} else {
+					$(this).parent().addClass("search-none");
+				}
+			});
+		});
+	});
+
+
+	$(function () {
+		if (!param) {
+			$(".FilterBar label").css("width", "45%");
+		}
+		height = $(".FilterBar label").height() * 2 + $("#div-serch-area").height() + 20;
+		$("#cb-sort-image").css({ "bottom": `${height}px` });
+		$("#sharebtn").css({ "bottom": `${height}px` });
+
+	});
+
+
+	function jsclear() {
+		if (window.confirm('初期化をします！\nよろしいですか？(3)')) {
+			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
+				if (window.confirm('本当によろしいですか？(1)')) {
+					localStorage.clear("FTR_WALL");
+					window.location.reload(true);
+				}
+			}
+		}
+	}
+
+	function sessionTolocal() {
+		if (window.confirm('データを移行します。\nよろしいですか？(3)')) {
+			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
+				if (window.confirm('本当によろしいですか？(1)')) {
+					localStorage.setItem("FTR_WALL", sessionStorage.getItem("FTR_WALL"))
+					window.location.reload(true);
+				}
+			}
+		}
+	}
+
+	function jsGiveClear() {
+		if (window.confirm('「配付可」を全て「不可」にします\nよろしいですか？(3)')) {
+			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
+				if (window.confirm('本当によろしいですか？(1)')) {
+					for (i = 0; i < USER_JSON.length; i++) {
+						if (USER_JSON[i].data == 2) {
+							USER_JSON[i].data = 1;
+							localStorage.setItem("FTR_WALL", JSON.stringify(USER_JSON));
+						}
+					}
+					window.location.reload(true);
+				}
+			}
+		}
+	}
+
+
+	//テーブルのフォントサイズを変更
+	var fontsize = localStorage.getItem("Table-Font-Size");
+	if (fontsize == null) {
+		fontsize = 100;
+	} else {
+		$('#fav-table').css("fontSize", `${fontsize}%`);
+	}
+
+	$(function () {
+		// 2スライダーを適用
+		$('#slider').slider({
+			value: fontsize,
+			min: 65,
+			max: 135,
+			step: 1,
+
+			change: function (e, ui) {
+				$('#num').text(`${ui.value}%`);
+				$('#fav-table').css("fontSize", `${ui.value}%`)
+				localStorage.setItem("Table-Font-Size", ui.value);
+			},
+			// 4スライダーの初期化時に、その値をテキストボックスにも反映
+			create: function (e, ui) {
+				$('#num').text(`${$(this).slider('option', 'value')}%`);
+			}
+		});
+
+		$("#slider").draggable();
+	});
+</script>
+
+</html>

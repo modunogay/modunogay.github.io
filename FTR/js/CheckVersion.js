@@ -128,20 +128,20 @@ function getJsonFile() {
 					if (param) {
 						if (list[i].Buy != "") {
 							add += `<td class="HTG table-3-column table-column-none">
-							<img class="lazyload" width="50px" height="50px" data-src="" />
+							<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
 							${list[i].Buy}</td>`;
 						} else {
 							add += `<td class="HTG table-3-column table-column-none">
-							<img class="lazyload" width="50px" height="50px" data-src="" /></td>`;
+							<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" /></td>`;
 						}
 					} else {
 						if (list[i].Buy != "") {
 							add += `<td class="HTG NFS table-3-column">
-							<img class="lazyload" width="50px" height="50px" data-src="" />
+							<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
 							${list[i].Buy}</td>`;
 						} else {
 							add += `<td class="HTG table-3-column">
-							<img class="lazyload" width="50px" height="50px" data-src="" /></td>`;
+							<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" /></td>`;
 						}
 					}
 					if (param) {
