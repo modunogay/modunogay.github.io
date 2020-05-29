@@ -39,12 +39,9 @@ function getJsonFile() {
 				$.getJSON(`./json/${ver}.json`, function (list) {
 					for (i = 0; i < list.length; i++) {
 						if (param_data[2][i] != 0) {
-							setsessionstorage(list[i].Name, param_data[2][i],"DIY");
+							setsessionstorage(list[i].Name, param_data[2][i], "DIY");
 						}
 					}
-					//明示的にnullを代入：メモリを減らす
-					list = null;
-
 					$("#cb-3-column").prop("checked", true);
 					$.getJSON(`./json/${data}.json`, listappend);
 				}
@@ -60,7 +57,7 @@ function getJsonFile() {
 
 				for (i = 0; i < list.length; i++) {
 					//ローカルストレージ 自分
-					var num = getlocalstorage(list[i].Name,"");
+					var num = getlocalstorage(list[i].Name, "");
 					switch (num) {
 						case "":
 							Get_Checked = ["", "未取得"];
@@ -88,7 +85,7 @@ function getJsonFile() {
 					};
 					if (param) {
 						//セッションストレージ 相手
-						var peernum = getsessionstorage(list[i].Name,"DIY");
+						var peernum = getsessionstorage(list[i].Name, "DIY");
 						switch (peernum) {
 							case "":
 								Get_Checked = ["", "未取得"];
@@ -143,14 +140,22 @@ function getJsonFile() {
 					add += `<td class="DIYID">${list[i].DIYID}</td>
 						<td class="NameID">${list[i].NameID}</td>
 						</tr>`;
-				}
-				//明示的にnullを代入：メモリを減らす
-				list = null;
 
-				document.getElementById('Main_tbody').innerHTML = add;
-				//明示的にnullを代入：メモリを減らす
-				add = null;
-				
+					if ((i % 100) == 0) {
+						console.log("100")
+						$.when(
+							$(window).on('load', function () {
+								document.getElementById('last_tr').insertAdjacentHTML("beforebegin", add);
+							})
+						).done(function () {
+							console.log("aa")
+							add = "";
+						})
+					}
+				}
+				//$("tbody").append(add);
+				document.getElementById('last_tr').insertAdjacentHTML("beforebegin", add);
+
 				/*
 				$(document).ready(function () {
 					$('#fav-table').tablesorter({
@@ -202,6 +207,16 @@ function theadAppend() {
 			<th class="Debug" id="th_8">NameID</th>
 			</tr>`;
 
+		add += `<tr id='last_tr' style='display: auto;'>
+		<td>dummy_1</td>
+		<td>dummy_2</td>
+		<td>dummy_3</td>
+		<td>dummy_4</td>
+		<td>dummy_5</td>
+		<td>dummy_6</td>
+		<td>dummy_7</td>
+		<td>dummy_8</td>
+	  </tr>`
 		$("thead").append(add);
 	})
 }

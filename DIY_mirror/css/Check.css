@@ -70,8 +70,6 @@ input:checked+label {
 	width: 80%;
 	border: 1px solid #f582ae;
 	vertical-align: middle;
-	/*暫定*/
-	pointer-events: none;
 }
 
 input:checked+.Get-Label {
@@ -84,9 +82,6 @@ input:checked+.Get-Label {
 	width: 80%;
 	border: 1px solid #8bd3dd;
 	vertical-align: middle;
-
-	/*暫定*/
-	pointer-events: none;
 }
 
 input:checked+.Give-Label {
@@ -155,4 +150,47 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	-ms-touch-action: none;
 	touch-action: none;
 	z-index: inherit;
+}
+
+#Header {
+	background-color: #8bd3dd;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	align-items: center;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 2;
+}
+
+#Header a:link, #Header a:visited, #Header a:hover, #Header a:active {
+	border: solid 2px #fef6e4;
+	border-radius: 0px;
+	flex-grow: 1;
+	vertical-align: middle;
+	color: #172c66;
+	font-size: auto;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	align-self: stretch;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	z-index: inherit;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.table-3-column img{
+	display: block;
+    margin: auto;
+}
+
+#HeaderComment{
+	width: 80%;
+    margin: auto;
+    border: solid 2px #172c66;
+    max-width: 1000px;
+    word-wrap: break-word;
 }

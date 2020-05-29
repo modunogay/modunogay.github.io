@@ -24,10 +24,8 @@
 	<meta name="description" content="あつまれどうぶつの森のDIYレシピを管理、共有するサイト">
 	<!--Twitter metaタグ ここまで-->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<!--
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
-		-->
 	<script type="text/javascript"
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
@@ -41,6 +39,7 @@
 	<script type="text/javascript" src="./js/createURL.js"></script>
 	<script type="text/javascript" src="./js/CheckuserAgent.js"></script>
 	<script type="text/javascript" src="./js/lz-string.js"></script>
+	<script type="text/javascript" src="./js/HeaderFooter.js?202005280659"></script>
 </head>
 
 <!--
@@ -79,15 +78,46 @@
 
 
 <body>
-	<p id="title_char">データ表示を軽くしたい</p>
 
+	<!--ヘッダー-->
+	<div id="Header">
+
+	</div>
+	<script>
+		//フッダーを動的に追加
+		header();
+	</script>
+
+	<p id="title_char">DIYレシピチェッカー</p>
+
+	<div id="contents">
+		<span style="font-size: 2em;background-color: #f582ae;"><a
+				href="https://twitter.com/modunogay/status/1261005296224178176">使い方はこちら！！！</a></span> <br>
+		データを共有する場合、右下の共有ボタン<br><span style="font-weight: bold; color:#2cb67d">（緑色のボタン）</span>を押してください<br>
+		<span style="font-size: 1.3em;background-color: #8bd3dd;"><a
+				href="https://twitter.com/modunogay/status/1263768581436661760">データが反映されていない？<br>「相手」が表示されない？<br>(こちらをクリック)</a></span>
+		<br><br>
+		<a href="./index.html">「自分」だけのページに戻る</a><br>
+		<br>
+		<!--フッダー コメント-->
+		<div id="HeaderComment">
+		</div>
+		<script>
+			//フッダーコメントを動的に追加
+			headerComment();
+		</script>
+	</div>
 	<hr>
 
+	<!-- ボタン拡張 -->
+	<!--
 	<input type="checkbox" id="sort-column" onclick="sortfunction()" value="2">
 	<label for="sort-column" id="cb-sort">
 		<image id="cb-sort-image" src="./image/asc_green.png"></image>
 	</label>
+	-->
 	<input type="image" id="sharebtn" src="./image/share.png" alt="シェア">
+	<!-- ボタン拡張ここまで -->
 
 	<!--ダイアログの内容-->
 	<div id="mydialog" title="URLを発行">
@@ -155,7 +185,6 @@
 	<br>
 
 	<div id="contents">
-
 		<button onclick="window.location.reload(true)">強制更新</button>
 		<button onclick="sessionTolocal()">相手のデータを自分のデータにする</button>
 		<button onclick="jsGiveClear()">「配布可」を全て「不可」に</button><br><br><br>
@@ -176,24 +205,8 @@
 		不具合、ご連絡がありましたらTwitter「@modunogay」までお願いします。<br>
 		<br>
 		<br>
-		<div class="defaultChar">
-			当サイトでは、Googleによるアクセス解析ツール「Google Analytics」を使用しています。<br>
-			このGoogle Analyticsはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。<br>
-			この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。<br>
-			この規約に関しての詳細は<a href="https://marketingplatform.google.com/about/analytics/terms/jp/">
-				Google Analytics利用規約</a>のページや<a href="https://policies.google.com/technologies/ads?hl=ja">
-				Googleポリシーと規約ページ</a>をご覧ください。
-		</div>
-		<!--タグはここから-->
 		<br>
-		<img src="http://www.rays-counter.com/d459_f6_010/5ebb6bc3c196a/" alt="アクセスカウンター" border="0"></a><br>
-		<img src="http://www.rays-counter.com/images/counter_01.gif" border="0">
-		<img src="http://www.rays-counter.com/images/counter_02.gif" border="0">
-		<img src="http://www.rays-counter.com/images/counter_03.gif" border="0">
-		<img src="http://www.rays-counter.com/images/counter_04.gif" border="0">
-		<img src="http://www.rays-counter.com/images/counter_05.gif" border="0">
-		<br>
-		<!--ここまで-->
+		<a href="../DataSource.html">データ提供元・ライセンス<br>プライバシーポリシー・免責事項 </a>
 	</div>
 
 	<br>
@@ -328,6 +341,7 @@
 
 
 
+	/*
 	function sortfunction() {
 		var val = parseInt($("#sort-column").val());
 		if (val == 4) {
@@ -335,9 +349,6 @@
 		} else {
 			$("#sort-column").val(val + 1);
 		}
-
-
-		/*
 
 		if (!param) {
 			switch (val) {
@@ -370,10 +381,8 @@
 					break;
 			};
 		}
-
-		*/
 	};
-
+	*/
 	$(function () {
 		// ダイアログの初期設定
 		$("#mydialog").dialog({

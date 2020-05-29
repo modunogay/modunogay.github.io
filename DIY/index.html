@@ -25,8 +25,6 @@
 	<!--Twitter metaタグ ここまで-->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
-	<script type="text/javascript"
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -40,6 +38,7 @@
 	<script type="text/javascript" src="./js/CheckuserAgent.js"></script>
 	<script type="text/javascript" src="./js/lz-string.js"></script>
 	<script type="text/javascript" src="./js/HeaderFooter.js?202005280659"></script>
+	<script type="text/javascript" src="./js/sort.js"></script>
 </head>
 
 <!--
@@ -110,12 +109,10 @@
 	<hr>
 
 	<!-- ボタン拡張 -->
-	<!--
 	<input type="checkbox" id="sort-column" onclick="sortfunction()" value="2">
 	<label for="sort-column" id="cb-sort">
 		<image id="cb-sort-image" src="./image/asc_green.png"></image>
 	</label>
-	-->
 	<input type="image" id="sharebtn" src="./image/share.png" alt="シェア">
 	<!-- ボタン拡張ここまで -->
 
@@ -341,7 +338,7 @@
 
 
 
-	/*
+
 	function sortfunction() {
 		var val = parseInt($("#sort-column").val());
 		if (val == 4) {
@@ -353,36 +350,36 @@
 		if (!param) {
 			switch (val) {
 				case 1: $("#cb-sort-image").attr('src', './image/asc_green.png');
-					$("#fav-table").trigger("sorton", [[[4, 0]]]);
+					sort();
 					break;
 				case 2: $("#cb-sort-image").attr('src', './image/desc_green.png');
-					$("#fav-table").trigger("sorton", [[[4, 1]]]);
+					sort();
 					break;
 				case 3: $("#cb-sort-image").attr('src', './image/asc_blue.png');
-					$("#fav-table").trigger("sorton", [[[5, 0]]]);
+					sort();
 					break
 				case 4: $("#cb-sort-image").attr('src', './image/desc_blue.png');
-					$("#fav-table").trigger("sorton", [[[5, 1]]]);
+					sort();
 					break;
 			};
 		} else if (labellength = 3) {
 			switch (val) {
 				case 1: $("#cb-sort-image").attr('src', './image/asc_green.png');
-					$("#fav-table").trigger("sorton", [[[6, 0]]]);
+					sort();
 					break;
 				case 2: $("#cb-sort-image").attr('src', './image/desc_green.png');
-					$("#fav-table").trigger("sorton", [[[6, 1]]]);
+					sort();
 					break;
 				case 3: $("#cb-sort-image").attr('src', './image/asc_blue.png');
-					$("#fav-table").trigger("sorton", [[[7, 0]]]);
+					sort();
 					break
 				case 4: $("#cb-sort-image").attr('src', './image/desc_blue.png');
-					$("#fav-table").trigger("sorton", [[[7, 1]]]);
+					sort();
 					break;
 			};
 		}
 	};
-	*/
+
 	$(function () {
 		// ダイアログの初期設定
 		$("#mydialog").dialog({
