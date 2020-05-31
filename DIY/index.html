@@ -31,14 +31,16 @@
 	<script src="./js/jquery.ui.touch-punch.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/Check.css">
 	<link rel="stylesheet" type="text/css" href="./css/BottomNavigation.css">
-	<script type="text/javascript" src="./js/Check.js"></script>
-	<script type="text/javascript" src="./js/CheckBox.js"></script>
-	<script type="text/javascript" src="./js/CheckVersion.js?202005292250"></script>
-	<script type="text/javascript" src="./js/createURL.js"></script>
+	<script type="text/javascript" src="./js/Check.js?202005311644"></script>
+	<script type="text/javascript" src="./js/CheckBox.js?202005311644"></script>
+	<script type="text/javascript" src="./js/CheckVersion.js?202005311644"></script>
+	<script type="text/javascript" src="./js/createURL.js?202005311644"></script>
 	<script type="text/javascript" src="./js/CheckuserAgent.js"></script>
 	<script type="text/javascript" src="./js/lz-string.js"></script>
-	<script type="text/javascript" src="./js/HeaderFooter.js?202005300450"></script>
+	<script type="text/javascript" src="./js/HeaderFooter.js?202005311644"></script>
 	<script type="text/javascript" src="./js/sort.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/override.css">
+	<script type="text/javascript" src="./js/DOMText.js"></script>
 </head>
 
 <!--
@@ -88,7 +90,6 @@
 	</script>
 
 	<p id="title_char">DIYレシピチェッカー</p>
-
 	<div id="contents">
 		<span style="font-size: 2em;background-color: #f582ae;"><a
 				href="https://twitter.com/modunogay/status/1261005296224178176">使い方はこちら！！！</a></span> <br>
@@ -126,8 +127,8 @@
 		<br><br>
 		<input type="image" src="./image/Twitter_Social_Icon.png" alt="ツイート" onclick="tweetPopup();">
 		<br>
-		↑ツイート↑<br><br>
-
+		↑ツイート↑<br>
+		<br>
 		↓付けるタグ↓<br>
 		<input type="checkbox" id="Twitter-tag-1" onclick="TwitterTagfunction(1)" value="DIYレシピチェッカー"
 			style="display: inline;">
@@ -158,8 +159,11 @@
 		<label for="Twitter-tag-6" id="Titter-tag-6-label">
 			#レシピ交換
 		</label><br>
-
 		<br>(Twitterの仕様上 URLの後ろに付きます)
+		<textarea id="DOMNameInput" placeholder="アイテム名…" value="アイテム名…" readonly="readonly"
+			style="display: none;"></textarea><br>
+		<button id="getDOMName">[New!]表示しているアイテム名をコピー</button>
+		<br>
 	</div>
 	<!--ダイアログの内容 ここまで-->
 	<br>
@@ -184,7 +188,8 @@
 	<div id="contents">
 		<button onclick="window.location.reload(true)">強制更新</button>
 		<button onclick="sessionTolocal()">相手のデータを自分のデータにする</button>
-		<button onclick="jsGiveClear()">「配布可」を全て「不可」に</button><br><br><br>
+		<button onclick="jsGiveClear()">「配布可」を全て「不可」に</button>
+		<button onclick="jsCountClear()">「枚数」を全て0枚に</button><br><br><br>
 		<button onclick="jsclear()">初期化</button><br>
 		<br><br>
 		フォントサイズ変更(仮)
@@ -334,6 +339,8 @@
 		alert("URLをコピーしました！")
 	}
 
+
+
 	$(function () {
 		// ダイアログの初期設定
 		$("#mydialog").dialog({
@@ -356,6 +363,19 @@
 			$("#mydialog").dialog("open");
 		});
 	})
+
+	var clipboard = new ClipboardJS('#getDOMName', {
+		target: function (trigger) {
+			$("#DOMNameInput").val(getDOMText())
+			$("#DOMNameInput").css("display", "");
+			return document.getElementById("DOMNameInput");
+		}
+	});
+
+	clipboard.on("success", function (e) {
+		$("#DOMNameInput").css("display", "none");
+		alert("「現在表示されている」アイテム名をコピーしました！");
+	});
 
 	$(document).ready(function () {
 		$("#NameSearch").on("keyup", function () {
@@ -401,16 +421,17 @@
 			}
 		});
 
-	});
-
-	$(function () {
-		if (!param) {
-			$(".FilterBar label").css("width", "45%");
-		}
-		height = $(".FilterBar label").height() * 2 + $("#div-serch-area").height() + 20;
-		$("#cb-sort-image").css({ "bottom": `${height}px` });
-		$("#sharebtn").css({ "bottom": `${height}px` });
-
+		//下フィルターバーのCSSを動的変更
+		$(function () {
+			if (!param) {
+				$(".FilterBar label").css("width", "45%");
+				$("#cb-1-label").css("width", "33%");
+				$("#cb-3-label").css("width", "33%");
+			}
+			height = $(".FilterBar label").height() * 2 + $("#div-serch-area").height() + 20;
+			$("#cb-sort-image").css({ "bottom": `${height}px` });
+			$("#sharebtn").css({ "bottom": `${height}px` });
+		});
 	});
 
 
@@ -436,6 +457,22 @@
 		}
 	}
 
+	function jsCountClear() {
+		if (window.confirm('「枚数」を全て「0枚」にします。\nよろしいですか？(3)')) {
+			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
+				if (window.confirm('本当によろしいですか？(1)')) {
+					for (i = 0; i < USER_JSON.length; i++) {
+						if (USER_JSON[i].count != 0) {
+							USER_JSON[i].count = 0;
+						}
+					}
+					localStorage.setItem("DIY", JSON.stringify(USER_JSON));
+					window.location.reload(true);
+				}
+			}
+		}
+	}
+
 	function jsGiveClear() {
 		if (window.confirm('「配付可」を全て「不可」にします\nよろしいですか？(3)')) {
 			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
@@ -443,9 +480,12 @@
 					for (i = 0; i < USER_JSON.length; i++) {
 						if (USER_JSON[i].data == 2) {
 							USER_JSON[i].data = 1;
-							localStorage.setItem("DIY", JSON.stringify(USER_JSON));
+						}
+						if (USER_JSON[i].count != 0) {
+							USER_JSON[i].count = 0;
 						}
 					}
+					localStorage.setItem("DIY", JSON.stringify(USER_JSON));
 					window.location.reload(true);
 				}
 			}
@@ -482,6 +522,7 @@
 
 		$("#slider").draggable();
 	});
+
 </script>
 
 </html>

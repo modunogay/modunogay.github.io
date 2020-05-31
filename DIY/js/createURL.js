@@ -40,23 +40,38 @@ function decode(str) {
 
 
 function getlocalstorage(str, getName) {
-	//データをすべて取得
-	if (str == "All") {
-		if (localStorage.getItem(getName) != null) {
-			return JSON.parse(localStorage.getItem(getName));
-		} else {
-			return null;
-		}
-	} else {
+
+	if (str == "selectCount"){
 		//要素が一致した場合
 		for (key in USER_JSON) {
-			if (USER_JSON[key].name == str) {
-				return USER_JSON[key].data;
+			if (USER_JSON[key].name == getName) {
+				if(USER_JSON[key].count == undefined || USER_JSON[key].count == null){
+					return 0;
+				}
+				return USER_JSON[key].count;
 			}
 		}
 		//要素が一致しなかった場合
 		return 0;
 	}
+
+		//データをすべて取得
+		if (str == "All") {
+			if (localStorage.getItem(getName) != null) {
+				return JSON.parse(localStorage.getItem(getName));
+			} else {
+				return null;
+			}
+		} else {
+			//要素が一致した場合
+			for (key in USER_JSON) {
+				if (USER_JSON[key].name == str) {
+					return USER_JSON[key].data;
+				}
+			}
+			//要素が一致しなかった場合
+			return 0;
+		}
 }
 
 
@@ -75,7 +90,7 @@ function setlocalstorage(Name, value, setName) {
 			USER_JSON.push(data);
 		}
 		localStorage.setItem(setName, JSON.stringify(USER_JSON));
-	}else if(setName == "DIY_TWITTER"){
+	} else if (setName == "DIY_TWITTER") {
 		for (key in USER_JSON_DIY_TWITTER) {
 			if (USER_JSON_DIY_TWITTER[key].name == Name) {
 				USER_JSON_DIY_TWITTER[key].data = value;
@@ -88,6 +103,18 @@ function setlocalstorage(Name, value, setName) {
 			USER_JSON_DIY_TWITTER.push(data);
 		}
 		localStorage.setItem(setName, JSON.stringify(USER_JSON_DIY_TWITTER));
+	} else if (setName == "DIY_COUNT") {
+		for (key in USER_JSON) {
+			if (USER_JSON[key].name == Name) {
+				USER_JSON[key].count = parseInt(value);
+				flag = false;
+				break;
+			}
+		}
+		if (flag) {
+			alert("エラー!配布可にチェックはしましたか？");
+		}
+		localStorage.setItem("DIY", JSON.stringify(USER_JSON));
 	}
 }
 
@@ -105,9 +132,9 @@ function getsessionstorage(str, setName) {
 	return 0;
 }
 
-function setsessionstorage(Name, value,setName) {
+function setsessionstorage(Name, value, setName) {
 	var data = { "name": Name, "data": value };
-	
+
 	OTHER_JSON.push(data);
 	sessionStorage.setItem(setName, JSON.stringify(OTHER_JSON));
 }

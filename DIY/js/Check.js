@@ -47,7 +47,7 @@ function row_ClassReplace(index) {
 		//全部
 		case 1:
 			$(".table-row").filter(function () {
-				$(`#cb-${index}-row-label`).text(`全て表示`);
+				$(`#cb-${index}-row-label`).text(`全表示中`);
 				$(this).removeClass(`table-row-${index}-none`);
 			})
 			break;
@@ -106,7 +106,7 @@ function row_ClassReplace(index) {
 
 function cssChenge() {
 	$(function cssChenge() {
-
+		
 		var len = $('.colTitle th').filter(':visible').length;
 		var column1 = $('#table-1-width');
 		var column2 = $('#table-2-width');

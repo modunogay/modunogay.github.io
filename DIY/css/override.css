@@ -1,0 +1,45 @@
+.FilterBar label {
+  width: 25%;
+}
+
+#table-1-width, #table-4-width {
+  width: 30%;
+}
+
+#table-2-width {
+  width: 45%
+}
+
+#table-1_5-width {
+  width: 15%;
+}
+
+select {
+  outline: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  vertical-align: middle;
+  font-size: inherit;
+  color: inherit;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  width: -webkit-fill-available;
+  font-size: 16px;
+  border: 1px;
+  margin: auto;
+}
+
+select option {
+  background-color: #fff;
+  color: #333;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #828c9a;
+}

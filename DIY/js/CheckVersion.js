@@ -12,7 +12,7 @@ function replaceVersion(str) {
 */
 function getJsonFile() {
 	$(function () {
-		$.get("./version/now.txt",{_: new Date().getTime()}, function (data) {
+		$.get("./version/now.txt", { _: new Date().getTime() }, function (data) {
 			//現在のバージョンを表示
 			$("#version").text(replaceVersion(data));
 
@@ -21,7 +21,7 @@ function getJsonFile() {
 
 			if (param_str == "") {
 				//パラメータ無し
-				$.getJSON(`./json/${data}.json`,{_: new Date().getTime()}, listappend);
+				$.getJSON(`./json/${data}.json`, { _: new Date().getTime() }, listappend);
 			} else {
 				//パラメータ有り
 				//パラメータのデコード
@@ -39,11 +39,11 @@ function getJsonFile() {
 				$.getJSON(`./json/${ver}.json`, function (list) {
 					for (i = 0; i < list.length; i++) {
 						if (param_data[2][i] != 0) {
-							setsessionstorage(list[i].Name, param_data[2][i],"DIY");
+							setsessionstorage(list[i].Name, param_data[2][i], "DIY");
 						}
 					}
 					$("#cb-3-column").prop("checked", true);
-					$.getJSON(`./json/${data}.json`,{_: new Date().getTime()}, listappend);
+					$.getJSON(`./json/${data}.json`, { _: new Date().getTime() }, listappend);
 				}
 				);
 			}
@@ -54,10 +54,14 @@ function getJsonFile() {
 				var Give_Checked;
 				var Peer_Get_Checked;
 				var Peer_Give_Checked;
+				var num;
+				var selectCount;
 
 				for (i = 0; i < list.length; i++) {
 					//ローカルストレージ 自分
-					var num = getlocalstorage(list[i].Name,"");
+					num = getlocalstorage(list[i].Name, "");
+					selectCount = getlocalstorage("selectCount",list[i].Name)
+					
 					switch (num) {
 						case "":
 							Get_Checked = ["", "未取得"];
@@ -85,7 +89,7 @@ function getJsonFile() {
 					};
 					if (param) {
 						//セッションストレージ 相手
-						var peernum = getsessionstorage(list[i].Name,"DIY");
+						var peernum = getsessionstorage(list[i].Name, "DIY");
 						switch (peernum) {
 							case "":
 								Get_Checked = ["", "未取得"];
@@ -121,6 +125,20 @@ function getJsonFile() {
 						<input type="checkbox" id='${i + 1}_Give' onclick=CheckBoxChenge("${i}_Give") ${Give_Checked[0]}>
 						<label class="Give-Label" for="${i + 1}_Give" id="${i + 1}_Give_Label">${Give_Checked[1]}</label>
 						</td>
+						<td class="Count table-1_5-column table-column-none" id="${i + 1}_Count">
+						<select id="selectID-${i + 1}">
+							<option value="0" ${selectedFunction(0,selectCount)} >--</option>
+							<option value="1" ${selectedFunction(1,selectCount)} >1</option>
+							<option value="2" ${selectedFunction(2,selectCount)} >2</option>
+							<option value="3" ${selectedFunction(3,selectCount)} >3</option>
+							<option value="4" ${selectedFunction(4,selectCount)} >4</option>
+							<option value="5" ${selectedFunction(5,selectCount)} >5</option>
+							<option value="6" ${selectedFunction(6,selectCount)} >6</option>
+							<option value="7" ${selectedFunction(7,selectCount)} >7</option>
+							<option value="8" ${selectedFunction(8,selectCount)} >8</option>
+							<option value="9" ${selectedFunction(9,selectCount)} >9</option>
+						</select>
+						</td>
 						<td class="Name table-2-column" id="${i + 1}_Name">${list[i].Name}</td>`;
 					if (param) {
 						add += `<td class="HTG table-3-column table-column-none">${list[i].Category}</td>`;
@@ -145,49 +163,57 @@ function getJsonFile() {
 	})
 }
 
+//selectedかどうかを返す
+function selectedFunction(val,selectCount){
+	if(val == selectCount){
+		return "selected";
+	}
+	return "";
+}
+
+//テーブルの一番上の挿入
 function theadAppend() {
 	$(function () {
 		add = "";
 		var add = `<tr class="colTitle">
 			<th id="table-1-width" colspan="2">自分<br>ver <div id="version" style="display: contents"></div></th>
-			<th id="table-2-width" rowspan="2" id="th_3">名前</th>`
+			<th id="table-1_5-width" rowspan="2" class ="table-column-none">枚数</th>
+			<th id="table-2-width" rowspan="2" >名前</th>`
 		if (param) {
-			add += `<th class ="table-column-none" id="table-3-width" rowspan="2" id="th_4">取得方法</th>`;
+			add += `<th class ="table-column-none" id="table-3-width" rowspan="2" >取得方法</th>`;
 		} else {
-			add += `<th id="table-3-width" rowspan="2" id="th_4">取得方法</th>`;
+			add += `<th id="table-3-width" rowspan="2">取得方法</th>`;
 		}
 		if (param) {
 			add += `<th id="table-4-width" colspan="2">相手<br><div id="Peer_version">ver </div><div id="Peer_date"></div></th>`
 		}
-		add += `<th class="Debug" colspan="2">Debug</th>
-			</tr>
+		add += `</tr>
 			<tr>
-			<th class="table-1-column" id="th_1">取得<br>(自分)</th>
-			<th class="table-1-column" id="th_2">配布<br>(自分)</th>
-			<!--   非表示   -->
-			<!--   非表示   -->`
+			<th class="table-1-column">取得<br>(自分)</th>
+			<th class="table-1-column">配布<br>(自分)</th>
+			<!--   非表示1_5 -->
+			<!--   非表示2   -->
+			<!--   非表示3   -->`
 		if (param) {
-			add += `<th class="table-4-column" id="th_5">配布<br>(相手)</th>
-				<th class="table-4-column" id="th_6">取得<br>(相手)</th>`
+			add += `<th class="table-4-column">配布<br>(相手)</th>
+				<th class="table-4-column">取得<br>(相手)</th>`
 		}
-		add += `<th class="Debug" id="th_7">DIY</th>
-			<th class="Debug" id="th_8">NameID</th>
-			</tr>`;
-
 		$("thead").append(add);
 	})
 }
 
+//下フィルターバーの表示
 function filterBar() {
 	$(function () {
 		var add = "";
-
 		add = `<div id="div-serch-area">
 				<input type="text" name="search" value="" id="NameSearch" placeholder="名前検索">
 				<input type="text" name="search" value="" id="HTGSearch" placeholder="入手方法検索">
 				</div>
 				<input type="checkbox" id="cb-1-column" onchange="ClassReplace('1')">
 				<label for="cb-1-column" id="cb-1-label">「自分」<br>を非表示</label>
+				<input type="checkbox" id="cb-1_5-column" onchange="ClassReplace('1_5')" checked>
+				<label for="cb-1_5-column" id="cb-1_5-label">「枚数」<br>を非表示</label>
 				<input type="checkbox" id="cb-3-column" onchange="ClassReplace('3')">
 				<label for="cb-3-column" id="cb-3-label">「取得方法」<br>を非表示</label>`;
 		if (param) {
@@ -205,3 +231,4 @@ function filterBar() {
 		$(".FilterBar").append(add);
 	})
 }
+

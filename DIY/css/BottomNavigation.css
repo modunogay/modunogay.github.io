@@ -15,6 +15,7 @@
 .FilterBar label {
 	width: 30%;
 	border: solid 2px #fef6e4;
+	box-sizing: border-box;
 	border-radius: 0px;
 	flex-grow: 1;
 	vertical-align: middle;

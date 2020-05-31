@@ -1,6 +1,6 @@
 function CheckBoxChenge(e) {
 	var num = checkBoxCount(e);
-	setlocalstorage(num[0], num[1],"DIY");
+	setlocalstorage(num[0], num[1], "DIY");
 }
 
 /*
@@ -29,25 +29,53 @@ function checkBoxCount(id) {
 		count = 0;
 	} else if (Get_CheckBox.prop('checked') == false && Give_CheckBox.prop('checked') == true) {
 		//Getから押された場合両方ともfalse
-		if(index[1] == "Get"){
+		if (index[1] == "Get") {
 			Give_CheckBox.prop("checked", false);
 			Get_CheckBox_Label.text("未取得");
 			Give_CheckBox_Label.text("不可");
 			count = 0;
-		}else{
+		} else {
 			Get_CheckBox.prop("checked", true);
 			Get_CheckBox_Label.text("取得済");
 			Give_CheckBox_Label.text("可");
 			count = 2;
 		}
-	}else if (Get_CheckBox.prop('checked') == true && Give_CheckBox.prop('checked') == false) {
+	} else if (Get_CheckBox.prop('checked') == true && Give_CheckBox.prop('checked') == false) {
 		Get_CheckBox_Label.text("取得済");
 		Give_CheckBox_Label.text("不可");
 		count = 1;
-	}else if (Get_CheckBox.prop('checked') == true && Give_CheckBox.prop('checked') == true) {
+	} else if (Get_CheckBox.prop('checked') == true && Give_CheckBox.prop('checked') == true) {
 		Get_CheckBox_Label.text("取得済");
 		Give_CheckBox_Label.text("可");
 		count = 2;
 	}
+
+	if ((count == 1 || count == 0) && ($(`#selectID-${index[0]}`).val() != 0)) {
+		setlocalstorage($(`#${index[0]}_Name`).text(), 0, "DIY_COUNT");
+		$(`#selectID-${index[0]}`).val(0)
+	}
+
 	return [ItemName, count];
 };
+
+
+
+//動的に追加した要素にはdocument.onで対応
+$(document).on('click', 'select', function () {
+	if ($(this).parent().parent().find(".table-1-column").find(".Give-Label").text() == "不可") {
+		alert("エラー!配布可にチェックはしましたか？");
+		$(this).val(0);
+	}
+});
+
+$(document).on('change', 'select', function () {
+	
+		var selectCount = $(this).val();
+		var selectCountName = $(this).parent().parent().find(".Name").text();
+		if ($(this).parent().parent().find(".table-1-column").find(".Give-Label").text() == "不可") {
+			$(this).val(0);
+			selectCount = 0;
+			return 0;
+		}
+		setlocalstorage(selectCountName, selectCount, "DIY_COUNT");
+});

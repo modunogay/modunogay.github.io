@@ -17,7 +17,7 @@ input[type=checkbox] {
 	display: none;
 }
 
-.Debug, .DIYID, .NameID, .table-column-none, .table-row-1-none, .table-row-4-none, .table-row-other-none, .FilterBar .FilterBar-none, .search-none {
+.Debug, .DIYID, .NameID, .table-column-none, .table-row-1-none, .table-row-4-none, .table-row-other-none, .FilterBar .FilterBar-none, .search-none{
 	display: none;
 }
 
@@ -166,6 +166,7 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 
 #Header a:link, #Header a:visited, #Header a:hover, #Header a:active {
 	border: solid 2px #fef6e4;
+	box-sizing: border-box;
 	border-radius: 0px;
 	flex-grow: 1;
 	vertical-align: middle;
@@ -180,6 +181,7 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	z-index: inherit;
 	font-size: 1.5em;
 	text-align: center;
+	width: 25%;
 }
 
 .table-3-column img{

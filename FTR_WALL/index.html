@@ -40,10 +40,12 @@
 	<script type="text/javascript" src="../DIY/js/CheckuserAgent.js"></script>
 	<script type="text/javascript" src="../DIY/js/lz-string.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/override.css">
-	<script type="text/javascript" src="../DIY/js/HeaderFooter.js?202005300450"></script>
+	<script type="text/javascript" src="../DIY/js/HeaderFooter.js?202005311644"></script>
 
 	<script type="text/javascript" src="../FTR/js/lazysizes.min.js"></script>
 	<script type="text/javascript" src="../FTR/js/lazy.js"></script>
+
+	<script type="text/javascript" src="../FTR/js/DOMText.js"></script>
 
 </head>
 
@@ -123,8 +125,8 @@
 		<br><br>
 		<input type="image" src="../DIY/image/Twitter_Social_Icon.png" alt="ツイート" onclick="tweetPopup();">
 		<br>
-		↑ツイート↑<br><br>
-
+		↑ツイート↑<br>
+		<br>
 		↓付けるタグ↓<br>
 		<input type="checkbox" id="Twitter-tag-1" onclick="TwitterTagfunction(1)" value="壁掛け家具チェッカー"
 			style="display: inline;">
@@ -153,8 +155,10 @@
 		<label for="Twitter-tag-6" id="Titter-tag-6-label">
 			#おさわり
 		</label><br>
-
 		<br>(Twitterの仕様上 URLの後ろに付きます)
+		<textarea id="DOMNameInput" placeholder="アイテム名…" value="アイテム名…" readonly="readonly" style="display: none;"></textarea><br>
+		<button id="getDOMName">[New!]表示しているアイテム名をコピー</button>
+		<br>
 	</div>
 	<!--ダイアログの内容 ここまで-->
 	<br>
@@ -345,6 +349,19 @@
 			$("#mydialog").dialog("open");
 		});
 	})
+
+	var clipboard = new ClipboardJS('#getDOMName', {
+		target: function (trigger) {
+			$("#DOMNameInput").val(getDOMText())
+			$("#DOMNameInput").css("display", "");
+			return document.getElementById("DOMNameInput");
+		}
+	});
+
+	clipboard.on("success", function (e) {
+		$("#DOMNameInput").css("display", "none");
+		alert("「現在表示されている」アイテム名をコピーしました！");
+	});
 
 	$(document).ready(function () {
 		$("#NameSearch").on("keyup", function () {
