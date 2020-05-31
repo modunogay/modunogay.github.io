@@ -402,6 +402,8 @@
 		$("#HTGSearch").on("keyup", function () {
 			var Namevalue = CharReplace($("#NameSearch").val());
 			var value = CharReplace($(this).val());
+
+			
 			if (Namevalue == "") {
 				$(".HTG").filter(function () {
 					if (CharReplace($(this).text()).indexOf(value) > -1) {
@@ -413,9 +415,9 @@
 			} else {
 				$(".HTG").filter(function () {
 					if (CharReplace($(this).text()).indexOf(value) > -1 && CharReplace($(this).prev().text()).indexOf(Namevalue) > -1) {
-						$(this).parent().addClass("search-none");
-					} else {
 						$(this).parent().removeClass("search-none");
+					} else {
+						$(this).parent().addClass("search-none");
 					}
 				});
 			}

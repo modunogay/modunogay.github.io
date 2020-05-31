@@ -17,7 +17,7 @@ input[type=checkbox] {
 	display: none;
 }
 
-.Debug, .DIYID, .NameID, .table-column-none, .table-row-1-none, .table-row-4-none, .table-row-other-none, .FilterBar .FilterBar-none, .search-none{
+.Debug, .DIYID, .NameID, .table-column-none, .table-row-1-none, .table-row-4-none, .table-row-other-none, .FilterBar .FilterBar-none, .search-none {
 	display: none;
 }
 
@@ -184,15 +184,15 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	width: 25%;
 }
 
-.table-3-column img{
+.table-3-column img {
 	display: block;
-    margin: auto;
+	margin: auto;
 }
 
-#HeaderComment{
+#HeaderComment {
 	width: 80%;
-    margin: auto;
-    border: solid 2px #172c66;
-    max-width: 1000px;
-    word-wrap: break-word;
+	margin: auto;
+	border: solid 2px #172c66;
+	max-width: 1000px;
+	word-wrap: break-word;
 }
