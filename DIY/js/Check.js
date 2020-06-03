@@ -104,7 +104,7 @@ function row_ClassReplace(index) {
 
 };
 
-function cssChenge() {
+function cssChenge() { 
 	$(function cssChenge() {
 		
 		var len = $('.colTitle th').filter(':visible').length;

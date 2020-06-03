@@ -26,6 +26,7 @@ function getJsonFile() {
 				//パラメータ有り
 				//パラメータのデコード
 				param_data = decode(param_str).split("&");
+				console.log(param_data)
 				//パラメータ分解
 				var ver = param_data[0];
 

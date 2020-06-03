@@ -128,7 +128,7 @@ function getJsonFile() {
 						add += `<td class="HTG table-3-column table-column-none">エラー！！！！ダメ！！！</td>`
 					} else if (param) {
 						if (list[i].Buy != "") {
-							add += `<td class="HTG table-3-column table-column-none">
+							add += `<td class="HTG NFS table-3-column table-column-none">
 								<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
 								${list[i].Buy}</td>`;
 						} else {

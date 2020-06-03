@@ -19,5 +19,10 @@ function headerComment(){
 	<span style="text-align: right; display: inline-block; width: 90%;">@modunogay</span>
 	`
 	$("#HeaderComment").append(add);
+	add = `
+	<p id = "headerPlanText">6/4 1:32追記<br>
+	「相手」欄が表示されている場合「非売品」が非表示にならない不具合を修正
+	`
+	$("#HeaderComment").append(add);
 }
 
