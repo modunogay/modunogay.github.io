@@ -1,4 +1,9 @@
-//全角英数字を変換，カタカナをひらがなに変換，大文字を小文字に変換
+/**
+ * 全角英数字を半角英数字に変換
+ * カタカナをひらがなに変換
+ * 大文字を小文字に変換する関数
+ * @param {string} str 変換したい文字列
+*/
 function CharReplace(str) {
 	return str.toLowerCase().replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (s) {
 		return String.fromCharCode(s.charCodeAt(0) - 0xFEE0)
@@ -8,7 +13,10 @@ function CharReplace(str) {
 };
 
 
-//ナビバーの表示/非表示部分
+/**
+ * 指定されたテーブル列を非表示にする関数
+ * @param {int} index 非表示にしたい列(column)
+ */
 function ClassReplace(index) {
 	if ($(`#cb-${index}-column`).prop('checked')) {
 		$(`.table-${index}-column`).hide();
@@ -21,21 +29,51 @@ function ClassReplace(index) {
 };
 
 
+
+/**
+ * その他や非売品の「行」を表示/非表示にする関数
+ * @param {int} index 対応するチェックボックスのID
+ */
 function row_Other_ClassReplace(index) {
-	if ($(`#cb-${index}-row`).prop('checked')) {
-		$(".NFS").filter(function () {
-			$(this).parent().addClass("table-row-other-none");
-		})
+	//toggleやshow,hideなどで対応すると「列」の表示を変更した際、
+	//整合性が保てずバグるのでクラス追加で対
+	//DIYならその他を非表示に
+	if (THIS_PAGE == "DIY") {
+		if ($(`#cb-${index}-row`).prop('checked')) {
+			$(".HTG").filter(function () {
+				if ($(this).text() == "その他") {
+					$(this).parent().addClass("table-row-other-none");
+				}
+			})
+		} else {
+			$(".HTG").filter(function () {
+				if ($(this).text() == "その他") {
+					$(this).parent().removeClass("table-row-other-none");
+				};
+			});
+		};
 	} else {
-		$(".NFS").filter(function () {
-			$(this).parent().removeClass("table-row-other-none");
-		});
-	};
+		//それ以外なら「NFS」クラスを非表示に
+		if ($(`#cb-${index}-row`).prop('checked')) {
+			$(".NFS").filter(function () {
+				$(this).parent().addClass("table-row-other-none");
+			})
+		} else {
+			$(".NFS").filter(function () {
+				$(this).parent().removeClass("table-row-other-none");
+			});
+		};
+	}
 };
 
+/**
+ * 画面下の「取得済」「可」などのフィルター部分
+ * checkboxの値を参照し、対応する状態で「行」を表示/非表示
+ * @param {int} index 対応するチェックボックスのID
+ */
 function row_ClassReplace(index) {
+	//lazyloadを一旦noneにすることで画像取得を停止
 	$(".lazyload").css("display", "none");
-
 
 	var val = parseInt($(`#cb-${index}-row`).val());
 	if (val == 4) {
@@ -47,7 +85,7 @@ function row_ClassReplace(index) {
 		//全部
 		case 1:
 			$(".table-row").filter(function () {
-				$(`#cb-${index}-row-label`).text(`全て表示`);
+				$(`#cb-${index}-row-label`).text(`全表示中`);
 				$(this).removeClass(`table-row-${index}-none`);
 			})
 			break;
@@ -100,25 +138,19 @@ function row_ClassReplace(index) {
 			})
 			break;
 	}
-
-	$(".lazyload").css("display", "")
-
+	$(".lazyload").css("display", "");
 };
 
+
+/**
+ * 表示される列に対し動的に文字サイズを変更する関数
+ */
 function cssChenge() {
 	$(function cssChenge() {
-
 		var len = $('.colTitle th').filter(':visible').length;
-		var column1 = $('#table-1-width');
-		var column2 = $('#table-2-width');
-		var column3 = $('#table-3-width');
-		var column4 = $('#table-4-width');
 		var font1 = $('.table-1-column');
 		var font2 = $('.table-2-column');
-		var font3 = $('.table-3-column');
 		var font4 = $('.table-4-column');
-		var GetFont = $(".Get-Label");
-		var GiveFont = $(".Give-Label");
 
 
 		switch (len) {

@@ -189,7 +189,7 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	margin: auto;
 }
 
-#HeaderComment {
+#HeaderComment ,#HeaderComment2{
 	width: 90%;
 	margin: auto;
 	border: solid 2px #172c66;
@@ -197,9 +197,24 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	word-wrap: break-word;
 }
 
-#headerPlanText {
+.headerPlanText {
 	text-align: left;
     display: inline-block;
 	width: 90%;
 	margin: 0;
+}
+
+#USER_NAME_space{
+	width: 50%;
+	margin: auto;
+	border: solid 2px #172c66;
+	max-width: 300px;
+	box-sizing: border-box;
+}
+#input-USER_NAME,#btn-USER_NAME{
+	text-align: center;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
 }

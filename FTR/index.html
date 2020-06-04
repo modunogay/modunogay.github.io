@@ -23,29 +23,40 @@
 	<meta property="og:image" content="https://modunogay.github.io/FTR/image/CARD.png" />
 	<meta name="description" content="あつまれどうぶつの森の家具を管理、共有するサイト">
 	<!--Twitter metaタグ ここまで-->
+
+	<!--  CDN  ここから-->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript"
 		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" type="text/css" href="../DIY/css/Check.css?202005292250">
-	<link rel="stylesheet" type="text/css" href="../DIY/css/BottomNavigation.css">
-	<script type="text/javascript" src="./js/Check.js"></script>
-	<script type="text/javascript" src="./js/CheckBox.js"></script>
-	<script type="text/javascript" src="./js/CheckVersion.js?202005292250"></script>
-	<script type="text/javascript" src="./js/createURL.js"></script>
-	<script type="text/javascript" src="../DIY/js/CheckuserAgent.js"></script>
-	<link rel="stylesheet" type="text/css" href="./css/override.css">
-	<script type="text/javascript" src="./js/lazysizes.min.js"></script>
-	<script type="text/javascript" src="./js/lazy.js"></script>
-	
-	<script src="../Common/js/jquery.ui.touch-punch.min.js"></script>
-	<script type="text/javascript" src="../Common/js/HeaderFooter.js"></script>
-	<script type="text/javascript" src="../Common/js/lz-string.js"></script>
+	<!--  CDN  ここまで-->
 
-	<script type="text/javascript" src="./js/DOMText.js"></script>
+	<!-- Common 共通 ここから-->
+	<script type="text/javascript" src="../Common/js/jquery.ui.touch-punch.min.js"></script>
+	<script type="text/javascript" src="../Common/js/lz-string.js"></script>
+	<!-- 自作 ここから-->
+	<script type="text/javascript" src="../Common/js/HeaderFooter.js"></script>
+	<script type="text/javascript" src="../Common/js/createURL.js"></script>
+	<script type="text/javascript" src="../Common/js/page.js"></script>
+	<script type="text/javascript" src="../Common/js/lazysizes.min.js"></script>
+	<script type="text/javascript" src="../Common/js/lazy.js"></script>
+	<script type="text/javascript" src="../Common/js/CheckuserAgent.js"></script>
+	<script type="text/javascript" src="../Common/js/Check.js"></script>
+	<script type="text/javascript" src="../Common/js/CheckBox.js"></script>
+	<script type="text/javascript" src="../Common/js/data_change.js"></script>
+	<script type="text/javascript" src="../Common/js/twitter_related.js"></script>
+	<script type="text/javascript" src="../Common/js/onload.js"></script>
+	<script type="text/javascript" src="../Common/js/DOMText.js"></script>
+	<script type="text/javascript" src="../Common/js/CheckVersion.js"></script>
+	<link rel="stylesheet" type="text/css" href="../Common/css/BottomNavigation.css">
+	<link rel="stylesheet" type="text/css" href="../Common/css/Check.css">
+	<!-- 自作 ここまで-->
+	<!-- Common 共通 ここまで-->
+
+	<!-- Common DIY以外の共通-->
+	<link rel="stylesheet" type="text/css" href="../Common/css/override.css">
+	<!-- Common DIY以外の共通 ここまで-->
 
 </head>
 
@@ -95,12 +106,9 @@
 	</script>
 
 	<p id="title_char">家具チェッカー</p>
-
-
 	<div id="contents">
 		<a href="./index.html">「自分」だけのページに戻る</a>
-		<br>
-		<br>
+		<br><br>
 		<!--フッダー コメント-->
 		<div id="HeaderComment">
 		</div>
@@ -120,8 +128,7 @@
 		URLを発行しました！<br>
 		<input type="text" id="URL-Input" placeholder="URL発行中・・・" value="URL発行中・・・" readonly="readonly">
 		<br><br>
-		<input type="button" id="URLcopy" data-clipboard-target="#URL-Input" value="リンクをコピー"
-			onclick="copyAlert()"></button>
+		<input type="button" id="URLcopy" data-clipboard-target="#URL-Input" value="リンクをコピー"></button>
 		<br><br>
 		<input type="image" src="../DIY/image/Twitter_Social_Icon.png" alt="ツイート" onclick="tweetPopup();">
 		<br>
@@ -163,6 +170,8 @@
 	</div>
 	<!--ダイアログの内容 ここまで-->
 	<br>
+	<div id="USER_NAME_space">
+	</div>
 	<br>
 	<table id="fav-table" align="center">
 		<thead>
@@ -182,7 +191,6 @@
 	<br>
 
 	<div id="contents">
-
 		<button onclick="window.location.reload(true)">強制更新</button>
 		<button onclick="sessionTolocal()">相手のデータを自分のデータにする</button>
 		<button onclick="jsGiveClear()">「配布可」を全て「不可」に</button><br><br><br>
@@ -205,9 +213,6 @@
 		<br>
 		<a href="../DataSource.html">データ提供元・ライセンス<br>プライバシーポリシー・免責事項 </a>
 	</div>
-
-
-
 	<br>
 	<br>
 	<br>
@@ -233,232 +238,16 @@
 
 
 <script>
-
-	//ユーザーのデータ
-	var USER_JSON = getlocalstorage("All", "FTR");
-	if (USER_JSON == null) {
-		USER_JSON = [{ "name": "Name", "data": "value" }];
-		localStorage.setItem("FTR", JSON.stringify(USER_JSON));
-	}
-
-
-	//jqueryのダイアログを用いると、何故かclassが使えなくなるのでlength用に設置		
-	const Tiwtter_CB_LENGTH = 6;
-	//USER_JSON_FTR_TWITTERユーザーのハッシュタグ情報を管理
-	var USER_JSON_FTR_TWITTER = getlocalstorage("All", "FTR_TWITTER");
-	if (USER_JSON_FTR_TWITTER == null) {
-		USER_JSON_FTR_TWITTER = [{ "name": "Name", "data": "value" }];
-		localStorage.setItem("FTR_TWITTER", JSON.stringify(USER_JSON_FTR_TWITTER));
-	} else {
-		//console.log(USER_JSON_FTR_TWITTER)
-		for (i = 1; i < USER_JSON_FTR_TWITTER.length; i++) {
-			if (USER_JSON_FTR_TWITTER[i].data == 1) {
-				for (j = 1; i <= Tiwtter_CB_LENGTH; j++) {
-					if ($(`#Twitter-tag-${j}`).val() == USER_JSON_FTR_TWITTER[i].name) {
-						$(`#Twitter-tag-${j}`).prop('checked', true);
-						break;
-					}
-				}
-			}
-		}
-		//console.log("ページロード時のハッシュタグ(状態):"+getHashTag())
-	}
-
-
-
-
-	function getHashTag() {
-		var HashTags = [];
-		for (i = 0; i < USER_JSON_FTR_TWITTER.length; i++) {
-			if (USER_JSON_FTR_TWITTER[i].data == 1) {
-				HashTags.push(USER_JSON_FTR_TWITTER[i].name)
-			}
-		}
-		return HashTags
-	}
-
-	function TwitterTagfunction(index) {
-		if ($(`#Twitter-tag-${index}`).prop('checked')) {
-			setlocalstorage($(`#Twitter-tag-${index}`).val(), 1, "FTR_TWITTER");
-			//(getHashTag());
-		} else {
-			setlocalstorage($(`#Twitter-tag-${index}`).val(), 0, "FTR_TWITTER");
-			//console.log(getHashTag());
-		}
-	}
-
-	function tweetPopup() {
-		var text = encodeURI($("#URL-Input").val());
-		var tags = "";
-		var hashtag = getHashTag();
-		if (hashtag.length != 0) {
-			tags = "&hashtags=" + hashtag.join(",")
-		}
-		var url = `https://twitter.com/share?url=${text}&text=家具を更新しました！${tags}`;
-		//console.log(url)
-		window.open(url, "tweet", "width=500,height=300");
-	};
-
-	//相手のデータ
-	var OTHER_JSON = [{ "name": "Name", "data": "value" }];
-	sessionStorage.setItem("FTR", JSON.stringify(OTHER_JSON));
-
-	//パラメータの判定
-	var param = location.search.substring(1);
-	if (param == "") {
-		param = false;
-	} else {
-		param = true;
-	}
-
-
-
-
 	//androidかiPhoneか判断，bodyのフォントサイズを変更
 	checkuserAgent();
+	//テーブルのフォントサイズを変更
+	tableFontSize();
 	//フィルターを動的に追加
 	filterBar();
 	//theadを動的に追加
 	theadAppend();
 	//jsonファイルを取得し要素を追加
 	getJsonFile();
-
-
-	//clipboradJSを割り当て
-	new ClipboardJS('#URLcopy');
-	function copyAlert() {
-		alert("URLをコピーしました！")
-	}
-
-	$(function () {
-		// ダイアログの初期設定
-		$("#mydialog").dialog({
-			autoOpen: false,
-			width: "80%",
-			modal: true,
-			buttons: [
-				{
-					text: '閉じる',
-					click: function () {
-						$(this).dialog("close");
-					}
-				}
-			]
-		});
-		$("#sharebtn").click(function () {
-			//URLを作成
-			createURL();
-			// ダイアログの呼び出し
-			$("#mydialog").dialog("open");
-		});
-	})
-
-	var clipboard = new ClipboardJS('#getDOMName', {
-		target: function (trigger) {
-			$("#DOMNameInput").val(getDOMText())
-			$("#DOMNameInput").css("display", "");
-			return document.getElementById("DOMNameInput");
-		}
-	});
-
-	clipboard.on("success", function (e) {
-		$("#DOMNameInput").css("display", "none");
-		alert("「現在表示されている」アイテム名をコピーしました！");
-	});
-
-	$(document).ready(function () {
-		$("#NameSearch").on("keyup", function () {
-			var value = CharReplace($(this).val());
-			$(".Name").filter(function () {
-				if (CharReplace($(this).text()).indexOf(value) > -1) {
-					$(this).parent().removeClass("search-none");
-				} else {
-					$(this).parent().addClass("search-none");
-				}
-			});
-		});
-	});
-
-
-	$(function () {
-		if (!param) {
-			$(".FilterBar label").css("width", "45%");
-		}
-		height = $(".FilterBar label").height() * 2 + $("#div-serch-area").height() + 20;
-		$("#cb-sort-image").css({ "bottom": `${height}px` });
-		$("#sharebtn").css({ "bottom": `${height}px` });
-
-	});
-
-
-	function jsclear() {
-		if (window.confirm('初期化をします！\nよろしいですか？(3)')) {
-			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
-				if (window.confirm('本当によろしいですか？(1)')) {
-					localStorage.clear("FTR");
-					window.location.reload(true);
-				}
-			}
-		}
-	}
-
-	function sessionTolocal() {
-		if (window.confirm('データを移行します。\nよろしいですか？(3)')) {
-			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
-				if (window.confirm('本当によろしいですか？(1)')) {
-					localStorage.setItem("FTR", sessionStorage.getItem("FTR"))
-					window.location.reload(true);
-				}
-			}
-		}
-	}
-
-	function jsGiveClear() {
-		if (window.confirm('「配付可」を全て「不可」にします\nよろしいですか？(3)')) {
-			if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
-				if (window.confirm('本当によろしいですか？(1)')) {
-					for (i = 0; i < USER_JSON.length; i++) {
-						if (USER_JSON[i].data == 2) {
-							USER_JSON[i].data = 1;
-							localStorage.setItem("FTR", JSON.stringify(USER_JSON));
-						}
-					}
-					window.location.reload(true);
-				}
-			}
-		}
-	}
-
-
-	//テーブルのフォントサイズを変更
-	var fontsize = localStorage.getItem("Table-Font-Size");
-	if (fontsize == null) {
-		fontsize = 100;
-	} else {
-		$('#fav-table').css("fontSize", `${fontsize}%`);
-	}
-
-	$(function () {
-		// 2スライダーを適用
-		$('#slider').slider({
-			value: fontsize,
-			min: 65,
-			max: 135,
-			step: 1,
-
-			change: function (e, ui) {
-				$('#num').text(`${ui.value}%`);
-				$('#fav-table').css("fontSize", `${ui.value}%`)
-				localStorage.setItem("Table-Font-Size", ui.value);
-			},
-			// 4スライダーの初期化時に、その値をテキストボックスにも反映
-			create: function (e, ui) {
-				$('#num').text(`${$(this).slider('option', 'value')}%`);
-			}
-		});
-
-		$("#slider").draggable();
-	}); 
 </script>
 
 </html>

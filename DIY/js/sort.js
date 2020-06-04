@@ -45,7 +45,6 @@ function sort() {
 						return -1;
 					}
 				}
-
 			})
 		);
 	})
