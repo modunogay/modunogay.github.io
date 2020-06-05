@@ -10,6 +10,9 @@
 		gtag('js', new Date());
 
 		gtag('config', 'UA-166859192-2');
+		var dimensionValue = localStorage.getItem("NOW_MISC_VERSION");
+		ga('set', 'dimension1', dimensionValue);
+		ga('send', 'pageview');
 	</script>
 	<meta charset="UTF-8" name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
