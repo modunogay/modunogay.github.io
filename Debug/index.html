@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+	<script src="./js/debug.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/debug.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+</head>
+
+<script>
+	window.onunload = function () { };
+	window.onpageshow = function (event) {
+		if (event.persisted) {
+			window.location.reload();
+		}
+	};
+</script>
+
+<body>
+	<h2>ようこそデバッグサイトへ</h2>
+	ここでは貴方のブラウザに保存されているデータを閲覧できます。<br>
+	<input type="button" value="更新" onclick="window.location.reload(true)"></button>
+	<h3>DIYレシピチェッカー</h3>
+	<textarea id="textarea-DIY" readonly="readonly"></textarea>
+	<input type="button" id="ClipboardJS-DIY" data-clipboard-target="#textarea-DIY" value="DIYのデータをコピー"></button>
+
+	<h3>家具チェッカー</h3>
+	<textarea id="textarea-FTR" readonly="readonly"></textarea>
+	<input type="button" id="ClipboardJS-FTR" data-clipboard-target="#textarea-FTR" value="家具のデータをコピー"></button>
+
+	<h3>小物家具チェッカー</h3>
+	<textarea id="textarea-MISC" readonly="readonly"></textarea>
+	<input type="button" id="ClipboardJS-MISC" data-clipboard-target="#textarea-MISC" value="小物家具のデータをコピー"></button>
+
+	<h3>壁掛けチェッカー</h3>
+	<textarea id="textarea-FTR_WALL" readonly="readonly"></textarea>
+	<input type="button" id="ClipboardJS-FTR_WALL" data-clipboard-target="#textarea-FTR_WALL" value="壁掛け家具のデータをコピー"></button>
+</body>
+
+</html>
