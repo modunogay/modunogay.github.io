@@ -8,11 +8,11 @@
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
-
-		gtag('config', 'UA-166859192-2');
+		gtag('config', 'UA-166859192-2', {
+			'custom_map': { 'dimension1': 'USER_VERSION' }
+		});
 		var dimensionValue = localStorage.getItem("NOW_FTR_VERSION");
-		ga('set', 'dimension1', dimensionValue);
-		ga('send', 'pageview');
+		gtag('event', 'user_version_dimension', { 'USER_VERSION': dimension_value });
 	</script>
 	<meta charset="UTF-8" name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
