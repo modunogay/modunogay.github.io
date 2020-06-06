@@ -15,7 +15,11 @@ function headerComment(){
 	<p class= "headerPlanText">現在データが<span style="background-color: #ff9dc3b8; font-weight:bold;">「全て未チェックになる不具合」</span>が発生しております。<br>
 	原因調査中です。<br>
 	<span style="background-color: #ff9dc3b8; font-weight:bold;">ページをリロード(再読み込み)</span>するとデータきちんと表示されることを確認しています。<br>
-	本バグに合われましたら一度ページを更新して頂けますようお願いいたします。
+	本バグに合われましたら一度ページを更新して頂けますようお願いいたします。<br><br>
+	6/6 4:10 追記<br>
+	頑張って調査したのですが根本的な原因を突き止めることが出来ませんでした…＞＜<br>
+	暫定的な対応をしました…。<br>
+	もしバグが再発している場合、<span style="background-color: #ff9dc3b8;">ページ一番下の「デバック情報」</span>を送っていただけますと幸いです…。
 	`
 	$("#HeaderComment").append(add);
 

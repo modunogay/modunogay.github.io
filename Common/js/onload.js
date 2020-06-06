@@ -23,6 +23,10 @@ $(function () {
 		autoOpen: false,
 		width: "80%",
 		modal: true,
+		close: function () {
+			//console.log("close");
+			$("#URL-Input").val("");
+		},
 		buttons: [
 			{
 				text: '閉じる',
@@ -42,9 +46,6 @@ $(function () {
 
 
 	$(function () {
-
-		$("#USER_NAME_text").text(USER_NAME)
-
 		if (THIS_PAGE == "DIY") {
 			//下フィルターバーのCSSを動的変更
 			if (!param) {
@@ -126,27 +127,27 @@ $(function () {
 
 	});
 
-	$(function(){
+	$(function () {
 		add = `<input type="text" id="input-USER_NAME" placeholder="名前入力" maxlength="8"><br>
 				<button onclick="setUSER_NAME()" id="btn-USER_NAME">名前をセット</button>`
 		$("#USER_NAME_space").append(add)
 	})
 });
 
-function setUSER_NAME(){
+function setUSER_NAME() {
 	var tmp = $("#input-USER_NAME").val()
-	if(tmp == ""){
+	if (tmp == "") {
 		alert("名前が入力されていません…。");
-	}else{
+	} else {
 		var reg = new RegExp(/[!"#$%&'()\*\+\-\.,\/:;<=>?@\[\\\]^_`{|}~]/g);
 		var reg2 = new RegExp(/[ぁ-んァ-ン一-龥0-9０-９a-zA-Zａ-ｚＡ-Ｚ]/g);
-		if(reg.test(tmp) || !reg2.test(tmp)){
+		if (reg.test(tmp) || !reg2.test(tmp)) {
 			alert("特殊文字が含まれています…別の名前でお願いします。");
-		}else{
+		} else {
 			USER_NAME = tmp
-			$("#input-USER_NAME").val("")		
+			$("#input-USER_NAME").val("")
 			$("#USER_NAME_text").text(USER_NAME)
-			localStorage.setItem("USER_NAME",USER_NAME)
+			localStorage.setItem("USER_NAME", USER_NAME)
 			alert("名前をセットしました！")
 		}
 	}

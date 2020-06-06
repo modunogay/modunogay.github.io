@@ -68,6 +68,15 @@ function getJsonFile() {
 			}
 
 			function listappend(list) {
+
+				USER_JSON = getlocalstorage("All", THIS_PAGE);
+				//DEBUG
+				if (USER_JSON != undefined || USER_JSON != null) {
+					$("#Debug-Input").val($("#Debug-Input").val() + "\n5:" + USER_JSON.length)
+				} else {
+					$("#Debug-Input").val($("#Debug-Input").val() + "\n5:" + "undefined")
+				}
+
 				var add = "";
 				var Get_Checked;
 				var Give_Checked;
@@ -208,6 +217,12 @@ function getJsonFile() {
 				}
 				document.getElementById('Main_tbody').innerHTML = add;
 				lazy();
+				//DEBUG
+				if (USER_JSON != undefined || USER_JSON != null) {
+					$("#Debug-Input").val($("#Debug-Input").val() + "\n6:" + USER_JSON.length)
+				} else {
+					$("#Debug-Input").val($("#Debug-Input").val() + "\n6:" + "undefined")
+				}
 			}
 		})
 	})
@@ -252,6 +267,15 @@ function theadAppend() {
 		}
 		add += `</tr>`;
 		$("thead").append(add);
+
+		$("#USER_NAME_text").text(USER_NAME)
+
+		//DEBUG
+		if(USER_NAME != undefined || USER_NAME != null){
+			$("#Debug-Input").val($("#Debug-Input").val() + "\n4:" + USER_NAME)
+		}else{
+			$("#Debug-Input").val($("#Debug-Input").val() + "\n4:" + "undefined")
+		}	
 	})
 }
 
