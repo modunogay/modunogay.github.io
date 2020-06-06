@@ -1,5 +1,3 @@
-var isDIY = (THIS_PAGE == "DIY")
-
 function replaceVersion(str) {
 	var version = str;
 	version = version.split("_");
