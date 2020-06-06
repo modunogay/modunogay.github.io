@@ -10,7 +10,7 @@ function header(){
  * ヘッダーにコメントを追加する関数
  */
 function headerComment(){
-	add = `6/6 17:05更新<br>
+	add = `6/6 17:06更新<br>
 	<image src="../image/caution-01.png" style="width: 100px; height: 100px; "></image><br>
 	<p class= "headerPlanText">現在データが<span style="background-color: #ff9dc3b8; font-weight:bold;">「全て未チェックになる不具合」</span>が発生しております。<br>
 	原因調査中です。<br>
