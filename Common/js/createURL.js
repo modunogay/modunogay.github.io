@@ -10,13 +10,30 @@ function createURL() {
 				var hours = dt.getHours();
 				var minutes = dt.getMinutes();
 				var str = `${ver}&${year}_${month}_${date}_${hours}_${minutes}&`;
+
+				var tmp;
+				var count_data0 = 0;
+				var count_data1 = 0;
+				var count_data2 = 0;
+
 				for (i = 0; i < list.length; i++) {
-					if (getlocalstorage(list[i].Name, "") == null) {
+					tmp = getlocalstorage(list[i].Name, "")
+					if ( tmp == null) {
 						str += 0;
+						count_data0++;
 					} else {
-						str += getlocalstorage(list[i].Name, "");
+						str += tmp;
+						if(tmp == "1"){
+							count_data1++;
+						}else if(tmp == "2"){
+							count_data2++;
+						}else{
+							count_data0++;
+						}
 					}
 				}
+				console.log(count_data0 + " " + count_data1 + " " + count_data2)
+
 				if(USER_NAME != "自分" || USER_NAME == ""){
 					str += `&${USER_NAME}`
 				}

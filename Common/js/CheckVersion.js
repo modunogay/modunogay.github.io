@@ -227,7 +227,7 @@ function selectedFunction(val, selectCount) {
 function theadAppend() {
 	$(function () {
 		var add = `<tr class="colTitle">
-			<th id="table-1-width" colspan="2"><span id="USER_NAME_text" >${USER_NAME}</span><br>ver <div id="version" style="display: contents"></div></th>`;
+			<th id="table-1-width" colspan="2"><span id="USER_NAME_text" >自分</span><br>ver <div id="version" style="display: contents"></div></th>`;
 		if (isDIY) {
 			add += `<th id="table-1_5-width" rowspan="2" class ="table-column-none">枚数</th>`;
 		}

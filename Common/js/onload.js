@@ -33,6 +33,7 @@ $(function () {
 		]
 	});
 	$("#sharebtn").click(function () {
+		$("#URL-Input").val("");
 		//URLを作成
 		createURL();
 		// ダイアログの呼び出し
@@ -41,6 +42,9 @@ $(function () {
 
 
 	$(function () {
+
+		$("#USER_NAME_text").text(USER_NAME)
+
 		if (THIS_PAGE == "DIY") {
 			//下フィルターバーのCSSを動的変更
 			if (!param) {

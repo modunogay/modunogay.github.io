@@ -48,7 +48,7 @@ function getHashTag() {
 }
 
 /**
- * ツイッターのタグの選択状態が変更された時LocalStorageに保存
+ * ツイッターのタグの状態が変更された時LocalStorageに保存
  * @param {int} index チェックしたID
  */
 function TwitterTagfunction(index) {
@@ -58,6 +58,19 @@ function TwitterTagfunction(index) {
 		setlocalstorage($(`#Twitter-tag-${index}`).val(), 0, `${THIS_PAGE}_TWITTER`);
 	}
 }
+
+/**
+ * ツイッターのテキスト部分の状態が変更された時LocalStorageに保存
+ * @param {int} index チェックしたID
+ */
+function TwitterTextfunction(index) {
+	if ($(`#Twitter-text-${index}`).prop('checked')) {
+		setlocalstorage($(`#Twitter-text-${index}`).val(), 1, `TEXT_TWITTER`);
+	} else {
+		setlocalstorage($(`#Twitter-text-${index}`).val(), 0, `TEXT_TWITTER`);
+	}
+}
+
 
 /**
  * ツイートするためのURLを発行する関数
