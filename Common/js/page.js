@@ -91,16 +91,5 @@ function startPages(data) {
 		} else {
 			$("#Debug-Input").val($("#Debug-Input").val() + "\n3:" + "undefined")
 		}
-
-		//androidかiPhoneか判断，bodyのフォントサイズを変更
-		checkuserAgent();
-		//テーブルのフォントサイズを変更
-		tableFontSize();
-		//フィルターを動的に追加
-		filterBar();
-		//theadを動的に追加
-		theadAppend();
-		//jsonファイルを取得し要素を追加
-		getJsonFile();
 	});
 }
