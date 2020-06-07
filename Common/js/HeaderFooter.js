@@ -19,7 +19,10 @@ function headerComment(){
 	6/6 4:10 追記<br>
 	頑張って調査したのですが根本的な原因を突き止めることが出来ませんでした…＞＜<br>
 	暫定的な対応をしました…。<br>
-	もしバグが再発している場合、<span style="background-color: #ff9dc3b8;">ページ一番下の「デバック情報」</span>を送っていただけますと幸いです…。
+	もしバグが再発している場合、<span style="background-color: #ff9dc3b8;">ページ一番下の「デバック情報」</span>を送っていただけますと幸いです…。<br>
+	<br>
+	6/6 19:03 追記<br>
+	localstrageに保存している値が取得する際、正常に取得できる時と出来ない場合があります…同じkeyにしているのに取得できないのは何故でしょう…
 	`
 	$("#HeaderComment").append(add);
 

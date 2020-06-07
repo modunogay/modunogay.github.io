@@ -216,11 +216,19 @@ function getJsonFile() {
 				}
 				document.getElementById('Main_tbody').innerHTML = add;
 				lazy();
-				//DEBUG
-				if (USER_JSON != undefined || USER_JSON != null) {
-					$("#Debug-Input").val($("#Debug-Input").val() + "\n6:" + USER_JSON.length)
+
+				var tmp = localStorage.getItem(THIS_PAGE)
+				//USER_JSON = getlocalstorage("All", THIS_PAGE);
+				if (tmp == null) {
+					$("#Debug-Input").val($("#Debug-Input").val() + "\n[tmp onload]:" + "null")
 				} else {
-					$("#Debug-Input").val($("#Debug-Input").val() + "\n6:" + "undefined")
+					var temp = JSON.parse(tmp);
+					if (temp[1] == null || temp[1] == undefined) {
+						$("#Debug-Input").val($("#Debug-Input").val() + "\n[temp onload [1]]:" + "undefined")
+					} else {
+						$("#Debug-Input").val($("#Debug-Input").val() + "\n[temp onload [1]]:" + temp[1].name)
+						$("#Debug-Input").val($("#Debug-Input").val() + "\n[temp onload [1]]:" + temp.length)
+					}
 				}
 			}
 		})

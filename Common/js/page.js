@@ -1,43 +1,13 @@
-/**
- * どのページを開いているか[DIY,FTR,MISC,FTR_WALL]
- */
-var THIS_PAGE;
-
-/**
- * 「相手」のアイテムデータが入っている変数
- */
-var NOW_VERSION;
-
-/**
- * アイテムデータが入っている変数
- */
-var USER_JSON;
-
-var OTHER_JSON;
-
-/**
- * パラメータが存在するかどうか
- * @type{boolean}
- */
-var param;
-
-var USER_NAME;
-
-var OTHER_USER_NAME;
-
-var isDIY;
 
 
-function startPages(data) {
-
-	THIS_PAGE = data;
-
+function startPages() {
 	/**
 	 * キャッシュ制御用の変数
 	 */
 	NOW_VERSION = localStorage.getItem(`NOW_${THIS_PAGE}_VERSION`);
 	$.get("../Common/version/now.txt", { _: new Date().getTime() }, function (data) {
 		if (NOW_VERSION == null) {
+			NOW_VERSION = data
 			localStorage.setItem(`NOW_${THIS_PAGE}_VERSION`, data);
 		} else if (NOW_VERSION != data) {
 			localStorage.setItem(`NOW_${THIS_PAGE}_VERSION`, data);
@@ -47,20 +17,12 @@ function startPages(data) {
 		$("#Debug-Input").val($("#Debug-Input").val() + "\nnow Ver:" + NOW_VERSION)
 	});
 	
-	var tmp = localStorage.getItem(THIS_PAGE)
-	//USER_JSON = getlocalstorage("All", THIS_PAGE);
-	if (tmp == null) {
-		USER_JSON = [{ "name": "Name", "data": "value" }];
-		localStorage.setItem(THIS_PAGE, JSON.stringify(USER_JSON));
-		$("#Debug-Input").val($("#Debug-Input").val() + "[tmp]:" + "null")
-	}else{
-		USER_JSON = JSON.parse(tmp);
-	}
+
 
 	if (USER_JSON[1] != undefined || USER_JSON[1] != null) {
-		$("#Debug-Input").val($("#Debug-Input").val() + "[1]:" + USER_JSON[1].name)
+		$("#Debug-Input").val($("#Debug-Input").val() + "\n[1]:" + USER_JSON[1].name)
 	} else {
-		$("#Debug-Input").val($("#Debug-Input").val() + "[1]:" + "undefined")
+		$("#Debug-Input").val($("#Debug-Input").val() + "\n[1]:" + "undefined")
 	}
 
 	OTHER_JSON = [{ "name": "Name", "data": "value" }];
@@ -74,7 +36,7 @@ function startPages(data) {
 	}
 
 
-	USER_NAME = localStorage.getItem("USER_NAME")
+	
 	if (USER_NAME == null) {
 		USER_NAME = "自分"
 	}

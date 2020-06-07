@@ -131,6 +131,7 @@ $(function () {
 		add = `<input type="text" id="input-USER_NAME" placeholder="名前入力" maxlength="8"><br>
 				<button onclick="setUSER_NAME()" id="btn-USER_NAME">名前をセット</button>`
 		$("#USER_NAME_space").append(add)
+		
 	})
 });
 
