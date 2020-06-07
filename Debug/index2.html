@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+	<script src="./js/debug2.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/debug.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+</head>
+
+<script>
+	window.onunload = function () { };
+	window.onpageshow = function (event) {
+		if (event.persisted) {
+			window.location.reload();
+		}
+	};
+</script>
+
+<body>
+	<h2>テストサイト</h2>
+	<textarea id="textarea-DIY" readonly="readonly"></textarea>
+	<input type="button" onclick="getData()" value="実行"></button>
+	<br>
+	<br>
+	<br>
+	<input type="button" id="ClipboardJS-DIY" data-clipboard-target="#textarea-DIY" value="データをコピー"></button>
+</body>
+
+</html>
