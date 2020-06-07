@@ -45,7 +45,8 @@ function startPages(data) {
 		}
 	});
 	
-	USER_JSON = getlocalstorage("All", THIS_PAGE);
+	USER_JSON = JSON.parse(localStorage.getItem(THIS_PAGE));
+	//USER_JSON = getlocalstorage("All", THIS_PAGE);
 	if (USER_JSON == null) {
 		USER_JSON = [{ "name": "Name", "data": "value" }];
 		localStorage.setItem(THIS_PAGE, JSON.stringify(USER_JSON));
