@@ -57,7 +57,7 @@ function startPages(data) {
 		USER_JSON = JSON.parse(tmp);
 	}
 
-	if (USER_JSON[2] != undefined || USER_JSON[2] != null) {
+	if (USER_JSON[1] != undefined || USER_JSON[1] != null) {
 		$("#Debug-Input").val($("#Debug-Input").val() + "[2]:" + USER_JSON[2].name)
 	} else {
 		$("#Debug-Input").val($("#Debug-Input").val() + "[2]:" + "undefined")
