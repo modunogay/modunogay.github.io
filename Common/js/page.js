@@ -43,6 +43,8 @@ function startPages(data) {
 			localStorage.setItem(`NOW_${THIS_PAGE}_VERSION`, data);
 			window.location.reload(true);
 		}
+		//debug
+		$("#Debug-Input").val($("#Debug-Input").val() + "\nnow Ver:" + NOW_VERSION)
 	});
 	
 	USER_JSON = JSON.parse(localStorage.getItem(THIS_PAGE));
@@ -74,10 +76,9 @@ function startPages(data) {
 	//DEBUG
 	$("#Debug-Input").val($("#Debug-Input").val() + new Date())
 	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + navigator.userAgent);
-	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + THIS_PAGE)
-	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + NOW_VERSION)
-	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + param)
-	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + isDIY)
+	$("#Debug-Input").val($("#Debug-Input").val() + "\nTHIS_PAGE:" + THIS_PAGE)
+	$("#Debug-Input").val($("#Debug-Input").val() + "\nparam:" + param)
+	$("#Debug-Input").val($("#Debug-Input").val() + "\nisDIY:" + isDIY)
 	if (USER_JSON != undefined || USER_JSON != null) {
 		$("#Debug-Input").val($("#Debug-Input").val() + "\n1:" + USER_JSON.length)
 	} else {
