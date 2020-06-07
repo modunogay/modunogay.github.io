@@ -22,7 +22,8 @@ function headerComment(){
 	もしバグが再発している場合、<span style="background-color: #ff9dc3b8;">ページ一番下の「デバック情報」</span>を送っていただけますと幸いです…。<br>
 	<br>
 	6/6 19:03 追記<br>
-	localstrageに保存している値が取得する際、正常に取得できる時と出来ない場合があります…同じkeyにしているのに取得できないのは何故でしょう…
+	localstrageに保存している値が取得する際、正常に取得できる時と出来ない場合があります…同じkeyにしているのに取得できないのは何故でしょう…<br>
+	<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">DIYレシピチェッカー…<br>アンケートです……お助け下さい………</p>&mdash; モギュ (@modunogay) <a href="https://twitter.com/modunogay/status/1269596736361598976?ref_src=twsrc%5Etfw">June 7, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	`
 	$("#HeaderComment").append(add);
 
