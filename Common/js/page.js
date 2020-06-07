@@ -58,9 +58,9 @@ function startPages(data) {
 	}
 
 	if (USER_JSON[1] != undefined || USER_JSON[1] != null) {
-		$("#Debug-Input").val($("#Debug-Input").val() + "[2]:" + USER_JSON[2].name)
+		$("#Debug-Input").val($("#Debug-Input").val() + "[1]:" + USER_JSON[1].name)
 	} else {
-		$("#Debug-Input").val($("#Debug-Input").val() + "[2]:" + "undefined")
+		$("#Debug-Input").val($("#Debug-Input").val() + "[1]:" + "undefined")
 	}
 
 	OTHER_JSON = [{ "name": "Name", "data": "value" }];
