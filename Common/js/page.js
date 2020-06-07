@@ -28,14 +28,10 @@ var OTHER_USER_NAME;
 var isDIY;
 
 
-function startPages() {
+function startPages(data) {
 
-	//elseはローカルな開発用
-	if (location.pathname.split("/")[3] == undefined) {
-		THIS_PAGE = location.pathname.split("/")[1];
-	} else {
-		THIS_PAGE = location.pathname.split("/")[3];
-	}
+	THIS_PAGE = data;
+
 	/**
 	 * キャッシュ制御用の変数
 	 */
@@ -47,52 +43,64 @@ function startPages() {
 			localStorage.setItem(`NOW_${THIS_PAGE}_VERSION`, data);
 			window.location.reload(true);
 		}
+
+		USER_JSON = getlocalstorage("All", THIS_PAGE);
+		if (USER_JSON == null) {
+			USER_JSON = [{ "name": "Name", "data": "value" }];
+			localStorage.setItem(THIS_PAGE, JSON.stringify(USER_JSON));
+		}
+
+		OTHER_JSON = [{ "name": "Name", "data": "value" }];
+		sessionStorage.setItem(THIS_PAGE, JSON.stringify(OTHER_JSON));
+
+
+		if (location.search.substring(1) == "") {
+			param = false;
+		} else {
+			param = true;
+		}
+
+
+		USER_NAME = localStorage.getItem("USER_NAME")
+		if (USER_NAME == null) {
+			USER_NAME = "自分"
+		}
+
+		isDIY = (THIS_PAGE == "DIY");
+
+
+		//DEBUG
+		$("#Debug-Input").val($("#Debug-Input").val() + new Date())
+		$("#Debug-Input").val($("#Debug-Input").val() + "\n" + navigator.userAgent);
+		$("#Debug-Input").val($("#Debug-Input").val() + "\n" + THIS_PAGE)
+		$("#Debug-Input").val($("#Debug-Input").val() + "\n" + NOW_VERSION)
+		$("#Debug-Input").val($("#Debug-Input").val() + "\n" + param)
+		$("#Debug-Input").val($("#Debug-Input").val() + "\n" + isDIY)
+		if (USER_JSON != undefined || USER_JSON != null) {
+			$("#Debug-Input").val($("#Debug-Input").val() + "\n1:" + USER_JSON.length)
+		} else {
+			$("#Debug-Input").val($("#Debug-Input").val() + "\n1:" + "undefined")
+		}
+		if (USER_NAME != undefined || USER_NAME != null) {
+			$("#Debug-Input").val($("#Debug-Input").val() + "\n2:" + USER_NAME)
+		} else {
+			$("#Debug-Input").val($("#Debug-Input").val() + "\n2:" + "undefined")
+		}
+		if (USER_JSON != undefined || USER_JSON != null) {
+			$("#Debug-Input").val($("#Debug-Input").val() + "\n3:" + USER_JSON.length)
+		} else {
+			$("#Debug-Input").val($("#Debug-Input").val() + "\n3:" + "undefined")
+		}
+
+		//androidかiPhoneか判断，bodyのフォントサイズを変更
+		checkuserAgent();
+		//テーブルのフォントサイズを変更
+		tableFontSize();
+		//フィルターを動的に追加
+		filterBar();
+		//theadを動的に追加
+		theadAppend();
+		//jsonファイルを取得し要素を追加
+		getJsonFile();
 	});
-
-	USER_JSON = getlocalstorage("All", THIS_PAGE);
-	if (USER_JSON == null) {
-		USER_JSON = [{ "name": "Name", "data": "value" }];
-		localStorage.setItem(THIS_PAGE, JSON.stringify(USER_JSON));
-	}
-
-	OTHER_JSON = [{ "name": "Name", "data": "value" }];
-	sessionStorage.setItem(THIS_PAGE, JSON.stringify(OTHER_JSON));
-
-
-	if (location.search.substring(1) == "") {
-		param = false;
-	} else {
-		param = true;
-	}
-
-
-	USER_NAME = localStorage.getItem("USER_NAME")
-	if (USER_NAME == null) {
-		USER_NAME = "自分"
-	}
-
-	isDIY = (THIS_PAGE == "DIY");
-
-
-	//DEBUG
-	$("#Debug-Input").val(new Date())
-	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + navigator.userAgent);
-	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + THIS_PAGE)
-	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + NOW_VERSION)
-	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + param)
-	if (USER_JSON != undefined || USER_JSON != null) {
-		$("#Debug-Input").val($("#Debug-Input").val() + "\n1:" + USER_JSON.length)
-	} else {
-		$("#Debug-Input").val($("#Debug-Input").val() + "\n1:" + "undefined")
-	}
-	if (USER_NAME != undefined || USER_NAME != null) {
-		$("#Debug-Input").val($("#Debug-Input").val() + "\n2:" + USER_NAME)
-	} else {
-		$("#Debug-Input").val($("#Debug-Input").val() + "\n2:" + "undefined")
-	}
-	if (USER_JSON != undefined || USER_JSON != null) {
-		$("#Debug-Input").val($("#Debug-Input").val() + "\n3:" + USER_JSON.length)
-	} else {
-		$("#Debug-Input").val($("#Debug-Input").val() + "\n3:" + "undefined")
-	}
 }

@@ -39,21 +39,21 @@
 	<script type="text/javascript" src="../Common/js/jquery.ui.touch-punch.min.js"></script>
 	<script type="text/javascript" src="../Common/js/lz-string.js"></script>
 	<!-- 自作 ここから-->
-	<script type="text/javascript" src="../Common/js/HeaderFooter.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/createURL.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/page.js?202006070401"></script>
+	<script type="text/javascript" src="../Common/js/HeaderFooter.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/createURL.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/page.js?202006071334"></script>
 	<script type="text/javascript" src="../Common/js/lazysizes.min.js"></script>
-	<script type="text/javascript" src="../Common/js/lazy.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/CheckuserAgent.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/Check.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/CheckBox.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/data_change.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/twitter_related.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/onload.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/DOMText.js?202006070401"></script>
-	<script type="text/javascript" src="../Common/js/CheckVersion.js?202006070401"></script>
-	<link rel="stylesheet" type="text/css" href="../Common/css/BottomNavigation.css?202006070401">
-	<link rel="stylesheet" type="text/css" href="../Common/css/Check.css?202006070401">
+	<script type="text/javascript" src="../Common/js/lazy.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/CheckuserAgent.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/Check.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/CheckBox.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/data_change.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/twitter_related.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/onload.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/DOMText.js?202006071334"></script>
+	<script type="text/javascript" src="../Common/js/CheckVersion.js?202006071334"></script>
+	<link rel="stylesheet" type="text/css" href="../Common/css/BottomNavigation.css?202006071334">
+	<link rel="stylesheet" type="text/css" href="../Common/css/Check.css?202006071334">
 	<!-- 自作 ここまで-->
 	<!-- Common 共通 ここまで-->
 
@@ -221,7 +221,8 @@
 	</div>
 	デバッグ用<br>
 	<textarea id="Debug-Input" readonly="readonly"></textarea><br>
-	<input type="button" id="ClipboardJS-Debug" data-clipboard-target="#Debug-Input" value="デバッグデータをコピー"></button>
+	<input type="button" id="ClipboardJS-Debug" data-clipboard-target="#Debug-Input" value="デバッグデータをコピー"></button><br>
+	<a href="../Debug/index.html" target="_blank">データ表示用のサイト</a>
 	<script>
 		var debuginput = new ClipboardJS('#ClipboardJS-Debug');
 		debuginput.on("success", function (e) {
@@ -254,17 +255,7 @@
 
 <script>
 	//初めに変数の初期化
-	startPages();
-	//androidかiPhoneか判断，bodyのフォントサイズを変更
-	checkuserAgent();
-	//テーブルのフォントサイズを変更
-	tableFontSize();
-	//フィルターを動的に追加
-	filterBar();
-	//theadを動的に追加
-	theadAppend();
-	//jsonファイルを取得し要素を追加
-	getJsonFile();
+	startPages("FTR_WALL");
 </script>
 
 </html>
