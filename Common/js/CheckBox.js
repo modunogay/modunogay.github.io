@@ -67,25 +67,26 @@ function checkBoxCount(id) {
 };
 
 
+$(function () {
+	if (THIS_PAGE == "DIY") {
+		//動的に追加した要素にはdocument.onで対応
+		$(document).on('click', 'select', function () {
+			if ($(this).parent().parent().find(".table-1-column").find(".Give-Label").text() == "不可") {
+				alert("エラー!配布可にチェックはしましたか？");
+				$(this).val(0);
+			}
+		});
 
-if (THIS_PAGE == "DIY") {
-	//動的に追加した要素にはdocument.onで対応
-	$(document).on('click', 'select', function () {
-		if ($(this).parent().parent().find(".table-1-column").find(".Give-Label").text() == "不可") {
-			alert("エラー!配布可にチェックはしましたか？");
-			$(this).val(0);
-		}
-	});
+		$(document).on('change', 'select', function () {
 
-	$(document).on('change', 'select', function () {
-
-		var selectCount = $(this).val();
-		var selectCountName = $(this).parent().parent().find(".Name").text();
-		if ($(this).parent().parent().find(".table-1-column").find(".Give-Label").text() == "不可") {
-			$(this).val(0);
-			selectCount = 0;
-			return 0;
-		}
-		setlocalstorage(selectCountName, selectCount, "DIY_COUNT");
-	});
-}
+			var selectCount = $(this).val();
+			var selectCountName = $(this).parent().parent().find(".Name").text();
+			if ($(this).parent().parent().find(".table-1-column").find(".Give-Label").text() == "不可") {
+				$(this).val(0);
+				selectCount = 0;
+				return 0;
+			}
+			setlocalstorage(selectCountName, selectCount, "DIY_COUNT");
+		});
+	}
+})
