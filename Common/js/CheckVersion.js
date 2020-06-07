@@ -68,8 +68,7 @@ function getJsonFile() {
 			}
 
 			function listappend(list) {
-
-				USER_JSON = getlocalstorage("All", THIS_PAGE);
+				
 				//DEBUG
 				if (USER_JSON != undefined || USER_JSON != null) {
 					$("#Debug-Input").val($("#Debug-Input").val() + "\n5:" + USER_JSON.length)

@@ -47,11 +47,20 @@ function startPages(data) {
 		$("#Debug-Input").val($("#Debug-Input").val() + "\nnow Ver:" + NOW_VERSION)
 	});
 	
-	USER_JSON = JSON.parse(localStorage.getItem(THIS_PAGE));
+	var tmp = localStorage.getItem(THIS_PAGE)
 	//USER_JSON = getlocalstorage("All", THIS_PAGE);
-	if (USER_JSON == null) {
+	if (tmp == null) {
 		USER_JSON = [{ "name": "Name", "data": "value" }];
 		localStorage.setItem(THIS_PAGE, JSON.stringify(USER_JSON));
+		$("#Debug-Input").val($("#Debug-Input").val() + "[tmp]:" + "null")
+	}else{
+		USER_JSON = JSON.parse(tmp);
+	}
+
+	if (USER_JSON[2] != undefined || USER_JSON[2] != null) {
+		$("#Debug-Input").val($("#Debug-Input").val() + "[2]:" + USER_JSON[2].name)
+	} else {
+		$("#Debug-Input").val($("#Debug-Input").val() + "[2]:" + "undefined")
 	}
 
 	OTHER_JSON = [{ "name": "Name", "data": "value" }];
@@ -74,7 +83,7 @@ function startPages(data) {
 
 
 	//DEBUG
-	$("#Debug-Input").val($("#Debug-Input").val() + new Date())
+	$("#Debug-Input").val($("#Debug-Input").val() +"\n" + new Date())
 	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + navigator.userAgent);
 	$("#Debug-Input").val($("#Debug-Input").val() + "\nTHIS_PAGE:" + THIS_PAGE)
 	$("#Debug-Input").val($("#Debug-Input").val() + "\nparam:" + param)
