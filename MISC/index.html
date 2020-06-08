@@ -10,9 +10,9 @@
 		gtag('js', new Date());
 		gtag('config', 'UA-166859192-2', {
 			'custom_map': { 'dimension1': 'USER_VERSION' }
+		},{
+			'USER_VERSION':'value'
 		});
-		var dimensionValue = localStorage.getItem("NOW_MISC_VERSION");
-		gtag('event', 'user_version_dimension', { 'USER_VERSION': dimensionValue });
 	</script>
 	<meta charset="UTF-8" name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
@@ -39,21 +39,21 @@
 	<script type="text/javascript" src="../Common/js/jquery.ui.touch-punch.min.js"></script>
 	<script type="text/javascript" src="../Common/js/lz-string.js"></script>
 	<!-- 自作 ここから-->
-	<script type="text/javascript" src="../Common/js/HeaderFooter.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/createURL.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/page.js?202006072049"></script>
+	<script type="text/javascript" src="../Common/js/HeaderFooter.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/createURL.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/page.js?202006090022"></script>
 	<script type="text/javascript" src="../Common/js/lazysizes.min.js"></script>
-	<script type="text/javascript" src="../Common/js/lazy.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/CheckuserAgent.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/Check.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/CheckBox.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/data_change.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/twitter_related.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/onload.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/DOMText.js?202006072049"></script>
-	<script type="text/javascript" src="../Common/js/CheckVersion.js?202006072049"></script>
-	<link rel="stylesheet" type="text/css" href="../Common/css/BottomNavigation.css?202006072049">
-	<link rel="stylesheet" type="text/css" href="../Common/css/Check.css?202006072049">
+	<script type="text/javascript" src="../Common/js/lazy.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/CheckuserAgent.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/Check.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/CheckBox.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/data_change.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/twitter_related.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/onload.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/DOMText.js?202006090022"></script>
+	<script type="text/javascript" src="../Common/js/CheckVersion.js?202006090022"></script>
+	<link rel="stylesheet" type="text/css" href="../Common/css/BottomNavigation.css?202006090022">
+	<link rel="stylesheet" type="text/css" href="../Common/css/Check.css?202006090022">
 	<!-- 自作 ここまで-->
 	<!-- Common 共通 ここまで-->
 
@@ -95,6 +95,9 @@
 			window.location.reload();
 		}
 	};
+
+	THIS_PAGE = "MISC"
+	var tmp = localStorage.getItem(THIS_PAGE)
 </script>
 
 
@@ -255,25 +258,6 @@
 
 
 <script>
-	var THIS_PAGE;
-	var NOW_VERSION;
-	var USER_JSON;
-	var OTHER_JSON;
-	var param;
-	var USER_NAME = localStorage.getItem("USER_NAME");
-	var OTHER_USER_NAME;
-	var isDIY;
-
-	THIS_PAGE = "MISC"
-	var tmp = localStorage.getItem(THIS_PAGE)
-	//USER_JSON = getlocalstorage("All", THIS_PAGE);
-	if (tmp == null) {
-		USER_JSON = [{ "name": "Name", "data": "value" }];
-		localStorage.setItem(THIS_PAGE, JSON.stringify(USER_JSON));
-		$("#Debug-Input").val($("#Debug-Input").val() + "[tmp]:" + "null")
-	} else {
-		USER_JSON = JSON.parse(tmp);
-	}
 	//初めに変数の初期化
 	startPages();
 	//androidかiPhoneか判断，bodyのフォントサイズを変更

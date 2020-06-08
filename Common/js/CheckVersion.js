@@ -68,7 +68,7 @@ function getJsonFile() {
 			}
 
 			function listappend(list) {
-				
+
 				//DEBUG
 				if (USER_JSON != undefined || USER_JSON != null) {
 					$("#Debug-Input").val($("#Debug-Input").val() + "\n5:" + USER_JSON.length)
@@ -217,13 +217,16 @@ function getJsonFile() {
 				document.getElementById('Main_tbody').innerHTML = add;
 				lazy();
 
-				var tmp = localStorage.getItem(THIS_PAGE)
+				var temp = localStorage.getItem(THIS_PAGE)
 				//USER_JSON = getlocalstorage("All", THIS_PAGE);
-				if (tmp == null) {
-					$("#Debug-Input").val($("#Debug-Input").val() + "\n[tmp onload]:" + "null")
+				
+				if (temp == null) {
+					$("#Debug-Input").val($("#Debug-Input").val() + "\n[temp onload]:" + "null")
 				} else {
-					var temp = JSON.parse(tmp);
-					if (temp[1] == null || temp[1] == undefined) {
+					var temp = JSON.parse(temp);
+					if (temp[1] == null) {
+						$("#Debug-Input").val($("#Debug-Input").val() + "\n[temp onload [1]]:" + "null")
+					} else if (temp[1] == undefined) {
 						$("#Debug-Input").val($("#Debug-Input").val() + "\n[temp onload [1]]:" + "undefined")
 					} else {
 						$("#Debug-Input").val($("#Debug-Input").val() + "\n[temp onload [1]]:" + temp[1].name)
@@ -278,11 +281,11 @@ function theadAppend() {
 		$("#USER_NAME_text").text(USER_NAME)
 
 		//DEBUG
-		if(USER_NAME != undefined || USER_NAME != null){
+		if (USER_NAME != undefined || USER_NAME != null) {
 			$("#Debug-Input").val($("#Debug-Input").val() + "\n4:" + USER_NAME)
-		}else{
+		} else {
 			$("#Debug-Input").val($("#Debug-Input").val() + "\n4:" + "undefined")
-		}	
+		}
 	})
 }
 

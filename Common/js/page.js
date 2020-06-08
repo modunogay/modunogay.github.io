@@ -1,6 +1,21 @@
-
+var THIS_PAGE;
+var USER_JSON;
+var OTHER_JSON;
+var param;
+var USER_NAME = localStorage.getItem("USER_NAME");
+var OTHER_USER_NAME;
+var isDIY;
 
 function startPages() {
+	//USER_JSON = getlocalstorage("All", THIS_PAGE);
+	if (tmp == null) {
+		USER_JSON = [{ "name": "Name", "data": "value" }];
+		localStorage.setItem(THIS_PAGE, JSON.stringify(USER_JSON));
+		$("#Debug-Input").val($("#Debug-Input").val() + "[tmp]:" + "null")
+	} else {
+		USER_JSON = JSON.parse(tmp);
+	}
+
 	/**
 	 * キャッシュ制御用の変数
 	 */
@@ -16,7 +31,7 @@ function startPages() {
 		//debug
 		$("#Debug-Input").val($("#Debug-Input").val() + "\nnow Ver:" + NOW_VERSION)
 	});
-	
+
 
 
 	if (USER_JSON[1] != undefined || USER_JSON[1] != null) {
@@ -36,7 +51,7 @@ function startPages() {
 	}
 
 
-	
+
 	if (USER_NAME == null) {
 		USER_NAME = "自分"
 	}
@@ -45,7 +60,7 @@ function startPages() {
 
 
 	//DEBUG
-	$("#Debug-Input").val($("#Debug-Input").val() +"\n" + new Date())
+	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + new Date())
 	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + navigator.userAgent);
 	$("#Debug-Input").val($("#Debug-Input").val() + "\nTHIS_PAGE:" + THIS_PAGE)
 	$("#Debug-Input").val($("#Debug-Input").val() + "\nparam:" + param)
