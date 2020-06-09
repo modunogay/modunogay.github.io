@@ -6,24 +6,15 @@ function header(){
 	$("#Header").append(add);
 }
 
+//<span style="background-color: #ff9dc3b8; font-weight:bold;">「」</span>
 /**
  * ヘッダーにコメントを追加する関数
  */
 function headerComment(){
-	add = `6/6 17:07更新<br>
-	<image src="../image/caution-01.png" style="width: 100px; height: 100px; "></image><br>
-	<p class= "headerPlanText">現在データが<span style="background-color: #ff9dc3b8; font-weight:bold;">「全て未チェックになる不具合」</span>が発生しております。<br>
-	原因調査中です。<br>
-	<span style="background-color: #ff9dc3b8; font-weight:bold;">ページをリロード(再読み込み)</span>するとデータきちんと表示されることを確認しています。<br>
-	本バグに合われましたら一度ページを更新して頂けますようお願いいたします。<br><br>
-	6/6 4:10 追記<br>
-	頑張って調査したのですが根本的な原因を突き止めることが出来ませんでした…＞＜<br>
-	暫定的な対応をしました…。<br>
-	もしバグが再発している場合、<span style="background-color: #ff9dc3b8;">ページ一番下の「デバック情報」</span>を送っていただけますと幸いです…。<br>
-	<br>
-	6/6 19:03 追記<br>
-	localstrageに保存している値が取得する際、正常に取得できる時と出来ない場合があります…同じkeyにしているのに取得できないのは何故でしょう…<br>
-	<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">DIYレシピチェッカー…<br>アンケートです……お助け下さい………</p>&mdash; モギュ (@modunogay) <a href="https://twitter.com/modunogay/status/1269596736361598976?ref_src=twsrc%5Etfw">June 7, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	add = `6/6 18:17更新<br>
+	<p class= "headerPlanText">治しました…。下記ツイートをご確認ください…。<br>
+	ご迷惑をおかけいたしました…。</p>
+	<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">DIYレシピチェッカー治しました<br>バグが再発する場合この下に続くツイートを確認してください<br><br>また、今回のバグの原因を下記ツイートに繋げます<br><br>⚠️⚠️⚠️<br>URLからデータの復元は出来ます！<br>定期的なバックアップ（URLの発行）をお願いします！</p>&mdash; モギュ (@modunogay) <a href="https://twitter.com/modunogay/status/1270282721793732610?ref_src=twsrc%5Etfw">June 9, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	`
 	$("#HeaderComment").append(add);
 
