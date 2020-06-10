@@ -33,7 +33,9 @@ function headerComment(){
 	選択したテキストを自動的にツイート文に追加します。<br>
 	⚠️DIYレシピチェッカー以外でも<span style="background-color: #ff9dc3b8;">「配布可」</span>でツイートされますので、適宜修正してください。<br>
 	<br>
-	今後ともよろしくお願いいたします。</p>
+	今後ともよろしくお願いいたします。<br><br>
+	6/10 追記<br>
+	ソートの順番が一部間違っていたので修正。</p>
 	</div>`
 	$("#HeaderComment").after(add);
 }
