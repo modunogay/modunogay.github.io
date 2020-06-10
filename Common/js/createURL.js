@@ -18,23 +18,31 @@ function createURL() {
 
 				for (i = 0; i < list.length; i++) {
 					tmp = getlocalstorage(list[i].Name, "")
-					if ( tmp == null) {
+					if (tmp == null) {
 						str += 0;
 						count_data0++;
 					} else {
 						str += tmp;
-						if(tmp == "1"){
+						if (tmp == "1") {
 							count_data1++;
-						}else if(tmp == "2"){
+						} else if (tmp == "2") {
 							count_data2++;
-						}else{
+						} else {
 							count_data0++;
 						}
 					}
 				}
+
+				$("#data-text-1").text(count_data2)
+				$("#data-text-2").text(count_data1)
+				$("#data-text-3").text(count_data0)
+				sum = count_data0 + count_data1 + count_data2;
+				num = count_data1 + count_data2;
+				var n = 1;	// 小数点第n位まで残す
+				$("#data-text-4").text(Math.floor((num/sum*100) * Math.pow(10, n)) / Math.pow(10, n))
 				console.log(count_data0 + " " + count_data1 + " " + count_data2)
 
-				if(USER_NAME != "自分" || USER_NAME == ""){
+				if (USER_NAME != "自分" || USER_NAME == "") {
 					str += `&${USER_NAME}`
 				}
 				str = encode(str).split("+");
@@ -132,6 +140,19 @@ function setlocalstorage(Name, value, setName) {
 			alert("エラー!配布可にチェックはしましたか？");
 		}
 		localStorage.setItem("DIY", JSON.stringify(USER_JSON));
+	} else if (setName == "TWITTER_TEXT") {
+		for (key in USER_JSON_TWITTER_TEXT) {
+			if (USER_JSON_TWITTER_TEXT[key].name == Name) {
+				USER_JSON_TWITTER_TEXT[key].data = value;
+				flag = false;
+				break;
+			}
+		}
+		if (flag) {
+			var data = { "name": Name, "data": value };
+			USER_JSON_TWITTER_TEXT.push(data);
+		}
+		localStorage.setItem(setName, JSON.stringify(USER_JSON_TWITTER_TEXT));
 	}
 }
 function getsessionstorage(str, setName) {

@@ -8,6 +8,10 @@ var USER_JSON_TWITTER;
  */
 const Tiwtter_CB_LENGTH = 6;
 
+var USER_JSON_TWITTER_TEXT;
+
+const Tiwtter_CB_TEXT_LENGTH = 4;
+
 $(function () {
 	//USER_JSON_TWITTERユーザーのハッシュタグ情報を管理
 	USER_JSON_TWITTER = getlocalstorage("All", `${THIS_PAGE}_TWITTER`);
@@ -31,6 +35,30 @@ $(function () {
 			}
 		}
 	}
+	
+	
+	USER_JSON_TWITTER_TEXT = getlocalstorage("All", `TWITTER_TEXT`);
+	if (USER_JSON_TWITTER_TEXT == null) {
+		USER_JSON_TWITTER_TEXT = [{ "name": "Name", "data": "value" }];
+		var data;
+		for (i = 1; i <= Tiwtter_CB_TEXT_LENGTH; i++) {
+			data = { "name": `Twitter-text-${i}`, "data": 0 };
+			USER_JSON_TWITTER_TEXT.push(data);
+		}
+		localStorage.setItem(`TWITTER_TEXT`, JSON.stringify(USER_JSON_TWITTER_TEXT));
+	} else {
+		for (i = 1; i < USER_JSON_TWITTER_TEXT.length; i++) {
+			if (USER_JSON_TWITTER_TEXT[i].data == 1) {
+				for (j = 1; i <= Tiwtter_CB_TEXT_LENGTH; j++) {
+					if (`Twitter-text-${j}` == USER_JSON_TWITTER_TEXT[i].name) {
+						$(`#Twitter-text-${j}`).prop('checked', true);
+						break;
+					}
+				}
+			}
+		}
+	}
+	
 })
 
 /**
@@ -65,9 +93,9 @@ function TwitterTagfunction(index) {
  */
 function TwitterTextfunction(index) {
 	if ($(`#Twitter-text-${index}`).prop('checked')) {
-		setlocalstorage($(`#Twitter-text-${index}`).val(), 1, `TEXT_TWITTER`);
+		setlocalstorage(`Twitter-text-${index}`, 1, `TWITTER_TEXT`);
 	} else {
-		setlocalstorage($(`#Twitter-text-${index}`).val(), 0, `TEXT_TWITTER`);
+		setlocalstorage(`Twitter-text-${index}`, 0, `TWITTER_TEXT`);
 	}
 }
 
@@ -82,23 +110,31 @@ function tweetPopup() {
 	if (hashtag.length != 0) {
 		tags = "&hashtags=" + hashtag.join(",")
 	}
+	var data_text = "\n";
 
+	for(i=1;i<=Tiwtter_CB_TEXT_LENGTH;i++){
+		if ($(`#Twitter-text-${i}`).prop('checked')) {
+			data_text +=  $.trim($(`#Titter-text-${i}-label`).text()) + "\n"
+		}
+	}
+	console.log(data_text)
+	data_text = encodeURI(data_text)
 	var url;
 	switch (THIS_PAGE) {
 		case "DIY":
-			url = `https://twitter.com/share?url=${text}&text=DIYレシピを更新しました！${tags}`;
+			url = `https://twitter.com/share?url=${text}&text=DIYレシピを更新しました！${data_text}${tags}`;
 			break;
 
 		case "FTR":
-			url = `https://twitter.com/share?url=${text}&text=家具を更新しました！${tags}`;
+			url = `https://twitter.com/share?url=${text}&text=家具を更新しました！${data_text}${tags}`;
 			break;
 
 		case "MISC":
-			url = `https://twitter.com/share?url=${text}&text=小物家具を更新しました！${tags}`;
+			url = `https://twitter.com/share?url=${text}&text=小物家具を更新しました！${data_text}${tags}`;
 			break;
 
 		case "FTR_WALL":
-			url = `https://twitter.com/share?url=${text}&text=壁掛け家具を更新しました！${tags}`;
+			url = `https://twitter.com/share?url=${text}&text=壁掛け家具を更新しました！${data_text}${tags}`;
 			break;
 	}
 	window.open(url, "tweet", "width=500,height=300");

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166859192-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-166859192-2', {
+			'custom_map': { 'dimension1': 'USER_VERSION' }
+		}, {
+			'USER_VERSION': 'value'
+		});
+	</script>
+	<meta charset="UTF-8" name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
+	<title>家具テンプレサイト</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="./js/imageFTR.js"></script>
+</head>
+
+<!--
+　　　　　　　　 ,-､　　　　　　　　　　　　  ,.-､
+　　　　　　　 /:::::＼　　　　　　　　　  ／:::::ヽ
+　　　　　　　/::::::::::::;ゝ--──-- ､._/::::::::|
+　　　　　　 /,.-‐''"´ 　　　　　　　　 ＼::::::::|
+　　　　　／　 　　　　　　　　　　　　　　ヽ､::::|
+　　　　/　　　　●　　　 　 　 　 　 　 　 　 ヽ|
+　　 　 l　　　, , ,　　 　 　 　 　 　 ●　　　 　 l
+　　　 |　　　 　　　　 (_人__丿　 　　　　､､､　　|
+　 　 　l　　　　　　　　　　　　　　　　　　　 　 l
+　　　　` ､　　　　　　　　 　 　 　 　 　 　 　 /
+　　　　　　`ｰ ､__　　　 　 　 　　　　　　　／
+　　　　　　　　　/`'''ｰ‐‐──‐‐‐┬'''""´
+
+	なるほどわからん
+-->
+
+<script>
+	var tmp1 = localStorage.getItem("FTR")
+	var tmp2 = localStorage.getItem("MISC")
+	var tmp3 = localStorage.getItem("FTR_WALL")
+</script>
+
+
+<body>
+	家具までチェックして頂きありがとうございます…。<br>
+	今後ともよろしくお願いいたします…。<br><br>
+	また、定期的なバックアップ(URLの発行)をお願いいたします…。<br><br>
+	<span style="background-color: #ff9dc3b8;">iPhone</span><br>長押し〇 ダウンロードボタン〇<br>
+	<span style="background-color: #ff9dc3b8;">Android</span><br>長押し× ダウンロードボタン〇<br><br>
+	URLをコピーしても意味ありません…。<br><br>
+	<span id="message">処理中………</span><br>
+	<button onclick="window.location.reload(true);">更新</button><br><br>
+	<button id="download1" style="display: none;">1枚目をダウンロード</button><br>
+	<button id="download2" style="display: none;">2枚目をダウンロード</button><br>
+	<button id="download3" style="display: none;">3枚目をダウンロード</button><br>
+	<button id="download4" style="display: none;">4枚目をダウンロード</button><br><br>
+	<canvas width="1640" height="2840" id="myCanvas1" style="display:none;"></canvas>
+	<canvas width="1640" height="2840" id="myCanvas2" style="display:none;"></canvas>
+	<canvas width="1640" height="2840" id="myCanvas3" style="display:none;"></canvas>
+	<canvas width="1640" height="3000" id="myCanvas4" style="display:none;"></canvas>
+
+	<img id="canvasImage1" style="width: 100px;">
+	<img id="canvasImage2" style="width: 100px;">
+	<img id="canvasImage3" style="width: 100px;">
+	<img id="canvasImage4" style="width: 100px;">
+
+
+</body>
+
+
+<script>
+	var elm = []
+	var context = []
+	elm[1] = document.getElementById("myCanvas1")
+	context[1] = elm[1].getContext("2d");
+	elm[2] = document.getElementById("myCanvas2")
+	context[2] = elm[2].getContext("2d");
+	elm[3] = document.getElementById("myCanvas3")
+	context[3] = elm[3].getContext("2d");
+	elm[4] = document.getElementById("myCanvas4")
+	context[4] = elm[4].getContext("2d");
+
+	setTimeout(function () {
+		myimage()
+	}, 500);
+
+	var DD = new Date();
+	
+	document.getElementById("download1").onclick = (event) => {
+		let canvas = document.getElementById("myCanvas1");
+
+		let link = document.createElement("a");
+		link.href = canvas.toDataURL("image/png");
+
+		link.download = DD.getFullYear() + "" + (DD.getMonth()+1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_1.png";
+		link.click();
+	}
+
+	document.getElementById("download2").onclick = (event) => {
+		let canvas = document.getElementById("myCanvas2");
+
+		let link = document.createElement("a");
+		link.href = canvas.toDataURL("image/png");
+
+		link.download = DD.getFullYear() + "" + (DD.getMonth()+1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_2.png";
+		link.click();
+	}
+
+	document.getElementById("download3").onclick = (event) => {
+		let canvas = document.getElementById("myCanvas3");
+
+		let link = document.createElement("a");
+		link.href = canvas.toDataURL("image/png");
+
+		link.download = DD.getFullYear() + "" + (DD.getMonth()+1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_3.png";
+		link.click();
+	}
+
+	document.getElementById("download4").onclick = (event) => {
+		let canvas = document.getElementById("myCanvas4");
+
+		let link = document.createElement("a");
+		link.href = canvas.toDataURL("image/png");
+
+		link.download = DD.getFullYear() + "" + (DD.getMonth()+1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_4.png";
+		link.click();
+	}
+</script>
+
+</html>
