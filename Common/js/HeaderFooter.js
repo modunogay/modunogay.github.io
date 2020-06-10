@@ -24,9 +24,8 @@ function headerComment(){
 	add = `<br><div id="HeaderComment2">
 	6/10 10:09更新<br>
 	<image src="../Common/image/002.png" style="width: 50%; height: 50%; border: solid 2px #172c66;"></image><br>
-	ウェディング系を追加しました。<br>
-	<p class= "headerPlanText">一部機能を追加しました。<br><br>
-
+	<p class= "headerPlanText">ウェディング系を追加しました。<br><br>
+	一部機能を追加しました。<br><br>
 	<span style="background-color: #ff9dc3b8;">カタログテンプレート</span><br>
 	家具チェッカーの情報を用いてテンプレートを作成します。(画像の出力までに時間がかかります。)<br><br>
 
