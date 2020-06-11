@@ -138,7 +138,7 @@
 		let canvas = document.getElementById("myCanvas1");
 
 		let link = document.createElement("a");
-		link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_4.png";
+		link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_1.png";
 		canvas.toBlob(function (blob) {
 			console.log(blob)
 			link.href = URL.createObjectURL(blob);
