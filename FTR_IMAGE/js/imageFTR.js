@@ -110,6 +110,7 @@ function getJson() {
 		$("#download2").css("display","inline-block");
 		$("#download3").css("display","inline-block");
 		$("#download4").css("display","inline-block");
+		$("#download1_dev").css("display","inline-block");
 
 		$("#message").text("終了！")
 	});
