@@ -57,8 +57,13 @@
 	<button id="download1" style="display: none;">1枚目をダウンロード</button><br>
 	<button id="download2" style="display: none;">2枚目をダウンロード</button><br>
 	<button id="download3" style="display: none;">3枚目をダウンロード</button><br>
-	<button id="download4" style="display: none;">4枚目をダウンロード</button><br><br>
-	<button id="download1_dev" style="display: none;">(上のボタン失敗する人向け)1枚目をダウンロード</button><br><br>
+	<button id="download4" style="display: none;">4枚目をダウンロード</button><br>
+	<br>
+	<button id="download1_dev" style="display: none;">(上のボタン失敗する人向け)1枚目をダウンロード</button><br>
+	<button id="download2_dev" style="display: none;">(上のボタン失敗する人向け)2枚目をダウンロード</button><br>
+	<button id="download3_dev" style="display: none;">(上のボタン失敗する人向け)3枚目をダウンロード</button><br>
+	<button id="download4_dev" style="display: none;">(上のボタン失敗する人向け)4枚目をダウンロード</button><br>
+	<br>
 
 	<canvas width="1640" height="2840" id="myCanvas1" style="display:none;"></canvas>
 	<canvas width="1640" height="2840" id="myCanvas2" style="display:none;"></canvas>
@@ -90,62 +95,41 @@
 
 	setTimeout(function () {
 		myimage()
+
+
 	}, 500);
 
 	var DD = new Date();
 
-	document.getElementById("download1").onclick = (event) => {
-		let canvas = document.getElementById("myCanvas1");
+	for (i = 1; i <= 4; i++) {
+		(function (i) {
+			$(`#download${i}`).click(function () {
+				let canvas = document.getElementById(`myCanvas${i}`);
 
-		let link = document.createElement("a");
-		link.href = canvas.toDataURL("image/png");
+				let link = document.createElement("a");
+				link.href = canvas.toDataURL("image/png");
 
-		link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_1.png";
-		link.click();
+				link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
+				link.click();
+			});
+
+			$(`#download${i}_dev`).click(function () {
+				let canvas = document.getElementById(`myCanvas${i}`);
+
+				let link = document.createElement("a");
+				link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
+				canvas.toBlob(function (blob) {
+					console.log(blob)
+					link.href = URL.createObjectURL(blob);
+					link.click();
+					URL.revokeObjectURL(link.href);
+				});
+			});
+		}(i));
 	}
 
-	document.getElementById("download2").onclick = (event) => {
-		let canvas = document.getElementById("myCanvas2");
 
-		let link = document.createElement("a");
-		link.href = canvas.toDataURL("image/png");
 
-		link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_2.png";
-		link.click();
-	}
-
-	document.getElementById("download3").onclick = (event) => {
-		let canvas = document.getElementById("myCanvas3");
-
-		let link = document.createElement("a");
-		link.href = canvas.toDataURL("image/png");
-
-		link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_3.png";
-		link.click();
-	}
-
-	document.getElementById("download4").onclick = (event) => {
-		let canvas = document.getElementById("myCanvas4");
-
-		let link = document.createElement("a");
-		link.href = canvas.toDataURL("image/png");
-
-		link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_4.png";
-		link.click();
-	}
-
-	document.getElementById("download1_dev").onclick = (event) => {
-		let canvas = document.getElementById("myCanvas1");
-
-		let link = document.createElement("a");
-		link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + "FTR_1.png";
-		canvas.toBlob(function (blob) {
-			console.log(blob)
-			link.href = URL.createObjectURL(blob);
-			link.click();
-			URL.revokeObjectURL(link.href);
-		});
-	}
 </script>
 
 </html>

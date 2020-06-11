@@ -101,16 +101,11 @@ function getJson() {
 			}
 		}
 
-		$("#canvasImage1").attr("src",elm[1].toDataURL())
-		$("#canvasImage2").attr("src",elm[2].toDataURL())
-		$("#canvasImage3").attr("src",elm[3].toDataURL())
-		$("#canvasImage4").attr("src",elm[4].toDataURL())
-
-		$("#download1").css("display","inline-block");
-		$("#download2").css("display","inline-block");
-		$("#download3").css("display","inline-block");
-		$("#download4").css("display","inline-block");
-		$("#download1_dev").css("display","inline-block");
+		for(i=1;i<=4;i++){
+			$(`#canvasImage${i}`).attr("src",elm[i].toDataURL())	
+			$(`#download${i}`).css("display","inline-block");
+			$(`#download${i}_dev`).css("display","inline-block");
+		}
 
 		$("#message").text("終了！")
 	});
