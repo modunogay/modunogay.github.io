@@ -26,6 +26,7 @@ function createURL() {
 						if (tmp == "1") {
 							count_data1++;
 						} else if (tmp == "2") {
+							count_data1++;
 							count_data2++;
 						} else {
 							count_data0++;
@@ -36,8 +37,8 @@ function createURL() {
 				$("#data-text-1").text(count_data2)
 				$("#data-text-2").text(count_data1)
 				$("#data-text-3").text(count_data0)
-				sum = count_data0 + count_data1 + count_data2;
-				num = count_data1 + count_data2;
+				sum = count_data0 + count_data1;
+				num = count_data1;
 				var n = 1;	// 小数点第n位まで残す
 				$("#data-text-4").text(Math.floor((num/sum*100) * Math.pow(10, n)) / Math.pow(10, n))
 				console.log(count_data0 + " " + count_data1 + " " + count_data2)
