@@ -8,6 +8,9 @@ function jsclear() {
 		if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
 			if (window.confirm('本当によろしいですか？(1)')) {
 				localStorage.removeItem(THIS_PAGE);
+
+				eventGtag("other-btn","Clear")
+
 				window.location.reload(true);
 			}
 		}
@@ -22,6 +25,9 @@ function sessionTolocal() {
 		if (window.confirm('バックアップ（URL）を取ることをお勧めします！(2)')) {
 			if (window.confirm('本当によろしいですか？(1)')) {
 				localStorage.setItem(THIS_PAGE, sessionStorage.getItem(THIS_PAGE))
+				
+				eventGtag("other-btn","sessionToLocal")
+				
 				window.location.reload(true);
 			}
 		}
@@ -41,6 +47,9 @@ function jsCountClear() {
 					}
 				}
 				localStorage.setItem(THIS_PAGE, JSON.stringify(USER_JSON));
+				
+				eventGtag("other-btn","CountClear")
+
 				window.location.reload(true);
 			}
 		}
@@ -63,6 +72,9 @@ function jsGiveClear() {
 					}
 				}
 				localStorage.setItem(THIS_PAGE, JSON.stringify(USER_JSON));
+				
+				eventGtag("other-btn","GiveClear")
+				
 				window.location.reload(true);
 			}
 		}

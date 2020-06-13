@@ -25,6 +25,8 @@ function sortfunction() {
 			sort();
 			break;
 	};
+
+	eventGtag("sort-btn","sort")
 };
 
 function sort() {

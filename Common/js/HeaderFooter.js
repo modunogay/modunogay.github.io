@@ -1,4 +1,4 @@
-function header(){
+function header() {
 	add = `		<a href="../DIY/index.html">DIYレシピ<br>チェッカー</a>
 	<a href="../FTR/index.html">家具<br>チェッカー</a>
 	<a href="../MISC/index.html">小物家具<br>チェッカー</a>
@@ -11,7 +11,7 @@ function header(){
 /**
  * ヘッダーにコメントを追加する関数
  */
-function headerComment(){
+function headerComment() {
 	add = `6/6 18:17更新<br>
 	<p class= "headerPlanText">治しました…。下記ツイートをご確認ください…。<br>
 	ご迷惑をおかけいたしました…。</p>
@@ -21,8 +21,8 @@ function headerComment(){
 	`
 	//$("#HeaderComment").append(add);
 
-	add =`<blockquote class="twitter-tweet tw-align-center"><p lang="ja" dir="ltr">【カタログテンプレート作成ツール】<br><br>家具チェッカーにカタログのテンプレートを作成する機能が備わりました🥳🥳🥳🥳<br><br>家具の一覧を出力する際に使えますよー🥳🥳<br>今後ともよろしくお願いします🥳<a href="https://twitter.com/hashtag/%E5%AE%B6%E5%85%B7%E3%83%81%E3%82%A7%E3%83%83%E3%82%AB%E3%83%BC?src=hash&amp;ref_src=twsrc%5Etfw">#家具チェッカー</a> <a href="https://twitter.com/hashtag/%E3%81%82%E3%81%A4%E6%A3%AE?src=hash&amp;ref_src=twsrc%5Etfw">#あつ森</a> <a href="https://twitter.com/hashtag/%E3%81%82%E3%81%A4%E6%A3%AE%E4%BA%A4%E6%8F%9B?src=hash&amp;ref_src=twsrc%5Etfw">#あつ森交換</a> <a href="https://twitter.com/hashtag/%E5%AE%B6%E5%85%B7%E4%BA%A4%E6%8F%9B?src=hash&amp;ref_src=twsrc%5Etfw">#家具交換</a> <a href="https://twitter.com/hashtag/%E5%AE%B6%E5%85%B7%E3%81%8A%E3%81%95%E3%82%8F%E3%82%8A?src=hash&amp;ref_src=twsrc%5Etfw">#家具おさわり</a> <a href="https://twitter.com/hashtag/%E3%81%8A%E3%81%95%E3%82%8F%E3%82%8A?src=hash&amp;ref_src=twsrc%5Etfw">#おさわり</a><a href="https://t.co/9ebzqIzn5r">https://t.co/9ebzqIzn5r</a> <a href="https://t.co/vCyBBBSlp5">pic.twitter.com/vCyBBBSlp5</a></p>&mdash; モギュ (@modunogay) <a href="https://twitter.com/modunogay/status/1270652938810044417?ref_src=twsrc%5Etfw">June 10, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`;
-	
+	add = `<blockquote class="twitter-tweet tw-align-center"><p lang="ja" dir="ltr">【カタログテンプレート作成ツール】<br><br>家具チェッカーにカタログのテンプレートを作成する機能が備わりました🥳🥳🥳🥳<br><br>家具の一覧を出力する際に使えますよー🥳🥳<br>今後ともよろしくお願いします🥳<a href="https://twitter.com/hashtag/%E5%AE%B6%E5%85%B7%E3%83%81%E3%82%A7%E3%83%83%E3%82%AB%E3%83%BC?src=hash&amp;ref_src=twsrc%5Etfw">#家具チェッカー</a> <a href="https://twitter.com/hashtag/%E3%81%82%E3%81%A4%E6%A3%AE?src=hash&amp;ref_src=twsrc%5Etfw">#あつ森</a> <a href="https://twitter.com/hashtag/%E3%81%82%E3%81%A4%E6%A3%AE%E4%BA%A4%E6%8F%9B?src=hash&amp;ref_src=twsrc%5Etfw">#あつ森交換</a> <a href="https://twitter.com/hashtag/%E5%AE%B6%E5%85%B7%E4%BA%A4%E6%8F%9B?src=hash&amp;ref_src=twsrc%5Etfw">#家具交換</a> <a href="https://twitter.com/hashtag/%E5%AE%B6%E5%85%B7%E3%81%8A%E3%81%95%E3%82%8F%E3%82%8A?src=hash&amp;ref_src=twsrc%5Etfw">#家具おさわり</a> <a href="https://twitter.com/hashtag/%E3%81%8A%E3%81%95%E3%82%8F%E3%82%8A?src=hash&amp;ref_src=twsrc%5Etfw">#おさわり</a><a href="https://t.co/9ebzqIzn5r">https://t.co/9ebzqIzn5r</a> <a href="https://t.co/vCyBBBSlp5">pic.twitter.com/vCyBBBSlp5</a></p>&mdash; モギュ (@modunogay) <a href="https://twitter.com/modunogay/status/1270652938810044417?ref_src=twsrc%5Etfw">June 10, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`;
+
 	add += `<p class= "headerPlanText">⚠️履歴の削除：消えます<br>⚠️プライベートモード：消えます<br>⚠️キャッシュクリア：消えます<br>ご注意を</p>`
 	$("#HeaderComment").append(add);
 
@@ -45,3 +45,9 @@ function headerComment(){
 	//$("#HeaderComment").after(add);
 }
 
+function eventGtag(...args) {
+	gtag('event', 'click', {
+		'event_category': args[0],
+		'event_label': args[1]
+	});
+}

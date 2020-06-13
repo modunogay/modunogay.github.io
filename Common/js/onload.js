@@ -3,6 +3,8 @@ $(function () {
 	var urlclipboard = new ClipboardJS('#URLcopy');
 	urlclipboard.on("success", function (e) {
 		alert("URLをコピーしました！");
+
+		eventGtag("share-btn","URL")
 	});
 
 	var clipboard = new ClipboardJS('#getDOMName', {
@@ -16,6 +18,8 @@ $(function () {
 	clipboard.on("success", function (e) {
 		$("#DOMNameInput").css("display", "none");
 		alert("「現在表示されている」アイテム名をコピーしました！");
+
+		eventGtag("share-btn","Name")
 	});
 
 	// ダイアログの初期設定
@@ -42,6 +46,8 @@ $(function () {
 		createURL();
 		// ダイアログの呼び出し
 		$("#mydialog").dialog("open");
+
+		eventGtag("share-btn","share")
 	});
 
 
@@ -131,7 +137,13 @@ $(function () {
 		add = `<input type="text" id="input-USER_NAME" placeholder="名前入力" maxlength="8"><br>
 				<button onclick="setUSER_NAME()" id="btn-USER_NAME">名前をセット</button>`
 		$("#USER_NAME_space").append(add)
-		
+
+		if(param){
+			add = `<button class="GetGive-btn" onclick="setGiveItem()" >あげる物</button>
+			<button class="GetGive-btn" onclick="setResetItem()" >全て表示</button>
+			<button class="GetGive-btn" onclick="setGetItem()" >貰える物</button>`
+			$("#Btn_GetAndGive_space").append(add)
+		}
 	})
 });
 
@@ -150,9 +162,69 @@ function setUSER_NAME() {
 			$("#USER_NAME_text").text(USER_NAME)
 			localStorage.setItem("USER_NAME", USER_NAME)
 			alert("名前をセットしました！")
+			eventGtag("setName-btn","Set")
 		}
 	}
 }
+
+
+//val 全表示:１
+//    取得済 可:2
+//    取得済 不可:3
+//    未取得 不可:4
+//貰える物
+function setGetItem() {
+	$(`#cb-1-row`).val(4);
+	$(`#cb-4-row`).val(2);
+	for (i = 1; i <= ListLength; i++) {
+		if ($(`#${i}_Get_Label`).text() == "未取得" && $(`#${i}_Peer_Give_Label`).text() == "可") {
+			$(`#table-${i}-row`).removeClass(`table-row-1-none`);
+			$(`#table-${i}-row`).removeClass(`table-row-4-none`);
+		} else {
+			$(`#table-${i}-row`).addClass(`table-row-1-none`);
+			$(`#table-${i}-row`).addClass(`table-row-4-none`);
+		}
+	}
+
+	$(`#cb-1-row-label`).html(`<div class="get_text_not">未取得</div> &nbsp; <div class="give_text_not">不可</div>`);
+	$(`#cb-4-row-label`).html(`<div class="give_text">可</div> &nbsp; <div class="get_text">取得済</div> `);
+
+	eventGtag("GetGive-btn","Get");
+}
+//あげる物
+function setGiveItem() {
+	$(`#cb-1-row`).val(2);
+	$(`#cb-4-row`).val(4);
+	for (i = 1; i <= ListLength; i++) {
+		if ($(`#${i}_Peer_Get_Label`).text() == "未取得" && $(`#${i}_Give_Label`).text() == "可") {
+			$(`#table-${i}-row`).removeClass(`table-row-1-none`);
+			$(`#table-${i}-row`).removeClass(`table-row-4-none`);
+		} else {
+			$(`#table-${i}-row`).addClass(`table-row-1-none`);
+			$(`#table-${i}-row`).addClass(`table-row-4-none`);
+		}
+	}
+	$(`#cb-1-row-label`).html(`<div class="get_text">取得済</div> &nbsp; <div class="give_text">可</div>`);
+	$(`#cb-4-row-label`).html(`<div class="give_text_not">不可</div> &nbsp; <div class="get_text_not">未取得</div> `);
+
+	eventGtag("GetGive-btn","Give");
+}
+
+//全表示
+function setResetItem() {
+	$(`#cb-1-row`).val(2);
+	$(`#cb-4-row`).val(2);
+	$(".table-row").filter(function () {
+		$(this).removeClass(`table-row-1-none`);
+		$(this).removeClass(`table-row-4-none`);
+	})
+	$(`#cb-1-row-label`).text(`全表示中`);
+	$(`#cb-4-row-label`).text(`全表示中`);
+
+	eventGtag("GetGive-btn","All");
+}
+
+
 
 function tableFontSize() {
 	//テーブルのフォントサイズを変更

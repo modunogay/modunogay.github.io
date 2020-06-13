@@ -117,7 +117,6 @@ function tweetPopup() {
 			data_text +=  $.trim($(`#Titter-text-${i}-label`).text()) + "\n"
 		}
 	}
-	console.log(data_text)
 	data_text = encodeURI(data_text)
 	var url;
 	switch (THIS_PAGE) {
@@ -137,5 +136,7 @@ function tweetPopup() {
 			url = `https://twitter.com/share?url=${text}&text=壁掛け家具を更新しました！${data_text}${tags}`;
 			break;
 	}
+
+	eventGtag("share-btn","Twitter")
 	window.open(url, "tweet", "width=500,height=300");
 };

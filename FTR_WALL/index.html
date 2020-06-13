@@ -10,8 +10,9 @@
 		gtag('js', new Date());
 		gtag('config', 'UA-166859192-2', {
 			'custom_map': { 'dimension1': 'USER_VERSION' }
-		},{
-			'USER_VERSION':'value'
+		});
+		gtag('event', 'VERSION', {
+			'USER_VERSION': 202006140658
 		});
 	</script>
 	<meta charset="UTF-8" name="viewport"
@@ -39,21 +40,21 @@
 	<script type="text/javascript" src="../Common/js/jquery.ui.touch-punch.min.js"></script>
 	<script type="text/javascript" src="../Common/js/lz-string.js"></script>
 	<!-- 自作 ここから-->
-	<script type="text/javascript" src="../Common/js/HeaderFooter.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/createURL.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/page.js?202006131133"></script>
+	<script type="text/javascript" src="../Common/js/HeaderFooter.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/createURL.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/page.js?202006140658"></script>
 	<script type="text/javascript" src="../Common/js/lazysizes.min.js"></script>
-	<script type="text/javascript" src="../Common/js/lazy.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/CheckuserAgent.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/Check.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/CheckBox.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/data_change.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/twitter_related.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/onload.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/DOMText.js?202006131133"></script>
-	<script type="text/javascript" src="../Common/js/CheckVersion.js?202006131133"></script>
-	<link rel="stylesheet" type="text/css" href="../Common/css/BottomNavigation.css?202006131133">
-	<link rel="stylesheet" type="text/css" href="../Common/css/Check.css?202006131133">
+	<script type="text/javascript" src="../Common/js/lazy.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/CheckuserAgent.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/Check.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/CheckBox.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/data_change.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/twitter_related.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/onload.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/DOMText.js?202006140658"></script>
+	<script type="text/javascript" src="../Common/js/CheckVersion.js?202006140658"></script>
+	<link rel="stylesheet" type="text/css" href="../Common/css/BottomNavigation.css?202006140658">
+	<link rel="stylesheet" type="text/css" href="../Common/css/Check.css?202006140658">
 	<!-- 自作 ここまで-->
 	<!-- Common 共通 ここまで-->
 
@@ -202,6 +203,8 @@
 	<div id="USER_NAME_space">
 	</div>
 	<br>
+	<div id="Btn_GetAndGive_space">
+	</div>
 	<table id="fav-table" align="center">
 		<thead>
 			<!--タイトル部-->
@@ -220,7 +223,7 @@
 	<br>
 
 	<div id="contents">
-		<button onclick="window.location.reload(true)">強制更新</button>
+		<button onclick="eventGtag('other-btn','Reload'); window.location.reload(true)">強制更新</button>
 		<button onclick="sessionTolocal()">相手のデータを自分のデータにする</button>
 		<button onclick="jsGiveClear()">「配布可」を全て「不可」に</button><br><br><br>
 		<button onclick="jsclear()">初期化</button><br>

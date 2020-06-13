@@ -25,6 +25,7 @@ function ClassReplace(index) {
 		$(`.table-${index}-column`).show();
 		$(`#table-${index}-width`).show();
 	}
+	eventGtag("FilterBar","ClassReplace")
 	cssChenge();
 };
 
@@ -64,6 +65,8 @@ function row_Other_ClassReplace(index) {
 			});
 		};
 	}
+
+	eventGtag("FilterBar","row_Other_ClassReplace")
 };
 
 /**
@@ -71,9 +74,12 @@ function row_Other_ClassReplace(index) {
  * checkboxの値を参照し、対応する状態で「行」を表示/非表示
  * @param {int} index 対応するチェックボックスのID
  */
+
+//val 全表示:１
+//    取得済 可:2
+//    取得済 不可:3
+//    未取得 不可:4
 function row_ClassReplace(index) {
-	//lazyloadを一旦noneにすることで画像取得を停止
-	$(".lazyload").css("display", "none");
 
 	var val = parseInt($(`#cb-${index}-row`).val());
 	if (val == 4) {
@@ -84,61 +90,83 @@ function row_ClassReplace(index) {
 	switch (val) {
 		//全部
 		case 1:
-			$(".table-row").filter(function () {
-				$(`#cb-${index}-row-label`).text(`全表示中`);
-				$(this).removeClass(`table-row-${index}-none`);
-			})
+			$(`#cb-${index}-row-label`).text(`全表示中`);
+			for (i = 1; i <= ListLength; i++) {
+				$(`#table-${i}-row`).removeClass(`table-row-${index}-none`);
+			}
 			break;
 
 		//取得済_可
 		case 2:
 			if (index == 1) {
 				$(`#cb-${index}-row-label`).html(`<div class="get_text">取得済</div> &nbsp; <div class="give_text">可</div>`);
+				for (i = 1; i <= ListLength; i++) {
+					if ($(`#${i}_Give_Label`).text() == "可") {
+						$(`#table-${i}-row`).removeClass(`table-row-1-none`);
+					} else {
+						$(`#table-${i}-row`).addClass(`table-row-1-none`);
+					}
+				}
 			} else {
 				$(`#cb-${index}-row-label`).html(`<div class="give_text">可</div> &nbsp; <div class="get_text">取得済</div> `);
-			}
-			$(".table-row").filter(function () {
-				if ($(this).find(`.table-${index}-column .Get-Label`).text() == "取得済" && $(this).find(`.table-${index}-column .Give-Label`).text() == "可") {
-					$(this).removeClass(`table-row-${index}-none`);
-				} else {
-					$(this).addClass(`table-row-${index}-none`);
+				for (i = 1; i <= ListLength; i++) {
+					if ($(`#${i}_Peer_Give_Label`).text() == "可") {
+						$(`#table-${i}-row`).removeClass(`table-row-4-none`);
+					} else {
+						$(`#table-${i}-row`).addClass(`table-row-4-none`);
+					}
 				}
-			})
+			}
 			break;
 
 		//取得済_不可
 		case 3:
 			if (index == 1) {
 				$(`#cb-${index}-row-label`).html(`<div class="get_text">取得済</div> &nbsp; <div class="give_text_not">不可</div>`);
+				for (i = 1; i <= ListLength; i++) {
+					if ($(`#${i}_Get_Label`).text() == "取得済" && $(`#${i}_Give_Label`).text() == "不可") {
+						$(`#table-${i}-row`).removeClass(`table-row-1-none`);
+					} else {
+						$(`#table-${i}-row`).addClass(`table-row-1-none`);
+					}
+				}
 			} else {
 				$(`#cb-${index}-row-label`).html(`<div class="give_text_not">不可</div> &nbsp; <div class="get_text">取得済</div> `);
-			}
-			$(".table-row").filter(function () {
-				if ($(this).find(`.table-${index}-column .Get-Label`).text() == "取得済" && $(this).find(`.table-${index}-column .Give-Label`).text() == "不可") {
-					$(this).removeClass(`table-row-${index}-none`);
-				} else {
-					$(this).addClass(`table-row-${index}-none`);
+				for (i = 1; i <= ListLength; i++) {
+					if ($(`#${i}_Peer_Get_Label`).text() == "取得済" && $(`#${i}_Peer_Give_Label`).text() == "不可") {
+						$(`#table-${i}-row`).removeClass(`table-row-4-none`);
+					} else {
+						$(`#table-${i}-row`).addClass(`table-row-4-none`);
+					}
 				}
-			})
+			}
 			break;
 
 		//未取得_不可
 		case 4:
 			if (index == 1) {
 				$(`#cb-${index}-row-label`).html(`<div class="get_text_not">未取得</div> &nbsp; <div class="give_text_not">不可</div>`);
+				for (i = 1; i <= ListLength; i++) {
+					if ($(`#${i}_Get_Label`).text() == "未取得") {
+						$(`#table-${i}-row`).removeClass(`table-row-1-none`);
+					} else {
+						$(`#table-${i}-row`).addClass(`table-row-1-none`);
+					}
+				}
 			} else {
 				$(`#cb-${index}-row-label`).html(`<div class="give_text_not">不可</div> &nbsp; <div class="get_text_not">未取得</div> `);
-			}
-			$(".table-row").filter(function () {
-				if ($(this).find(`.table-${index}-column .Get-Label`).text() == "未取得" && $(this).find(`.table-${index}-column .Give-Label`).text() == "不可") {
-					$(this).removeClass(`table-row-${index}-none`);
-				} else {
-					$(this).addClass(`table-row-${index}-none`);
+				for (i = 1; i <= ListLength; i++) {
+					if ($(`#${i}_Peer_Get_Label`).text() == "未取得") {
+						$(`#table-${i}-row`).removeClass(`table-row-4-none`);
+					} else {
+						$(`#table-${i}-row`).addClass(`table-row-4-none`);
+					}
 				}
-			})
+			}
 			break;
 	}
-	$(".lazyload").css("display", "");
+
+	eventGtag("FilterBar","row_ClassReplace")
 };
 
 

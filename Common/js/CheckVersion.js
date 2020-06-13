@@ -5,6 +5,8 @@ function replaceVersion(str) {
 	return version;
 };
 
+
+var ListLength;
 /*
 	最新のjsonを取得
 	要素を追加
@@ -83,6 +85,7 @@ function getJsonFile() {
 				var Peer_Give_Checked;
 				var num;
 				var selectCount;
+				ListLength = list.length
 				for (i = 0; i < list.length; i++) {
 					//ローカルストレージ 自分
 					num = getlocalstorage(list[i].Name, "");
