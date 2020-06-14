@@ -231,7 +231,7 @@ function tableFontSize() {
 	var fontsize = localStorage.getItem("Table-Font-Size");
 	if (fontsize == null) {
 		fontsize = 100;
-	} else {
+	} else if(fontsize != 100){
 		$('#fav-table').css("fontSize", `${fontsize}%`);
 	}
 

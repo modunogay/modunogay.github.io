@@ -86,6 +86,70 @@ function getJsonFile() {
 				var num;
 				var selectCount;
 				ListLength = list.length
+
+				var tr, tr_root;
+				var td, td1_root, td15_root, td2_root, td3_root, td4_root;
+				var cb, cb_root;
+				var label, Get_Label, Give_Label;
+				var select, select_root;
+				var option = [];
+				var image, image_root;
+				var fragment = document.createDocumentFragment();
+
+				//tr 大本
+				tr_root = document.createElement('tr');
+				tr_root.setAttribute("class", "table-row");
+
+				//td1 大本 自分 取得/配布
+				td1_root = document.createElement('td');
+				td1_root.setAttribute("class", "table-1-column");
+
+				//td15 大本 DIY枚数
+				td15_root = document.createElement('td');
+				td15_root.setAttribute("class", "Count table-1_5-column table-column-none");
+
+				//td2 大本 アイテム名
+				td2_root = document.createElement('td');
+				td2_root.setAttribute("class", "table-2-column Name");
+
+				//td3 大本 入手方法
+				td3_root = document.createElement('td');
+				td3_root.setAttribute("class", "table-3-column HTG");
+
+				//td4 相手  取得/配布
+				td4_root = document.createElement('td');
+				td4_root.setAttribute("class", "table-4-column");
+
+				//cb 大本
+				cb_root = document.createElement('input')
+				cb_root.setAttribute("type", "checkbox");
+
+				//GetLabel 大本
+				Get_Label = document.createElement('label');
+				Get_Label.setAttribute("class", "Get-Label");
+
+				//GiveLabel 大本
+				Give_Label = document.createElement('label');
+				Give_Label.setAttribute("class", "Give-Label");
+
+				//Select 大本
+				select_root = document.createElement('select');
+
+				//Option 大本
+				for (i = 0; i < 10; i++) {
+					option[i] = document.createElement('option');
+					option[i].value = i;
+					option[i].text = i;
+					select_root.appendChild(option[i]);
+				}
+				option[0].text = "--";
+
+				//image 大本
+				image_root = document.createElement('img');
+				image_root.setAttribute("class", "lazyload");
+				image_root.setAttribute("width", "50px");
+				image_root.setAttribute("height", "50px");
+
 				for (i = 0; i < list.length; i++) {
 					//ローカルストレージ 自分
 					num = getlocalstorage(list[i].Name, "");
@@ -93,136 +157,244 @@ function getJsonFile() {
 						selectCount = getlocalstorage("selectCount", list[i].Name)
 					}
 					switch (num) {
-						case "":
-							Get_Checked = ["", "未取得"];
-							Give_Checked = ["", "不可"];
-							break;
-						case null:
-							Get_Checked = ["", "未取得"];
-							Give_Checked = ["", "不可"];
-							break;
 						case 0:
 						case "0":
-							Get_Checked = ["", "未取得"];
-							Give_Checked = ["", "不可"];
+							Get_Checked = [false, "未取得"];
+							Give_Checked = [false, "不可"];
 							break;
 						case 1:
 						case "1":
-							Get_Checked = ["checked", "取得済"];
-							Give_Checked = ["", "不可"];
+							Get_Checked = [true, "取得済"];
+							Give_Checked = [false, "不可"];
 							break;
 						case 2:
 						case "2":
-							Get_Checked = ["checked", "取得済"];
-							Give_Checked = ["checked", "可"];
+							Get_Checked = [true, "取得済"];
+							Give_Checked = [true, "可"];
+							break;
+						case "":
+							Get_Checked = [false, "未取得"];
+							Give_Checked = [false, "不可"];
+							break;
+						case null:
+							Get_Checked = [false, "未取得"];
+							Give_Checked = [false, "不可"];
 							break;
 					};
 					if (param) {
 						//セッションストレージ 相手
 						var peernum = getsessionstorage(list[i].Name, THIS_PAGE);
 						switch (peernum) {
-							case "":
-								Get_Checked = ["", "未取得"];
-								Give_Checked = ["", "不可"];
-								break;
-							case null:
-								Peer_Get_Checked = ["", "未取得"];
-								Peer_Give_Checked = ["", "不可"];
-								break;
 							case 0:
 							case "0":
-								Peer_Get_Checked = ["", "未取得"];
-								Peer_Give_Checked = ["", "不可"];
+								Peer_Get_Checked = [false, "未取得"];
+								Peer_Give_Checked = [false, "不可"];
 								break;
 							case 1:
 							case "1":
-								Peer_Get_Checked = ["checked", "取得済"];
-								Peer_Give_Checked = ["", "不可"];
+								Peer_Get_Checked = [true, "取得済"];
+								Peer_Give_Checked = [false, "不可"];
 								break;
 							case 2:
 							case "2":
-								Peer_Get_Checked = ["checked", "取得済"];
-								Peer_Give_Checked = ["checked", "可"];
+								Peer_Get_Checked = [true, "取得済"];
+								Peer_Give_Checked = [true, "可"];
+								break;
+							case "":
+								Peer_Get_Checked = [false, "未取得"];
+								Peer_Give_Checked = [false, "不可"];
+								break;
+							case null:
+								Peer_Get_Checked = [false, "未取得"];
+								Peer_Give_Checked = [false, "不可"];
 								break;
 						}
 					}
+
+					//tr ここから
+					tr = tr_root.cloneNode();
 					if (isDIY) {
-						add += `<tr class="table-row" id="table-${i + 1}-row" data-DIYID="${list[i].DIYID}" data-NameID="${list[i].NameID}">`;
+						tr.setAttribute("id", `table-${i + 1}-row`);
+						tr.setAttribute("data-DIYID", `${list[i].DIYID}`);
+						tr.setAttribute("data-NameID", `${list[i].NameID}`);
 					} else {
-						add += `<tr class="table-row" id="table-${i + 1}-row">`;
+						tr.setAttribute("id", `table-${i + 1}-row`);
 					}
-					add += `<td class="table-1-column">
-						<input type="checkbox" id="${i + 1}_Get" onclick=CheckBoxChenge("${i}_Get") ${Get_Checked[0]} >
-						<label class="Get-Label" for="${i + 1}_Get" id="${i + 1}_Get_Label">${Get_Checked[1]}</label>
-						</td>
-						<td class="table-1-column">
-						<input type="checkbox" id='${i + 1}_Give' onclick=CheckBoxChenge("${i}_Give") ${Give_Checked[0]}>
-						<label class="Give-Label" for="${i + 1}_Give" id="${i + 1}_Give_Label">${Give_Checked[1]}</label>
-						</td>`
+
+
+					//td 自分 取得 ここから
+					td = td1_root.cloneNode();
+
+					cb = cb_root.cloneNode();
+					cb.setAttribute("id", `${i + 1}_Get`);
+					cb.setAttribute("onclick", `CheckBoxChenge('${i}_Get')`);
+					cb.checked = Get_Checked[0];
+
+					td.appendChild(cb);
+
+
+					label = Get_Label.cloneNode();
+					label.setAttribute("id", `${i + 1}_Get_Label`);
+					label.setAttribute("for", `${i + 1}_Get`);
+					label.innerText = Get_Checked[1];
+
+					td.appendChild(label);
+					tr.appendChild(td);
+					//td 自分 取得 ここまで
+
+
+					//td 自分 配布 ここから
+					td = td1_root.cloneNode();
+
+					cb = cb_root.cloneNode();
+					cb.setAttribute("id", `${i + 1}_Give`);
+					cb.setAttribute("onclick", `CheckBoxChenge('${i}_Give')`);
+					cb.checked = Give_Checked[0];
+
+					td.appendChild(cb);
+
+					label = Give_Label.cloneNode();
+					label.setAttribute("id", `${i + 1}_Give_Label`);
+					label.setAttribute("for", `${i + 1}_Give`);
+					label.innerText = Give_Checked[1];
+
+					td.appendChild(label);
+					tr.appendChild(td);
+					//td 自分 配布 ここまで
+
+
+					//td 枚数 ここから
 					if (isDIY) {
-						add += `<td class="Count table-1_5-column table-column-none" id="${i + 1}_Count">
-						<select id="selectID-${i + 1}">
-							<option value="0" ${selectedFunction(0, selectCount)} >--</option>
-							<option value="1" ${selectedFunction(1, selectCount)} >1</option>
-							<option value="2" ${selectedFunction(2, selectCount)} >2</option>
-							<option value="3" ${selectedFunction(3, selectCount)} >3</option>
-							<option value="4" ${selectedFunction(4, selectCount)} >4</option>
-							<option value="5" ${selectedFunction(5, selectCount)} >5</option>
-							<option value="6" ${selectedFunction(6, selectCount)} >6</option>
-							<option value="7" ${selectedFunction(7, selectCount)} >7</option>
-							<option value="8" ${selectedFunction(8, selectCount)} >8</option>
-							<option value="9" ${selectedFunction(9, selectCount)} >9</option>
-						</select>
-						</td>`
+						td = td15_root.cloneNode();
+
+						select = select_root.cloneNode(true)
+						select.setAttribute("id", `selectID-${i + 1}`);
+						select.options[selectCount].selected = true;
+
+						td.appendChild(select);
+						tr.appendChild(td);
 					}
-					add += `<td class="Name table-2-column" id="${i + 1}_Name">${list[i].Name}</td>`;
+					//td 枚数 ここまで
+
+					//td2 名前 ここから
+					td = td2_root.cloneNode();
+					td.setAttribute("id", `${i + 1}_Name`);
+					td.innerText = list[i].Name
+
+					tr.appendChild(td);
+					//td2 名前 ここまで
+
+					//td3 入手方法 ここから
+					td = td3_root.cloneNode();
 
 					if (isDIY) {
 						if (param) {
-							add += `<td class="HTG table-3-column table-column-none">${list[i].Category}</td>`;
+							td.classList.add("table-column-none");
+							td.innerText = list[i].Category;
 						} else {
-							add += `<td class="HTG table-3-column">${list[i].Category}</td>`;
+							td.innerText = list[i].Category;
 						}
 					} else if (list[i].Filename == undefined) {
 						console.log("undefinedエラー！！！！！ダメ絶対！");
-						add += `<td class="HTG table-3-column">undefinedエラー！！！！ダメ！！！</td>`
+						td.innerText = "undefinedエラー！！ダメ絶対！";
 					} else if (param) {
 						if (list[i].Buy != "") {
-							add += `<td class="HTG NFS table-3-column table-column-none">
-								<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
-								${list[i].Buy}</td>`;
+							//特記事項あり paramで非表示
+							td.classList.add("NFS", "table-column-none");
+
+							image = image_root.cloneNode();
+							image.setAttribute("data-src", `https://acnhapi.com/v1/images/furniture/${list[i].Filename}`)
+
+							td.appendChild(image);
+
+							td.insertAdjacentHTML('beforeend', list[i].Buy);
 						} else {
-							add += `<td class="HTG table-3-column table-column-none">
-								<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" /></td>`;
+							//特記事項なし paramで非表示
+							td.classList.add("table-column-none");
+
+							image = image_root.cloneNode();
+							image.setAttribute("data-src", `https://acnhapi.com/v1/images/furniture/${list[i].Filename}`)
+							td.appendChild(image);
 						}
 					} else {
 						if (list[i].Buy != "") {
-							add += `<td class="HTG NFS table-3-column">
-								<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" />
-								${list[i].Buy}</td>`;
+							//特記事項あり
+							td.classList.add("NFS");
+
+							image = image_root.cloneNode();
+							image.setAttribute("data-src", `https://acnhapi.com/v1/images/furniture/${list[i].Filename}`)
+
+							td.appendChild(image);
+
+							td.insertAdjacentHTML('beforeend', list[i].Buy);
 						} else {
-							add += `<td class="HTG table-3-column">
-								<img class="lazyload" width="50px" height="50px" data-src="https://acnhapi.com/v1/images/furniture/${list[i].Filename}" /></td>`;
+							//特記事項なし
+							image = image_root.cloneNode();
+							image.setAttribute("data-src", `https://acnhapi.com/v1/images/furniture/${list[i].Filename}`)
+
+							td.appendChild(image);
 						}
 					}
+
+					tr.appendChild(td)
+					//td3 入手方法 ここまで
+
 					if (param) {
-						add += `<td class="table-4-column">
-							<input type="checkbox" id='${i + 1}_Peer_Give' ${Peer_Give_Checked[0]} disabled='disabled'>
-							<label class="Give-Label" for="${i + 1}_Peer_Give" id="${i + 1}_Peer_Give_Label">${Peer_Give_Checked[1]}</label>
-							</td>
-							<td class="table-4-column">
-							<input type="checkbox" id='${i + 1}_Peer_Get' ${Peer_Get_Checked[0]} disabled='disabled'>
-							<label class="Get-Label" for="${i + 1}_Peer_Get" id="${i + 1}_Peer_Get_Label">${Peer_Get_Checked[1]}</label>
-							</td>`;
+						//td4 相手 配布 ここから
+						td = td4_root.cloneNode();
+
+						cb = cb_root.cloneNode();
+						cb.setAttribute("id", `${i + 1}_Peer_Give`);
+						cb.setAttribute("disabled",'disabled');
+						cb.checked = Peer_Give_Checked[0];
+
+						td.appendChild(cb);
+
+
+						label = Give_Label.cloneNode();
+						label.setAttribute("id", `${i + 1}_Peer_Give_Label`);
+						label.setAttribute("for", `${i + 1}_Peer_Give`);
+						label.innerText = Peer_Give_Checked[1];
+
+						td.appendChild(label);
+						tr.appendChild(td);
+						//td4 相手 配布 ここまで
+
+
+
+						//td4 相手 取得 ここから
+						td = td4_root.cloneNode();
+
+						cb = cb_root.cloneNode();
+						cb.setAttribute("id", `${i + 1}_Peer_Get`);
+						cb.setAttribute("disabled",'disabled');
+						cb.checked = Peer_Get_Checked[0];
+
+						td.appendChild(cb);
+
+						label = Get_Label.cloneNode();
+						label.setAttribute("id", `${i + 1}_Peer_Get_Label`);
+						label.setAttribute("for", `${i + 1}_Peer_Get`);
+						label.innerText = Peer_Get_Checked[1];
+
+						td.appendChild(label);
+						tr.appendChild(td);
+						//td4 相手 取得 ここから
 					};
-					add += `</tr>`;
+					fragment.appendChild(tr);
+					//tr ここまで
 				}
-				document.getElementById('Main_tbody').innerHTML = add;
+				//document.getElementById('Main_tbody').innerHTML = add;
+				document.getElementById('Main_tbody').appendChild(fragment);
 				lazy();
+
+
+
+
 
 				var temp = localStorage.getItem(THIS_PAGE)
 				//USER_JSON = getlocalstorage("All", THIS_PAGE);
-				
+
 				if (temp == null) {
 					$("#Debug-Input").val($("#Debug-Input").val() + "\n[temp onload]:" + "null")
 				} else {
