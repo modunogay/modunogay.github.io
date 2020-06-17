@@ -246,3 +246,16 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	margin: 1px;
 	cursor: pointer;
 }
+
+.youtube-contents {
+	position: relative;
+	width: 100%;
+	padding: 56.25% 0 0 0;
+}
+.youtube-contents iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}

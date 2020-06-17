@@ -6,6 +6,12 @@ var USER_NAME = localStorage.getItem("USER_NAME");
 var OTHER_USER_NAME;
 var isDIY;
 
+if (location.search.substring(1) == "") {
+	param = false;
+} else {
+	param = true;
+}
+
 function startPages() {
 	//USER_JSON = getlocalstorage("All", THIS_PAGE);
 	if (tmp == null) {
@@ -42,15 +48,6 @@ function startPages() {
 
 	OTHER_JSON = [{ "name": "Name", "data": "value" }];
 	sessionStorage.setItem(THIS_PAGE, JSON.stringify(OTHER_JSON));
-
-
-	if (location.search.substring(1) == "") {
-		param = false;
-	} else {
-		param = true;
-	}
-
-
 
 	if (USER_NAME == null) {
 		USER_NAME = "自分"
