@@ -21,6 +21,11 @@ function headerComment() {
 		add += `<p class= "headerPlanText">⚠️履歴の削除：消えます<br>⚠️プライベートモード：消えます<br>⚠️キャッシュクリア：消えます<br>ご注意を</p>`
 	}
 	$("#HeaderComment").append(add);
+
+	if(!param){
+		add = `<div id = "Analysis"><a href="../Analysis/index.html" target="_blank" rel="noopener" onclick="eventGtag('other-btn','Analysis')">みんなの取得率</a></div>`
+		$("#HeaderComment").after(add);
+	}
 }
 
 function eventGtag(...args) {

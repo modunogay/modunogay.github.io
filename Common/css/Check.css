@@ -247,15 +247,20 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 	cursor: pointer;
 }
 
-.youtube-contents {
-	position: relative;
-	width: 100%;
-	padding: 56.25% 0 0 0;
+#Analysis{
+	background: #2a303d8c;
+	outline:0;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	top: 2%;
+	right: 2%;
+	font-size: 1.5em;
+	font-weight: bold;
+	cursor: pointer;
+	display: none;
 }
-.youtube-contents iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+#Analysis a:link,#Analysis a:visited,#Analysis a:hover,#Analysis a:active {
+	color: #fff;
 }
