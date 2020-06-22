@@ -20,14 +20,14 @@ function myimage() {
 	}
 
 	Promise.all([promise[1], promise[2], promise[3], promise[4]]).then(function () {
-		getJson()
+		getJson();
 	});
 
 }
 
 function getJson() {
 	$.getJSON("./json/1_2_1.json", function (data) {
-		if(tmp1 != null){
+		if (tmp1 != null) {
 			FTR = JSON.parse(tmp1)
 			for (i = 1; i < FTR.length; i++) {
 				for (j = 0; j < data.length; j++) {
@@ -45,14 +45,14 @@ function getJson() {
 							context[index].fill();
 							break;
 						}
-	
+
 					}
 				}
 			}
 		}
-		
 
-		if(tmp2 != null){
+
+		if (tmp2 != null) {
 			MISC = JSON.parse(tmp2)
 			for (i = 1; i < MISC.length; i++) {
 				for (j = 0; j < data.length; j++) {
@@ -70,14 +70,14 @@ function getJson() {
 							context[index].fill();
 							break;
 						}
-	
+
 					}
 				}
 			}
 		}
 
 
-		if(tmp3 != null){
+		if (tmp3 != null) {
 			FTR_WALL = JSON.parse(tmp3)
 			for (i = 1; i < FTR_WALL.length; i++) {
 				for (j = 0; j < data.length; j++) {
@@ -95,18 +95,20 @@ function getJson() {
 							context[index].fill();
 							break;
 						}
-	
+
 					}
 				}
 			}
 		}
 
-		for(i=1;i<=4;i++){
-			$(`#canvasImage${i}`).attr("src",elm[i].toDataURL())	
-			$(`#download${i}`).css("display","inline-block");
-			$(`#download${i}_dev`).css("display","inline-block");
+		for (i = 1; i <= 4; i++) {
+			$(`#canvasImage${i}`).attr("src", elm[i].toDataURL())
+			$(`#download${i}`).css("display", "inline-block");
+			$(`#download${i}_dev`).css("display", "inline-block");
+			context[i].width = 0;
+			context[i].height = 0;
+			delete context[i];
 		}
-
 		$("#message").text("終了！")
 	});
 }

@@ -62,6 +62,7 @@ function startPages() {
 	$("#Debug-Input").val($("#Debug-Input").val() + "\nTHIS_PAGE:" + THIS_PAGE)
 	$("#Debug-Input").val($("#Debug-Input").val() + "\nparam:" + param)
 	$("#Debug-Input").val($("#Debug-Input").val() + "\nisDIY:" + isDIY)
+	$("#Debug-Input").val($("#Debug-Input").val() + "\nisPrivate:" + isPrivate)
 	if (USER_JSON != undefined || USER_JSON != null) {
 		$("#Debug-Input").val($("#Debug-Input").val() + "\n1:" + USER_JSON.length)
 	} else {

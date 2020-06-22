@@ -18,8 +18,30 @@
 	<meta charset="UTF-8" name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
 	<title>家具テンプレサイト</title>
+	<!--Twitter metaタグ-->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@modunogay" />
+	<meta property="og:url" content="https://modunogay.github.io/FTR_IMAGE/index.html" />
+	<meta property="og:title" content="家具テンプレサイト" />
+	<meta property="og:description" content="あつまれどうぶつの森の家具のテンプレを作れるサイト" />
+	<meta property="og:image" content="https://modunogay.github.io/FTR_IMAGE/image/CARD_FTR_IMAGE.png" />
+	<meta name="description" content="あつまれどうぶつの森の家具のテンプレを作れるサイト">
+	<!--Twitter metaタグ ここまで-->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+		integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.css"
+		type="text/css" media="all" />
 	<script src="./js/imageFTR.js"></script>
+	<link rel="stylesheet" type="text/css" href="./css/override.css">
 </head>
 
 <!--
@@ -47,90 +69,166 @@
 
 
 <body>
-	家具までチェックして頂きありがとうございます…。<br>
-	今後ともよろしくお願いいたします…。<br><br>
-	また、定期的なバックアップ(URLの発行)をお願いいたします…。<br><br>
-	<span style="background-color: #ff9dc3b8;">iPhone</span><br>長押し〇 ダウンロードボタン〇<br>
-	<span style="background-color: #ff9dc3b8;">Android</span><br>長押し× ダウンロードボタン〇<br><br>
-	URLをコピーしても意味ありません…。<br><br>
-	<span id="message">処理中………</span><br>
-	<button onclick="window.location.reload(true);">更新</button><br><br>
-	<button id="download1" style="display: none;">1枚目をダウンロード</button><br>
-	<button id="download2" style="display: none;">2枚目をダウンロード</button><br>
-	<button id="download3" style="display: none;">3枚目をダウンロード</button><br>
-	<button id="download4" style="display: none;">4枚目をダウンロード</button><br>
-	<br>
-	<button id="download1_dev" style="display: none;">(上のボタン失敗する人向け)1枚目をダウンロード</button><br>
-	<button id="download2_dev" style="display: none;">(上のボタン失敗する人向け)2枚目をダウンロード</button><br>
-	<button id="download3_dev" style="display: none;">(上のボタン失敗する人向け)3枚目をダウンロード</button><br>
-	<button id="download4_dev" style="display: none;">(上のボタン失敗する人向け)4枚目をダウンロード</button><br>
-	<br>
+	<nav class="navbar navbar-dark bg-dark">
+		<span class="navbar-brand">家具テンプレサイト</span>
+	</nav>
+
+	<div class="container">
+		<div class="row my-3">
+			<div class="col-12">
+				<p>
+					ここは<a href="../FTR/index.html">家具チェッカー</a>でチェックした情報を用い画像に出力するサイトです。
+				</p>
+				<h3 class="border-bottom mt-3">基本的な使い方</h3>
+				<a href="../FTR/index.html">家具チェッカー</a>でアイテムを選択します。<br>
+				<img src="./image/image_1.png" width="80%" class="img-thumbnail mx-auto d-block my-2" loading="lazy"
+					style="max-width: 500px;"><br>
+				すると対応するアイテムに色が付きます。<br>
+				<img src="./image/image_3.jpg" width="80%" class="img-thumbnail mx-auto d-block my-2" loading="lazy"
+					style="max-width: 500px;">
+				<h3 class="border-bottom mt-3">iPhone</h3>
+				<p class="my-1">画像から、<span class="mark">長押し</span>で保存してください。</p>
+				<h3 class="border-bottom mt-3">Android・PC</h3>
+				<p class="my-1">ページ下部から、<span class="mark">ダウンロードボタン</span>で保存してください。</p>
+			</div>
+			<div class="col-12">
+				<p>
+					<button class="btn col-12 btn-outline-secondary" type="button" data-toggle="collapse"
+						data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+						Samsung ブラウザを使用している方
+					</button>
+				</p>
+				<div class="collapse" id="collapseExample">
+					<div class="card card-body">
+						Samsung ブラウザを使用しているとダウンロード出来ない場合があります。<br>
+						そのような時は下記画像のように設定を変更してください。
+						<img src="./image/image_2.png" width="80%" class="img-thumbnail mx-auto d-block my-2"
+							loading="lazy" style="max-width: 500px;">
+					</div>
+				</div>
+				<span id="message">処理中………</span><br>
+				<button class="btn btn-outline-primary my-3 btn-sm" onclick="window.location.reload(true);">更新</button>
+			</div>
+			<div class="col-12 my-2">
+				<div class="row">
+					<div class="col-12 d-flex">
+						<div>
+							<img class="img-thumbnail" style="object-fit: contain;" id="canvasImage1">
+						</div>
+						<div>
+							<img class="img-thumbnail" style="object-fit: contain;" id="canvasImage2">
+						</div>
+						<div>
+							<img class="img-thumbnail" style="object-fit: contain;" id="canvasImage3">
+						</div>
+						<div>
+							<img class="img-thumbnail" style="object-fit: contain;" id="canvasImage4">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="row">
+					<div class="btn-group col-12" role="group">
+						<button class="btn btn-sm btn-outline-primary p-1" id="download1"
+							style="display: none;">1枚目<br><span class="font-download">ダウンロード</span></button>
+						<button class="btn btn-sm btn-outline-primary p-1" id="download2"
+							style="display: none;">2枚目<br><span class="font-download">ダウンロード</span></button>
+						<button class="btn btn-sm btn-outline-primary p-1" id="download3"
+							style="display: none;">3枚目<br><span class="font-download">ダウンロード</span></button>
+						<button class="btn btn-sm btn-outline-primary p-1" id="download4"
+							style="display: none;">4枚目<br><span class="font-download">ダウンロード</span></button>
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<h3 class="border-bottom mt-3">失敗する方向け</h3>
+			</div>
+			<div class="col-12">
+				<div class="row">
+					<div class="btn-group col-12 " role="group">
+						<button class="btn btn-sm btn-outline-primary p-1" id="download1_dev"
+							style="display: none;">1枚目<br><span class="font-download">ダウンロード</span></button>
+						<button class="btn btn-sm btn-outline-primary p-1" id="download2_dev"
+							style="display: none;">2枚目<br><span class="font-download">ダウンロード</span></button>
+						<button class="btn btn-sm btn-outline-primary p-1" id="download3_dev"
+							style="display: none;">3枚目<br><span class="font-download">ダウンロード</span></button>
+						<button class="btn btn-sm btn-outline-primary p-" id="download4_dev"
+							style="display: none;">4枚目<br><span class="font-download">ダウンロード</span></button>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 mt-5">
+				<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large"
+					data-text="家具テンプレ作成ツール" data-url="https://modunogay.github.io/FTR_IMAGE/index.html"
+					data-hashtags="あつ森,テンプレ,家具一覧" data-lang="ja" data-show-count="false">Tweet</a>
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				<p class="small">(拡散してくれたら大変喜びます…！)</p>
+			</div>
+		</div>
+	</div>
 
 	<canvas width="1640" height="2840" id="myCanvas1" style="display:none;"></canvas>
 	<canvas width="1640" height="2840" id="myCanvas2" style="display:none;"></canvas>
 	<canvas width="1640" height="2840" id="myCanvas3" style="display:none;"></canvas>
 	<canvas width="1640" height="3000" id="myCanvas4" style="display:none;"></canvas>
 
-	<img id="canvasImage1" style="width: 100px;">
-	<img id="canvasImage2" style="width: 100px;">
-	<img id="canvasImage3" style="width: 100px;">
-	<img id="canvasImage4" style="width: 100px;">
-
-
-
-	<a href="../DataSource/index.html">データ提供元・ライセンス<br>プライバシーポリシー・免責事項 </a>
+	<nav class="navbar navbar-dark bg-dark">
+		<a class="text-white" href="../DataSource/index.html">データ提供元・ライセンス<br>プライバシーポリシー・免責事項</a>
+	</nav>
 </body>
 
 
 <script>
 	var elm = []
 	var context = []
-	elm[1] = document.getElementById("myCanvas1")
-	context[1] = elm[1].getContext("2d");
-	elm[2] = document.getElementById("myCanvas2")
-	context[2] = elm[2].getContext("2d");
-	elm[3] = document.getElementById("myCanvas3")
-	context[3] = elm[3].getContext("2d");
-	elm[4] = document.getElementById("myCanvas4")
-	context[4] = elm[4].getContext("2d");
+	$(function () {
+		elm[1] = document.getElementById("myCanvas1")
+		context[1] = elm[1].getContext("2d");
+		elm[2] = document.getElementById("myCanvas2")
+		context[2] = elm[2].getContext("2d");
+		elm[3] = document.getElementById("myCanvas3")
+		context[3] = elm[3].getContext("2d");
+		elm[4] = document.getElementById("myCanvas4")
+		context[4] = elm[4].getContext("2d");
 
-	setTimeout(function () {
-		myimage()
+		if (context[1] == null || context[2] == null || context[3] == null || context[4] == null) {
+			alert("メモリが不足しています…。一度タスクキルをしてからもう一度お願い致します。")
+		}
 
+		setTimeout(function () {
+			myimage()
+		}, 500);
 
-	}, 500);
+		var DD = new Date();
 
-	var DD = new Date();
+		for (i = 1; i <= 4; i++) {
+			(function (i) {
+				$(`#download${i}`).click(function () {
+					let canvas = document.getElementById(`myCanvas${i}`);
 
-	for (i = 1; i <= 4; i++) {
-		(function (i) {
-			$(`#download${i}`).click(function () {
-				let canvas = document.getElementById(`myCanvas${i}`);
+					let link = document.createElement("a");
+					link.href = canvas.toDataURL("image/png");
 
-				let link = document.createElement("a");
-				link.href = canvas.toDataURL("image/png");
-
-				link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
-				link.click();
-			});
-
-			$(`#download${i}_dev`).click(function () {
-				let canvas = document.getElementById(`myCanvas${i}`);
-
-				let link = document.createElement("a");
-				link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
-				canvas.toBlob(function (blob) {
-					console.log(blob)
-					link.href = URL.createObjectURL(blob);
+					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
 					link.click();
-					URL.revokeObjectURL(link.href);
 				});
-			});
-		}(i));
-	}
 
+				$(`#download${i}_dev`).click(function () {
+					let canvas = document.getElementById(`myCanvas${i}`);
 
-
+					let link = document.createElement("a");
+					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
+					canvas.toBlob(function (blob) {
+						console.log(blob)
+						link.href = URL.createObjectURL(blob);
+						link.click();
+						URL.revokeObjectURL(link.href);
+					});
+				});
+			}(i));
+		}
+	})
 </script>
 
 </html>
