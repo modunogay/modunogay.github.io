@@ -1,5 +1,5 @@
 var isPrivate = false;
-if (navigator.userAgent.indexOf("Android") < 0) {
+if (navigator.userAgent.indexOf("iPhone") > 0) {
 	try {
 		window.openDatabase(null, null, null, null);
 	} catch (_) {
