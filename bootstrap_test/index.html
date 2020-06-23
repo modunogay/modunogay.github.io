@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Hello, Bootstrap Table!</title>
+
+	<!--Bootstrap FontAwesome Bootstrap-Table CSS Start-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+	<!--Bootstrap FontAwesome Bootstrap-Table CSS End-->
+
+	<link rel="stylesheet" href="https://unpkg.com/perfect-scrollbar@1.4.0/css/perfect-scrollbar.css">
+	<script src="https://unpkg.com/perfect-scrollbar@1.4.0/dist/perfect-scrollbar.min.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="./css/override.css">
+</head>
+
+<body>
+
+
+	<style>
+		.bootstrap-table .fixed-table-container .fixed-table-body {
+			overflow: hidden;
+			position: relative;
+		}
+	</style>
+
+	<!--
+	<table id="table" data-height="460" style="height: 460px;">
+	</table>
+	-->
+
+	<!--jQuery Popper Bootstrap Bootstrap-Table js Start-->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
+	<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+	<script src="./js/bootstrap-table-ja-JP.js"></script>
+	<!--jQuery Popper Bootstrap Bootstrap-Table js END-->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<table id="table" classes="table table-bordered" data-toolbar=".toolbar" data-height="500"
+					data-virtual-scroll="true" data-show-columns="true" data-header-style="headerStyle"
+					data-cell-style="cellStyle" style="table-layout:fixed;width:100%;font-size: 0.8rem;">
+					<thead>
+						<tr>
+							<th data-field="Get" data-cell-style="cellStyle">取得(自分)</th>
+							<th data-field="Give" data-cell-style="cellStyle">配布(自分)</th>
+							<th data-field="Name">アイテム名</th>
+							<th data-field="HTG">入手方法</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+
+<script>
+	var param = false;
+
+	/*
+	if (confirm("パラメータ有りに")) {
+		param = true;
+	}
+	*/
+	var $table = $('#table')
+
+	if (param) {
+		$("#table tr").append(`<th data-field="Peer_Give">配布(相手)</th>`)
+		$("#table tr").append(`<th data-field="Peer_Get">取得(相手)</th>`)
+	}
+
+	$(function () {
+
+		var add = []
+		$.getJSON(`./json/1_2_1_a.json`, function (list) {
+			for (i = 0; i < list.length; i++) {
+				add.push({
+					"Get": "未",
+					"Give": "不可",
+					"Name": list[i].Name,
+					"HTG": list[i].Category
+				});
+			}
+			$table.bootstrapTable({
+				data: add
+			})
+		});
+	});
+
+	var ps
+
+	$(function () {
+		$('#table').on('post-body.bs.table', function () {
+			if (ps) ps.destroy()
+			ps = new window.PerfectScrollbar('.fixed-table-body')
+		})
+	})
+
+	function cellStyle(value, row, index) {
+		return {
+			classes:"td-text-center",
+		}
+	}
+
+	$('#table').on('click-cell.bs.table ', function (e, field, value, row, $element) {
+		console.log(field, value, row, $element)
+		switch (field) {
+			case "Get":
+				switch ($element.text()) {
+					case "未":
+						$element.text("済");
+						$element.addClass("GetBackGround");
+						break;
+					default:
+						$element.text("未");
+						$element.removeClass("GetBackGround");
+						break;
+				}
+				break;
+			case "Give":
+				switch ($element.text()) {
+					case "不可":
+						$element.text("可");
+						$element.addClass("GiveBackGround");
+						break;
+					default:
+						$element.text("不可");
+						$element.removeClass("GiveBackGround");
+						break;
+				}
+				break;
+		}
+	});
+</script>
+
+</html>

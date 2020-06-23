@@ -1,0 +1,25 @@
+.table-hover tbody tr:hover {
+    background-color: transparent;
+}
+
+.bootstrap-table .fixed-table-container .table thead th .th-inner{
+    padding: 0;
+}
+
+.container{
+    height: calc(100% + 500px);
+}
+
+.GetBackGround{
+    color: white;
+    background-color: #fa5f9b;
+}
+
+.GiveBackGround{
+    color: white;
+    background-color: #80ced8;
+}
+
+.td-text-center{
+    text-align: center;
+}
