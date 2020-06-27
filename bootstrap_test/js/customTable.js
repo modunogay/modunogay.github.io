@@ -16,7 +16,8 @@ $(function () {
 
 	var add = []
 	$.getJSON(`./json/1_2_1_a.json`, function (list) {
-		for (i = 0; i < list.length; i++) {
+		//for (i = 0; i < list.length; i++) {
+		for (i = 0; i < 151; i++) {
 			add.push({
 				"Get": "未",
 				"Give": "不可",
