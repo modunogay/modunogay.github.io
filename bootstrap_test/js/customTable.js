@@ -13,15 +13,12 @@ if (param) {
 }
 
 $(function () {
-
 	var add = []
 	$.getJSON(`./json/1_2_1_a.json`, function (list) {
-		//for (i = 0; i < list.length; i++) {
-		for (i = 0; i < 151; i++) {
+		for (i = 0; i < list.length; i++) {
 			add.push({
 				"Get": "未",
 				"Give": "不可",
-				//"Name": "あいうえおかきくけこさしすせそたちつてと",
 				"Name": list[i].Name,
 				"HTG": list[i].Category
 			});
@@ -29,6 +26,7 @@ $(function () {
 		$table.bootstrapTable({
 			data: add
 		})
+		$table.bootstrapTable('resetView')
 	});
 });
 
@@ -49,7 +47,7 @@ function cellStyle(value, row, index) {
 	}
 }
 
-$('#table').on('click-cell.bs.table ', function (e, field, value, row, $element) {
+$('#table').on('click-cell.bs.table', function (e, field, value, row, $element) {
 	console.log(field, value, row, $element)
 	switch (field) {
 		case "Get":
@@ -77,4 +75,8 @@ $('#table').on('click-cell.bs.table ', function (e, field, value, row, $element)
 			}
 			break;
 	}
+});
+
+$('#table').on('column-switch.bs.table', function () {
+	$table.bootstrapTable('resetView')
 });
