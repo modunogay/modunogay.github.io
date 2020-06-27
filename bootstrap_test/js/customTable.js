@@ -21,6 +21,7 @@ $(function () {
 			add.push({
 				"Get": "未",
 				"Give": "不可",
+				//"Name": "あいうえおかきくけこさしすせそたちつてと",
 				"Name": list[i].Name,
 				"HTG": list[i].Category
 			});
