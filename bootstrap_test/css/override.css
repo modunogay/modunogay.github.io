@@ -6,9 +6,11 @@
     padding: 0;
 }
 
-.container{
-    height: calc(100% + 500px);
+.fixed-table-body {
+    overflow: hidden;
+    position: relative;
 }
+
 
 .GetBackGround{
     color: white;
