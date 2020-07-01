@@ -2,9 +2,9 @@
     background-color: transparent;
 }
 
-.bootstrap-table .fixed-table-container .table thead th .th-inner{
+/* .bootstrap-table .fixed-table-container .table thead th .th-inner{
     padding: 0;
-}
+} */
 
 .fixed-table-body {
     overflow: hidden;
@@ -24,4 +24,8 @@
 
 .td-text-center{
     text-align: center;
+}
+
+.btn, .form-control{
+    border-radius: .15rem;
 }
