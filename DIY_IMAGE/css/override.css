@@ -1,0 +1,10 @@
+.font-download {
+	font-size: 0.6rem;
+}
+
+/* 幅が 768px 以上であれば */
+@media (min-width:768px) {
+	.font-download {
+		font-size: 1rem;
+	}
+}

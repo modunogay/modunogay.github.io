@@ -6,15 +6,10 @@
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166859192-2"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-
-		function gtag() {
-			dataLayer.push(arguments);
-		}
+		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
 		gtag('config', 'UA-166859192-2', {
-			'custom_map': {
-				'dimension1': 'USER_VERSION'
-			}
+			'custom_map': { 'dimension1': 'USER_VERSION' }
 		});
 		gtag('event', 'VERSION', {
 			'USER_VERSION': 202006201156
@@ -22,30 +17,33 @@
 	</script>
 	<meta charset="UTF-8" name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
-	<title>家具テンプレサイト</title>
+	<title>DIYレシピテンプレサイト</title>
 	<!--Twitter metaタグ-->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@modunogay" />
-	<meta property="og:url" content="https://modunogay.github.io/FTR_IMAGE/index.html" />
-	<meta property="og:title" content="家具テンプレサイト" />
-	<meta property="og:description" content="あつまれどうぶつの森の家具のテンプレを作れるサイト" />
-	<meta property="og:image" content="https://modunogay.github.io/FTR_IMAGE/image/CARD_FTR_IMAGE.png" />
-	<meta name="description" content="あつまれどうぶつの森の家具のテンプレを作れるサイト">
+	<meta property="og:url" content="https://modunogay.github.io/DIY_IMAGE/index.html" />
+	<meta property="og:title" content="DIYレシピテンプレ作成サイト" />
+	<meta property="og:description" content="あつまれどうぶつの森のDIYレシピのテンプレや一覧を作れるサイト" />
+	<meta property="og:image" content="https://modunogay.github.io/DIY_IMAGE/image/CARD_DIY_IMAGE.png" />
+	<meta name="description" content="あつまれどうぶつの森のDIYレシピのテンプレや一覧を作れるサイト">
 	<!--Twitter metaタグ ここまで-->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 		integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
-	</script>
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
-	</script>
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.css"
 		type="text/css" media="all" />
-	<script src="./js/imageFTR.js"></script>
+		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+		<script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
+		<script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
+	<script src="./js/imageDIY.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/override.css">
 </head>
 
@@ -67,29 +65,27 @@
 -->
 
 <script>
-	var tmp1 = localStorage.getItem("FTR")
-	var tmp2 = localStorage.getItem("MISC")
-	var tmp3 = localStorage.getItem("FTR_WALL")
+	var tmp = localStorage.getItem("DIY")
 </script>
 
 
 <body>
 	<nav class="navbar navbar-dark bg-dark">
-		<span class="navbar-brand">家具テンプレサイト</span>
+		<span class="navbar-brand">DIYレシピテンプレサイト</span>
 	</nav>
 
 	<div class="container">
 		<div class="row my-3">
 			<div class="col-12">
 				<p>
-					ここは<a href="../FTR/index.html">家具チェッカー</a>でチェックした情報を用い画像に出力するサイトです。
+					ここは<a href="../DIY/index.html">DIYレシピチェッカー</a>でチェックした情報を用い画像に出力するサイトです。
 				</p>
 				<h3 class="border-bottom mt-3">基本的な使い方</h3>
-				<a href="../FTR/index.html">家具チェッカー</a>でアイテムを選択します。<br>
+				<a href="../DIY/index.html">DIYレシピチェッカー</a>でアイテムを選択します。<br>
 				<img src="./image/image_1.png" width="80%" class="img-thumbnail mx-auto d-block my-2" loading="lazy"
 					style="max-width: 500px;"><br>
 				すると対応するアイテムに色が付きます。<br>
-				<img src="./image/image_3.jpg" width="80%" class="img-thumbnail mx-auto d-block my-2" loading="lazy"
+				<img src="./image/image_3.png" width="80%" class="img-thumbnail mx-auto d-block my-2" loading="lazy"
 					style="max-width: 500px;">
 				<h3 class="border-bottom mt-3">iPhone</h3>
 				<p class="my-1">画像から、<span class="mark">長押し</span>で保存してください。</p>
@@ -133,7 +129,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12" id = "iPhone-none-add">
+			<div class="col-12" id ="iPhone-none-add">
 				<div class="row">
 					<div class="btn-group col-12" role="group">
 						<button class="btn btn-sm btn-outline-primary p-1" id="download1"
@@ -166,18 +162,18 @@
 			</div>
 			<div class="col-12 mt-5">
 				<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large"
-					data-text="あつ森 家具テンプレ作成ツール" data-url="https://modunogay.github.io/FTR_IMAGE/index.html"
-					data-hashtags="あつ森,テンプレ,家具一覧" data-lang="ja" data-show-count="false">Tweet</a>
+					data-text="あつ森 DIYレシピテンプレ作成ツール" data-url="https://modunogay.github.io/DIY_IMAGE/index.html"
+					data-hashtags="あつ森,テンプレ,DIYレシピ一覧" data-lang="ja" data-show-count="false">Tweet</a>
 				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 				<p class="small">(拡散してくれたら大変喜びます…！)</p>
 			</div>
 		</div>
 	</div>
 
-	<canvas width="1640" height="2840" id="myCanvas1" style="display:none;"></canvas>
-	<canvas width="1640" height="2840" id="myCanvas2" style="display:none;"></canvas>
-	<canvas width="1640" height="2840" id="myCanvas3" style="display:none;"></canvas>
-	<canvas width="1640" height="3000" id="myCanvas4" style="display:none;"></canvas>
+	<canvas width="1080"" height="1920" id="myCanvas1" style="display:none;"></canvas>
+	<canvas width="1080"" height="1920" id="myCanvas2" style="display:none;"></canvas>
+	<canvas width="1080"" height="1920" id="myCanvas3" style="display:none;"></canvas>
+	<canvas width="1080"" height="1920" id="myCanvas4" style="display:none;"></canvas>
 
 	<nav class="navbar navbar-dark bg-dark">
 		<a class="text-white" href="../DataSource/index.html">データ提供元・ライセンス<br>プライバシーポリシー・免責事項</a>
@@ -189,7 +185,6 @@
 	var elm = []
 	var context = []
 	$(function () {
-
 		//iphoneならダウンロードボタンを非表示に
 		if (navigator.userAgent.indexOf("iPhone") > 0) {
 			$('.iPhone-none').css('display','none');
@@ -210,7 +205,7 @@
 		}
 
 		setTimeout(function () {
-			myimage()
+			setBack()
 		}, 500);
 
 		var DD = new Date();
@@ -223,9 +218,7 @@
 					let link = document.createElement("a");
 					link.href = canvas.toDataURL("image/png");
 
-					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() +
-						"" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" +
-						`FTR_${i}.png`;
+					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
 					link.click();
 				});
 
@@ -233,9 +226,7 @@
 					let canvas = document.getElementById(`myCanvas${i}`);
 
 					let link = document.createElement("a");
-					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() +
-						"" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" +
-						`FTR_${i}.png`;
+					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
 					canvas.toBlob(function (blob) {
 						console.log(blob)
 						link.href = URL.createObjectURL(blob);
