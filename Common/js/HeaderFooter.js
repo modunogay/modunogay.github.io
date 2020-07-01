@@ -1,9 +1,12 @@
 function header() {
-	add = `		<a href="../DIY/index.html">DIYレシピ<br>チェッカー</a>
-	<a href="../FTR/index.html">家具<br>チェッカー</a>
-	<a href="../MISC/index.html">小物家具<br>チェッカー</a>
-	<a href="../FTR_WALL/index.html">壁掛け家具<br>チェッカー</a>
-	<a href="../FTR_IMAGE/index.html">カタログテンプレート</a>`
+	add = `		<a href="../DIY/index.html">DIYレシピ</a>
+	<a href="../FTR/index.html">家具</a>
+	<a href="../MISC/index.html">小物家具</a>
+	<a href="../FTR_WALL/index.html">壁掛け家具</a>
+	<a href="../DIY_IMAGE/index.html" style="width:40%">🆕DIYテンプレ</a>
+	<a href="../FTR_IMAGE/index.html" style="width:40%">家具テンプレ</a>
+	<a href="../Analysis/index.html">みんなの取得率</a>
+	`
 	$("#Header").append(add);
 }
 
@@ -22,10 +25,8 @@ function headerComment() {
 	}
 	$("#HeaderComment").append(add);
 
-	if(!param){
-		add = `<div id = "Analysis"><a href="../Analysis/index.html" target="_blank" rel="noopener" onclick="eventGtag('other-btn','Analysis')">みんなの取得率</a></div>`
-		$("#HeaderComment").after(add);
-	}
+	//右上の表示はpage.jsへ
+
 }
 
 function eventGtag(...args) {

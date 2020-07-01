@@ -55,6 +55,17 @@ function startPages() {
 
 	isDIY = (THIS_PAGE == "DIY");
 
+	
+	if(!param){
+		if(isDIY){
+			add = `<div id = "Analysis"><a href="../DIY_IMAGE/index.html" target="_blank" rel="noopener" onclick="eventGtag('other-btn','DIY_Image')">テンプレ画像</a></div>`
+			$("#HeaderComment").after(add);
+		}else{
+			add = `<div id = "Analysis"><a href="../FTR_IMAGE/index.html" target="_blank" rel="noopener" onclick="eventGtag('other-btn','FTR_Image')">テンプレ画像</a></div>`
+			$("#HeaderComment").after(add);
+		}
+	}
+
 
 	//DEBUG
 	$("#Debug-Input").val($("#Debug-Input").val() + "\n" + new Date())
