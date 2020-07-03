@@ -112,7 +112,7 @@ function Tweet_Popup() {
 	})
 	tweetText += "%0a";
 	$("#collapseTwo input[type='checkbox']").filter(":checked").each(function (index, elm) {
-		tweetText += $.trim($('label[for="' + elm.id + '"]').text()).replace(/#/gi, "%23") + "%20%0a";
+		tweetText += $.trim($('label[for="' + elm.id + '"]').text()).replace(/#/gi, "%23") + "%20";
 	})
 	var userURL = $("#Tweet_URL_Input").val();
 	var url = "https://twitter.com/share?url=" + userURL + "&text=" + tweetText + "&related=modunogay";
