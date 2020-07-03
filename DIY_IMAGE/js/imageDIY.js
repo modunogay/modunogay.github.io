@@ -1,6 +1,3 @@
-var radix = 6;
-var margin = 2;
-var promise = []
 var stage;
 var queue = new createjs.LoadQueue(true);
 
@@ -35,9 +32,10 @@ function setBack() {
 
 }
 
+var DIY;
 function myimage() {
 	$.getJSON("./json/1_2_1.json", function (data) {
-		var DIY = JSON.parse(tmp)
+		DIY = JSON.parse(tmp)
 		for (i = 0; i < data.length; i++) {
 			for (j = 1; j < DIY.length; j++) {
 				if (data[i].Name == DIY[j].name) {
@@ -78,6 +76,6 @@ function getMyImagePosition(j, i) {
 function setBackColor(page, posi, color) {
 	var shape = new createjs.Shape();
 	shape.graphics.beginFill(color);
-	shape.graphics.drawRoundRect(posi[0], posi[1], posi[2], posi[3], 10, 10); //100pxの正方形を描画。20pxの角丸を設定。
+	shape.graphics.drawRoundRect(posi[0], posi[1], posi[2], posi[3], 10, 10); //100pxの正方形を描画。10pxの角丸を設定。
 	stage[page - 1].addChild(shape); // 表示リストに追加
 }

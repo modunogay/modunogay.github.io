@@ -6,10 +6,15 @@
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-166859192-2"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
 		gtag('js', new Date());
 		gtag('config', 'UA-166859192-2', {
-			'custom_map': { 'dimension1': 'USER_VERSION' }
+			'custom_map': {
+				'dimension1': 'USER_VERSION'
+			}
 		});
 		gtag('event', 'VERSION', {
 			'USER_VERSION': 202007020604
@@ -31,19 +36,22 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 		integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+	</script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-		crossorigin="anonymous"></script>
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+	</script>
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.css"
 		type="text/css" media="all" />
-		<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-		<script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
-		<script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+	<script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
+	<script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
 	<script src="./js/imageDIY.js"></script>
+	<script src="./js/Tweet.js"></script>
+	<script type="text/javascript" src="../Common/js/lz-string.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/override.css">
 </head>
 
@@ -129,7 +137,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12" id ="iPhone-none-add">
+			<div class="col-12" id="iPhone-none-add">
 				<div class="row">
 					<div class="btn-group col-12" role="group">
 						<button class="btn btn-sm btn-outline-primary p-1" id="download1"
@@ -160,20 +168,183 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 mt-5">
-				<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large"
-					data-text="あつ森 DIYレシピテンプレ作成ツール" data-url="https://modunogay.github.io/DIY_IMAGE/index.html"
-					data-hashtags="あつ森,テンプレ,DIYレシピ一覧" data-lang="ja" data-show-count="false">Tweet</a>
-				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-				<p class="small">(拡散してくれたら大変喜びます…！)</p>
+			<!-- modal -->
+			<!-- triger -->
+			<div class="col-12">
+				<div class="row my-5 mx-auto text-center">
+					<div class="col m-2">
+						<button type="button" class="btn btn-primary btn-lg TwitterColor" data-toggle="modal"
+							data-target="#exampleModal" onClick="Tweet_Open_Modal()">
+							<i class="fab fa-twitter mr-2"></i>ツイート
+						</button>
+					</div>
+				</div>
 			</div>
+
+			<!-- modal本体 -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">URLを発行</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<!-- コピー用 text box -->
+							<div class="form-group">
+								<label for="url">URLを発行します</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="Tweet_URL_Input" placeholder="URL発行中・・・"
+										value="URL発行中・・・" readonly="readonly">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="button" id="Tweet_URL_Copy"
+											value="URLをコピー" data-clipboard-target="#Tweet_URL_Input"><i
+												class="fas fa-copy mr-2"></i>コピー！</button>
+									</div>
+								</div>
+								<small id="caption" class="form-text text-muted">右のボタンをクリックするとコピーできます</small>
+							</div>
+
+							<div class="my-2 text-center">
+								<button class="btn btn-primary btn-lg TwitterColor" onclick="Tweet_Popup()">
+									<i class="fab fa-twitter mr-2"></i>でツイート</button>
+							</div>
+
+							<div class="accordion" id="accordionExample">
+								<!-- tweet text setting -->
+								<div class="card">
+									<div class="card-header" id="headingOne">
+										<h2 class="mb-0">
+											<button class="btn btn-link btn-block text-left" type="button"
+												data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+												aria-controls="collapseOne">
+												ツイート内容を設定
+											</button>
+										</h2>
+									</div>
+									<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+										data-parent="#accordionExample">
+										<div class="card-body">
+											<input type="checkbox" id="Twitter-Text-CB-1" onclick="Tweet_setCB_Text(1)">
+											<label for="Twitter-Text-CB-1">
+												配布可：<span id="Twitter-Text-1"></span>枚
+											</label><br>
+											<input type="checkbox" id="Twitter-Text-CB-2" onclick="Tweet_setCB_Text(2)">
+											<label for="Twitter-Text-CB-2">
+												取得済：<span id="Twitter-Text-2"></span>枚
+											</label><br>
+											<input type="checkbox" id="Twitter-Text-CB-3" onclick="Tweet_setCB_Text(3)">
+											<label for="Twitter-Text-CB-3">
+												未取得：<span id="Twitter-Text-3"></span>枚
+											</label><br>
+											<input type="checkbox" id="Twitter-Text-CB-4" onclick="Tweet_setCB_Text(4)">
+											<label for="Twitter-Text-CB-4">
+												コンプ率：<span id="Twitter-Text-4"></span>%
+											</label><br>
+										</div>
+									</div>
+								</div>
+
+								<!-- tweet tags setting -->
+								<div class="card">
+									<div class="card-header" id="headingTwo">
+										<h2 class="mb-0">
+											<button class="btn btn-link btn-block text-left collapsed" type="button"
+												data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+												aria-controls="collapseTwo">
+												<i class="fas fa-hashtag mr-2"></i>ツイートするタグの設定
+											</button>
+										</h2>
+									</div>
+									<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+										data-parent="#accordionExample">
+										<div class="card-body">
+											<input type="checkbox" id="Twitter-Tag-CB-1" onclick="Tweet_setCB_Tag(1)"
+												value="DIYレシピチェッカー">
+											<label for="Twitter-Tag-CB-1">
+												#DIYレシピチェッカー
+											</label><br>
+											<input type="checkbox" id="Twitter-Tag-CB-2" onclick="Tweet_setCB_Tag(2)"
+												value="あつ森">
+											<label for="Twitter-Tag-CB-2">
+												#あつ森
+											</label><br>
+											<input type="checkbox" id="Twitter-Tag-CB-3" onclick="Tweet_setCB_Tag(3)"
+												value="あつ森交換">
+											<label for="Twitter-Tag-CB-3">
+												#あつ森交換
+											</label><br>
+											<input type="checkbox" id="Twitter-Tag-CB-4" onclick="Tweet_setCB_Tag(4)"
+												value="DIYレシピ">
+											<label for="Twitter-Tag-CB-4">
+												#DIYレシピ
+											</label><br>
+											<input type="checkbox" id="Twitter-Tag-CB-5" onclick="Tweet_setCB_Tag(5)"
+												value="DIYレシピ交換">
+											<label for="Twitter-Tag-CB-5">
+												#DIYレシピ交換
+											</label><br>
+											<input type="checkbox" id="Twitter-Tag-CB-6" onclick="Tweet_setCB_Tag(6)"
+												value="レシピ交換">
+											<label for="Twitter-Tag-CB-6">
+												#レシピ交換
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<!-- tweet 画像 -->
+								<div class="card">
+									<div class="card-header" id="headingThree">
+										<h2 class="mb-0">
+											<button class="btn btn-link btn-block text-left" type="button"
+												data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+												aria-controls="collapseThree">
+												ツイートするの際の諸注意
+											</button>
+										</h2>
+									</div>
+									<div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+										data-parent="#accordionExample">
+										<div class="card-body">
+											<img src="./image/image_4.png" width="80%"
+												class="img-thumbnail mx-auto d-block" loading="lazy"
+												style="max-width: 300px;"><br>
+											<small id="caption"
+												class="form-text text-muted">×ボタンを押すと画像が張れるようになります。</small>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- modal end -->
+
+			<div class="col-12">
+				<div class="row mt-5 mx-auto text-center">
+					<div class="col m-2">
+						<button type="button" class="btn btn-primary btn-sm TwitterColor" onClick="DIYImageShare()">
+							<i class="fab fa-twitter mr-2"></i>このサイトを拡散！
+						</button>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
-	<canvas width="1080"" height="1920" id="myCanvas1" style="display:none;"></canvas>
-	<canvas width="1080"" height="1920" id="myCanvas2" style="display:none;"></canvas>
-	<canvas width="1080"" height="1920" id="myCanvas3" style="display:none;"></canvas>
-	<canvas width="1080"" height="1920" id="myCanvas4" style="display:none;"></canvas>
+	<canvas width="1080"" height=" 1920" id="myCanvas1" style="display:none;"></canvas>
+	<canvas width="1080"" height=" 1920" id="myCanvas2" style="display:none;"></canvas>
+	<canvas width="1080"" height=" 1920" id="myCanvas3" style="display:none;"></canvas>
+	<canvas width="1080"" height=" 1920" id="myCanvas4" style="display:none;"></canvas>
 
 	<nav class="navbar navbar-dark bg-dark">
 		<a class="text-white" href="../DataSource/index.html">データ提供元・ライセンス<br>プライバシーポリシー・免責事項</a>
@@ -187,7 +358,7 @@
 	$(function () {
 		//iphoneならダウンロードボタンを非表示に
 		if (navigator.userAgent.indexOf("iPhone") > 0) {
-			$('.iPhone-none').css('display','none');
+			$('.iPhone-none').css('display', 'none');
 			$("#iPhone-none-add").text("長押しで保存してください")
 		}
 
@@ -218,7 +389,9 @@
 					let link = document.createElement("a");
 					link.href = canvas.toDataURL("image/png");
 
-					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
+					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() +
+						"" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" +
+						`FTR_${i}.png`;
 					link.click();
 				});
 
@@ -226,7 +399,9 @@
 					let canvas = document.getElementById(`myCanvas${i}`);
 
 					let link = document.createElement("a");
-					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() + "" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" + `FTR_${i}.png`;
+					link.download = DD.getFullYear() + "" + (DD.getMonth() + 1) + "" + DD.getDate() +
+						"" + DD.getHours() + "" + DD.getMinutes() + "" + DD.getSeconds() + "" +
+						`FTR_${i}.png`;
 					canvas.toBlob(function (blob) {
 						console.log(blob)
 						link.href = URL.createObjectURL(blob);

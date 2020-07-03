@@ -40,7 +40,7 @@ function createURL() {
 				sum = count_data0 + count_data1;
 				num = count_data1;
 				var n = 1;	// 小数点第n位まで残す
-				$("#data-text-4").text(Math.floor((num/sum*100) * Math.pow(10, n)) / Math.pow(10, n))
+				$("#data-text-4").text(Math.floor((num / sum * 100) * Math.pow(10, n)) / Math.pow(10, n))
 				console.log(count_data0 + " " + count_data1 + " " + count_data2)
 
 				if (USER_NAME != "自分" || USER_NAME == "") {

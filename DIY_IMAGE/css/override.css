@@ -8,3 +8,13 @@
 		font-size: 1rem;
 	}
 }
+
+.TwitterColor{
+	background-color: #00ACEE;
+	border-color: #00ACEE;
+}
+
+.TwitterColor:hover,.TwitterColor:active{
+	background-color: #019AD1 !important;;
+	border-color: #019AD1 !important;;
+}
