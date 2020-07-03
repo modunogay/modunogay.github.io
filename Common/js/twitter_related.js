@@ -35,8 +35,8 @@ $(function () {
 			}
 		}
 	}
-	
-	
+
+
 	USER_JSON_TWITTER_TEXT = getlocalstorage("All", `TWITTER_TEXT`);
 	if (USER_JSON_TWITTER_TEXT == null) {
 		USER_JSON_TWITTER_TEXT = [{ "name": "Name", "data": "value" }];
@@ -58,7 +58,7 @@ $(function () {
 			}
 		}
 	}
-	
+
 })
 
 /**
@@ -104,39 +104,47 @@ function TwitterTextfunction(index) {
  * ツイートするためのURLを発行する関数
  */
 function tweetPopup() {
-	var text = encodeURI($("#URL-Input").val());
-	var tags = "";
+	var text = $("#URL-Input").val();
 	var hashtag = getHashTag();
-	if (hashtag.length != 0) {
-		tags = "&hashtags=" + hashtag.join(",")
-	}
-	var data_text = "\n";
 
-	for(i=1;i<=Tiwtter_CB_TEXT_LENGTH;i++){
+	var data_text = "%0a%0a";
+	var check = false;
+	for (i = 1; i <= Tiwtter_CB_TEXT_LENGTH; i++) {
 		if ($(`#Twitter-text-${i}`).prop('checked')) {
-			data_text +=  $.trim($(`#Titter-text-${i}-label`).text()) + "\n"
+			data_text += $.trim($(`#Titter-text-${i}-label`).text()).replace(/%/, "%25") + "%0a";
+			check = true;
 		}
 	}
-	data_text = encodeURI(data_text)
+	if(check){	
+		data_text += "%0a";
+	}
+
+	if (hashtag.length != 0) {
+		for (i = 0; i < hashtag.length; i++) {
+			data_text += "%23" + hashtag[i] + "%20"
+		}
+	}
+
+	console.log(data_text)
 	var url;
 	switch (THIS_PAGE) {
 		case "DIY":
-			url = `https://twitter.com/share?url=${text}&text=DIYレシピを更新しました！${data_text}${tags}`;
+			url = `https://twitter.com/share?url=${text}&text=DIYレシピを更新しました！${data_text}`;
 			break;
 
 		case "FTR":
-			url = `https://twitter.com/share?url=${text}&text=家具を更新しました！${data_text}${tags}`;
+			url = `https://twitter.com/share?url=${text}&text=家具を更新しました！${data_text}`;
 			break;
 
 		case "MISC":
-			url = `https://twitter.com/share?url=${text}&text=小物家具を更新しました！${data_text}${tags}`;
+			url = `https://twitter.com/share?url=${text}&text=小物家具を更新しました！${data_text}`;
 			break;
 
 		case "FTR_WALL":
-			url = `https://twitter.com/share?url=${text}&text=壁掛け家具を更新しました！${data_text}${tags}`;
+			url = `https://twitter.com/share?url=${text}&text=壁掛け家具を更新しました！${data_text}`;
 			break;
 	}
 
-	eventGtag("share-btn","Twitter")
+	eventGtag("share-btn", "Twitter")
 	window.open(url, "tweet", "width=500,height=300");
 };
