@@ -36,7 +36,7 @@ function headerComment() {
 							また、DIYレシピの方に画像をつけたり、アイテム名を見やすくアップデートしました。<br>
 							もし、文字サイズが大きすぎる方は、<span class="marker_line">ページ一番下の「フォントサイズ」</span>から変更してください。<br>
 							<div class="headerImage">
-							<img class="mt-2" src="../Common/image/FontSize.png" alt="フォントサイズ" width="80%" style=""><br>
+							<img class="mt-2" src="../Common/image/FontSize.PNG" alt="フォントサイズ" width="80%" style=""><br>
 							</div>
 			</div>
 			<div class="mt-2">
