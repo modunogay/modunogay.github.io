@@ -17,7 +17,7 @@
 			}
 		});
 		gtag('event', 'VERSION', {
-			'USER_VERSION': 202007020604
+			'USER_VERSION': 202007210614
 		});
 	</script>
 	<meta charset="UTF-8" name="viewport"
@@ -37,10 +37,10 @@
 		integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
 		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
-	</script>
+		</script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
 		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
-	</script>
+		</script>
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.css"
@@ -116,10 +116,46 @@
 						<span class="mark">自動でダウンロードされます。</span>通知バーをお確かめください。
 					</div>
 				</div>
-				<span id="message">処理中………</span><br>
-				<button class="btn btn-outline-primary my-3 btn-sm" onclick="window.location.reload(true);">更新</button>
+
 			</div>
 			<div class="col-12 my-2">
+				<div class="my-5 text-center">
+					状態：<span id="message">選択待ち</span><br>
+					<button class="btn btn-outline-primary my-3 btn-sm"
+						onclick="window.location.reload(true);">更新</button>
+					<div id="selectImageNum">
+						<div class="row">
+							<div class="card mx-auto" style="width:15rem;">
+								<img class="card-img-top" id="cardImage" src="./image/DIY_ピンク.png" alt="Card image cap"
+									style="width: 10rem; margin: auto;">
+								<div class="card-body">
+									<h5 class="card-title">取得済みの色を変更</h5>
+									<p class="card-text" id="cardText">デフォルト</p>
+									<div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
+										<label class="btn btn-secondary active">
+											<input type="radio" name="options" id="pink-option1" checked
+												onchange="setColor(1)"> デフォルト
+										</label>
+										<label class="btn btn-secondary">
+											<input type="radio" name="options" id="pink-option2" onchange="setColor(2)">
+											真っ暗
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="btn-block">
+								<button type="button" class="btn btn-outline-primary btn-lg" onclick="setBack()">
+									<i class="far fa-image"></i><br>
+									画像を作成！
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12" id="Image">
 				<div class="row">
 					<div class="col-12 d-flex">
 						<div>
@@ -136,35 +172,35 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-12" id="iPhone-none-add">
-				<div class="row">
-					<div class="btn-group col-12" role="group">
-						<button class="btn btn-sm btn-outline-primary p-1" id="download1"
-							style="display: none;">1枚目<br><span class="font-download">ダウンロード</span></button>
-						<button class="btn btn-sm btn-outline-primary p-1" id="download2"
-							style="display: none;">2枚目<br><span class="font-download">ダウンロード</span></button>
-						<button class="btn btn-sm btn-outline-primary p-1" id="download3"
-							style="display: none;">3枚目<br><span class="font-download">ダウンロード</span></button>
-						<button class="btn btn-sm btn-outline-primary p-1" id="download4"
-							style="display: none;">4枚目<br><span class="font-download">ダウンロード</span></button>
+				<div class="col-12" id="iPhone-none-add">
+					<div class="row">
+						<div class="btn-group col-12" role="group">
+							<button class="btn btn-sm btn-outline-primary p-1" id="download1"
+								style="display: none;">1枚目<br><span class="font-download">ダウンロード</span></button>
+							<button class="btn btn-sm btn-outline-primary p-1" id="download2"
+								style="display: none;">2枚目<br><span class="font-download">ダウンロード</span></button>
+							<button class="btn btn-sm btn-outline-primary p-1" id="download3"
+								style="display: none;">3枚目<br><span class="font-download">ダウンロード</span></button>
+							<button class="btn btn-sm btn-outline-primary p-1" id="download4"
+								style="display: none;">4枚目<br><span class="font-download">ダウンロード</span></button>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-12 iPhone-none">
-				<h3 class="border-bottom mt-3">失敗する方向け</h3>
-			</div>
-			<div class="col-12 iPhone-none">
-				<div class="row">
-					<div class="btn-group col-12 " role="group">
-						<button class="btn btn-sm btn-outline-primary p-1" id="download1_dev"
-							style="display: none;">1枚目<br><span class="font-download">ダウンロード</span></button>
-						<button class="btn btn-sm btn-outline-primary p-1" id="download2_dev"
-							style="display: none;">2枚目<br><span class="font-download">ダウンロード</span></button>
-						<button class="btn btn-sm btn-outline-primary p-1" id="download3_dev"
-							style="display: none;">3枚目<br><span class="font-download">ダウンロード</span></button>
-						<button class="btn btn-sm btn-outline-primary p-" id="download4_dev"
-							style="display: none;">4枚目<br><span class="font-download">ダウンロード</span></button>
+				<div class="col-12 iPhone-none">
+					<h3 class="border-bottom mt-3">失敗する方向け</h3>
+				</div>
+				<div class="col-12 iPhone-none">
+					<div class="row">
+						<div class="btn-group col-12 " role="group">
+							<button class="btn btn-sm btn-outline-primary p-1" id="download1_dev"
+								style="display: none;">1枚目<br><span class="font-download">ダウンロード</span></button>
+							<button class="btn btn-sm btn-outline-primary p-1" id="download2_dev"
+								style="display: none;">2枚目<br><span class="font-download">ダウンロード</span></button>
+							<button class="btn btn-sm btn-outline-primary p-1" id="download3_dev"
+								style="display: none;">3枚目<br><span class="font-download">ダウンロード</span></button>
+							<button class="btn btn-sm btn-outline-primary p-" id="download4_dev"
+								style="display: none;">4枚目<br><span class="font-download">ダウンロード</span></button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -341,10 +377,10 @@
 		</div>
 	</div>
 
-	<canvas width="1080"" height=" 1920" id="myCanvas1" style="display:none;"></canvas>
-	<canvas width="1080"" height=" 1920" id="myCanvas2" style="display:none;"></canvas>
-	<canvas width="1080"" height=" 1920" id="myCanvas3" style="display:none;"></canvas>
-	<canvas width="1080"" height=" 1920" id="myCanvas4" style="display:none;"></canvas>
+	<canvas width="1080" height=" 1920" id="myCanvas1" style="display:none;"></canvas>
+	<canvas width="1080" height=" 1920" id="myCanvas2" style="display:none;"></canvas>
+	<canvas width="1080" height=" 1920" id="myCanvas3" style="display:none;"></canvas>
+	<canvas width="1080" height=" 2030" id="myCanvas4" style="display:none;"></canvas>
 
 	<nav class="navbar navbar-dark bg-dark">
 		<a class="text-white" href="../DataSource/index.html">データ提供元・ライセンス<br>プライバシーポリシー・免責事項</a>
@@ -374,10 +410,6 @@
 		if (context[1] == null || context[2] == null || context[3] == null || context[4] == null) {
 			alert("メモリが不足しています…。一度タスクキルをしてからもう一度お願い致します。")
 		}
-
-		setTimeout(function () {
-			setBack()
-		}, 500);
 
 		var DD = new Date();
 

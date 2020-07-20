@@ -18,3 +18,7 @@
 	background-color: #019AD1 !important;;
 	border-color: #019AD1 !important;;
 }
+
+#Image{
+	display: none;
+}

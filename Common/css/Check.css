@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .iPhone {
-	font-size: 62.5%;
+	font-size: 75%;
 }
 
 .Android {
@@ -30,6 +30,7 @@ table {
 	width: 100%;
 	height: 100%;
 	max-width: 1000px;
+	margin:0 auto;
 }
 
 th {
@@ -39,8 +40,12 @@ th {
 	border: dashed 1px#172c66;
 }
 
+tr {
+	height: 55px;
+}
+
 td {
-	padding: 1% 1%;
+	padding: 1% 1% 1%;
 	border: dashed 1px #172c66;
 	height: 5vh;
 	line-height: 5vh;
@@ -60,6 +65,7 @@ label {
 	user-select: none;
 }
 
+
 input:checked+label {
 	color: #001858;
 	background-color: #f582ae;
@@ -67,9 +73,10 @@ input:checked+label {
 
 .Get-Label {
 	display: inline-block;
-	width: 80%;
+	width: 90%;
 	border: 1px solid #f582ae;
 	vertical-align: middle;
+	min-height: 40px;
 }
 
 input:checked+.Get-Label {
@@ -79,15 +86,18 @@ input:checked+.Get-Label {
 
 .Give-Label {
 	display: inline-block;
-	width: 80%;
+	width: 90%;
 	border: 1px solid #8bd3dd;
 	vertical-align: middle;
+	min-height: 40px;
 }
 
 input:checked+.Give-Label {
 	color: #172c66;
 	background-color: #8bd3dd;
 }
+
+
 
 /*テーブルの幅*/
 
@@ -263,4 +273,116 @@ input:checked+#Titter-tag-1-label, input:checked+#Titter-tag-2-label, input:chec
 }
 #Analysis a:link,#Analysis a:visited,#Analysis a:hover,#Analysis a:active {
 	color: #fff;
+}
+
+.HTG, .Name{
+	line-height: 1.5em;
+}
+
+
+/*モーダル*/
+.modal-open {
+	display: inline-block;
+	background-color: #666;
+	color: #fff;
+	margin: 10px;
+}
+
+.modal-open a {
+	display: inline-block;
+	padding: 5px;
+	text-decoration: none;
+	color: #fff;
+}
+
+/*** 以下モーダル用CSS ***/
+.modal {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.modal:not(:target) {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.5s, visibility 0.5s;
+}
+
+.modal:target {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.5s, visibility 0.5s;
+}
+
+.modal .overlay {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: #000;
+	opacity: 0.7;
+	top: 0;
+	left: 0;
+}
+
+.modal-wrapper {
+	width: 100%;
+	max-width: 650px;
+	min-width: 300px;
+	height: 100%;
+	max-height: 70%;
+	background-color: #fff;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.modal-contents {
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.modal-content {
+	margin: 25px;
+	word-wrap: break-word;
+	text-align: left;
+}
+
+.modal-close {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	text-decoration: none;
+	font-size: 30px;
+}
+
+.mt-2{
+	margin-top: 2em;
+}
+
+.close{
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+.marker_line{ 
+	background:linear-gradient(transparent 80%, #f190b5 0%);
+}
+
+.headerImage{
+	margin-top: 2em;
+	text-align: center;
+	margin: auto;
+	width: 80%;
+	max-width: 600px;
+}
+.headerImage img{
+	border: 2px solid;
+	border-color: #172c66;
 }

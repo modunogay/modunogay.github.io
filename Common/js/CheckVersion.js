@@ -147,8 +147,8 @@ function getJsonFile() {
 				//image 大本
 				image_root = document.createElement('img');
 				image_root.setAttribute("class", "lazyload");
-				image_root.setAttribute("width", "50px");
-				image_root.setAttribute("height", "50px");
+				image_root.setAttribute("width", "40px");
+				image_root.setAttribute("height", "40px");
 
 				for (i = 0; i < list.length; i++) {
 					//ローカルストレージ 自分
@@ -290,9 +290,15 @@ function getJsonFile() {
 					if (isDIY) {
 						if (param) {
 							td.classList.add("table-column-none");
-							td.innerText = list[i].Category;
+							image = image_root.cloneNode();
+							image.setAttribute("data-src", `https://acnhcdn.com/latest/FtrIcon/${list[i].Filename}.png`)
+							td.appendChild(image);
+							td.insertAdjacentHTML('beforeend', list[i].Category);
 						} else {
-							td.innerText = list[i].Category;
+							image = image_root.cloneNode();
+							image.setAttribute("data-src", `https://acnhcdn.com/latest/FtrIcon/${list[i].Filename}.png`)
+							td.appendChild(image);
+							td.insertAdjacentHTML('beforeend', list[i].Category);
 						}
 					} else if (list[i].Filename == undefined) {
 						console.log("undefinedエラー！！！！！ダメ絶対！");
