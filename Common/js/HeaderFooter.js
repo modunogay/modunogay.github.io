@@ -57,7 +57,11 @@ function headerComment() {
 			<div class="mt-2">
 				つきましては、<span class="marker_line">広告の導入</span>を考えています。<br>
 				ユーザー様の操作を阻害するような広告の置き方はしませんので、ご安心ください。<br>
-				ご理解の程、よろしくお願いいたします。
+				ご理解の程、よろしくお願いいたします。<br>
+			</div>
+			<div class="mt-2">
+				また、ページ一番下に、上記画像の<span class="marker_line">「相手のデータを自分のデータにする」</span>ボタンもありますので、<br>
+				定期的にURLを発行して頂ければ、データの復元は可能ですので、宜しくお願い致します。
 			</div>
 			<div class="mt-2">
 				2番目の課題はサイトが<span class="marker_line">「見づらい」「重い」</span>といった点です。<br>
