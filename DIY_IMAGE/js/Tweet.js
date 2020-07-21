@@ -2,7 +2,7 @@
  * モーダルが開くときの処理 (取得済の枚数等をセット)
  */
 
-var ver = "1_2_1_a";
+var ver = "1_3_0";
 var USER_NAME = localStorage.getItem("USER_NAME")
 
 /**

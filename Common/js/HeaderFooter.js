@@ -3,8 +3,8 @@ function header() {
 	<a href="../FTR/index.html">家具</a>
 	<a href="../MISC/index.html">小物家具</a>
 	<a href="../FTR_WALL/index.html">壁掛け家具</a>
-	<a href="../DIY_IMAGE/index.html" style="width:40%">🆕DIYテンプレ</a>
-	<a href="../FTR_IMAGE/index.html" style="width:40%">家具テンプレ</a>
+	<a href="../DIY_IMAGE/index.html?202007212306" style="width:40%">🆕DIYテンプレ</a>
+	<a href="../FTR_IMAGE/index.html?202007212306" style="width:40%">家具テンプレ</a>
 	<a href="../Analysis/index.html">みんなの取得率</a>
 	`
 	$("#Header").append(add);

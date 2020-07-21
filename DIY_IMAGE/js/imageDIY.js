@@ -51,7 +51,6 @@ function setColor(num){
 
 function myimage() {
 	$.getJSON("./json/1_3_0.json", function (data) {
-		DIY = JSON.parse(tmp)
 		for (i = 0; i < data.length; i++) {
 			for (j = 1; j < DIY.length; j++) {
 				if (data[i].Name == DIY[j].name) {
