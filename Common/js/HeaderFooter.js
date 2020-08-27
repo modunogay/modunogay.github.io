@@ -3,8 +3,8 @@ function header() {
 	<a href="../FTR/index.html">家具</a>
 	<a href="../MISC/index.html">小物家具</a>
 	<a href="../FTR_WALL/index.html">壁掛け家具</a>
-	<a href="../DIY_IMAGE/index.html?202007212306" style="width:40%">🆕DIYテンプレ</a>
-	<a href="../FTR_IMAGE/index.html?202007212306" style="width:40%">家具テンプレ</a>
+	<a href="../DIY_IMAGE/index.html?202008271645" style="width:40%">🆕DIYテンプレ</a>
+	<a href="../FTR_IMAGE/index.html?202008271645" style="width:40%">家具テンプレ</a>
 	<a href="../Analysis/index.html">みんなの取得率</a>
 	`
 	$("#Header").append(add);
@@ -85,6 +85,7 @@ function headerComment() {
 			</div>
 		</div>
 		`;
+	add = `一部画像が表示されない不具合を修正しました<blockquote class="twitter-tweet tw-align-center"><p lang="ja" dir="ltr">【皆様にお知らせ】<br>この度 私モギュは、TECH Street様主催の<br>「エンジニアの夏休みの自由研究発表会 」<br>に参加させて頂くことになりました！🥳🥳<br><br>私は技術的なお話はしない（出来ない）ですが、IT系にご興味ある方 良ければご参加くださいませ！🥳🙏<a href="https://t.co/Wl6vDYHe1I">https://t.co/Wl6vDYHe1I</a> <a href="https://twitter.com/hashtag/%E3%83%86%E3%83%83%E3%82%AF%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%88?src=hash&amp;ref_src=twsrc%5Etfw">#テックストリート</a> <a href="https://t.co/KRsSR13Iux">pic.twitter.com/KRsSR13Iux</a></p>&mdash; モギュ@某チェッカー制作者.質問お気軽に🥳 (@modunogay) <a href="https://twitter.com/modunogay/status/1296729752280023042?ref_src=twsrc%5Etfw">August 21, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`	
 	$("#HeaderComment").append(add);
 
 	//右上の表示はpage.jsへ

@@ -58,10 +58,10 @@ function startPages() {
 	
 	if(!param){
 		if(isDIY){
-			add = `<div id = "Analysis"><a href="../DIY_IMAGE/index.html?202007212306" target="_blank" rel="noopener" onclick="eventGtag('other-btn','DIY_Image')">テンプレ画像</a></div>`
+			add = `<div id = "Analysis"><a href="../DIY_IMAGE/index.html?202008271645" target="_blank" rel="noopener" onclick="eventGtag('other-btn','DIY_Image')">テンプレ画像</a></div>`
 			$("#HeaderComment").after(add);
 		}else{
-			add = `<div id = "Analysis"><a href="../FTR_IMAGE/index.html?202007212306" target="_blank" rel="noopener" onclick="eventGtag('other-btn','FTR_Image')">テンプレ画像</a></div>`
+			add = `<div id = "Analysis"><a href="../FTR_IMAGE/index.html?202008271645" target="_blank" rel="noopener" onclick="eventGtag('other-btn','FTR_Image')">テンプレ画像</a></div>`
 			$("#HeaderComment").after(add);
 		}
 	}

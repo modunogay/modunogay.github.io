@@ -309,7 +309,7 @@ function getJsonFile() {
 							td.classList.add("NFS", "table-column-none");
 
 							image = image_root.cloneNode();
-							image.setAttribute("data-src", `https://acnhapi.com/v1/images/furniture/${list[i].Filename}`)
+							image.setAttribute("data-src", `https://acnhcdn.com/latest/FtrIcon/${list[i].Filename}.png`)
 
 							td.appendChild(image);
 
@@ -319,7 +319,7 @@ function getJsonFile() {
 							td.classList.add("table-column-none");
 
 							image = image_root.cloneNode();
-							image.setAttribute("data-src", `https://acnhapi.com/v1/images/furniture/${list[i].Filename}`)
+							image.setAttribute("data-src", `https://acnhcdn.com/latest/FtrIcon/${list[i].Filename}.png`)
 							td.appendChild(image);
 						}
 					} else {
@@ -328,7 +328,7 @@ function getJsonFile() {
 							td.classList.add("NFS");
 
 							image = image_root.cloneNode();
-							image.setAttribute("data-src", `https://acnhapi.com/v1/images/furniture/${list[i].Filename}`)
+							image.setAttribute("data-src", `https://acnhcdn.com/latest/FtrIcon/${list[i].Filename}.png`)
 
 							td.appendChild(image);
 
@@ -336,7 +336,7 @@ function getJsonFile() {
 						} else {
 							//特記事項なし
 							image = image_root.cloneNode();
-							image.setAttribute("data-src", `https://acnhapi.com/v1/images/furniture/${list[i].Filename}`)
+							image.setAttribute("data-src", `https://acnhcdn.com/latest/FtrIcon/${list[i].Filename}.png`)
 
 							td.appendChild(image);
 						}
